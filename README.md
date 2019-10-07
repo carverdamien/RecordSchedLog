@@ -8,6 +8,6 @@ Tool to automate the following steps:
 
 ## Step 1) kbuild
 
-On host `${HOSTNAME}`, executing `./kbuild.sh ./host/${HOSTNAME}/kernel/${KERNEL}` will build and install the kernel `${KERNEL}`.
+On host `${HOSTNAME}`, executing `./kbuild.sh host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}` will build and install the kernel.
 
-`./host/${HOSTNAME}/kernel/${KERNEL}` is a directory that contains a kernel config (`.config`) and a kernel source git submodule (`src`).
+`host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}` is a directory that contains a kernel config (`.config`) and a kernel source git submodule (`src`).

@@ -1,4 +1,4 @@
 [submodule "host/i80/kernel/4.19.0-schedlog/src"]
-	path = host/i80/kernel/4.19.0-schedlog/src
+	path = host/i80/kernel/schedlog/src
 	url = https://github.com/carverdamien/SchedLog
 	branch = SchedLog
