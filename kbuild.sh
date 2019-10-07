@@ -10,7 +10,7 @@ clean() {
 }
 prepare_src() {
     git submodule init "${HOST_KERNEL_SRC}"
-    git submodule sync --recursive "${HOST_KERNEL_SRC}"
+    # git submodule sync --recursive "${HOST_KERNEL_SRC}"
     git submodule update --recursive --remote "${HOST_KERNEL_SRC}"
     cp "${KCONFIG_ORG}" "${HOST_KERNEL_SRC}/.config"
     VERSION=$(sed -n 's/^VERSION *= *\([^ ]\+\)/\1/p' "${HOST_KERNEL_SRC}/Makefile")
