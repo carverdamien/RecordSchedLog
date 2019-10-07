@@ -1,8 +1,19 @@
 #!/bin/bash
-set -e -u -x
+set -e -u
 . .lib.sh
 check_args() {
-    host_kernel "$1"
+    : ${HOST_KERNEL:=$1}
+    host_kernel > /dev/null
+    if host_kernel_installed # > /dev/null
+    then
+	echo "lol=$?"
+	echo "${HOST_KERNEL} already installed"
+	echo "To reinstall: rm -rf /{boot,lib/modules}/*$(host_kernel_installed)*"
+	exit 0
+    fi
+    HOST_KERNEL_SRC=$(host_kernel_src)
+    HOST_KERNEL_CONFIG=$(host_kernel_config)
+    KERNEL_LOCALVERSION=$(host_kernel_localversion)
     ! test -f "${HOST_KERNEL_SRC}/vmlinux"
 }
 clean() {
@@ -12,44 +23,32 @@ prepare_src() {
     git submodule init "${HOST_KERNEL_SRC}"
     # git submodule sync --recursive "${HOST_KERNEL_SRC}"
     git submodule update --recursive --remote "${HOST_KERNEL_SRC}"
-    cp "${KCONFIG_ORG}" "${HOST_KERNEL_SRC}/.config"
-    VERSION=$(sed -n 's/^VERSION *= *\([^ ]\+\)/\1/p' "${HOST_KERNEL_SRC}/Makefile")
-    PATCHLEVEL=$(sed -n 's/^PATCHLEVEL *= *\([^ ]\+\)/\1/p' "${HOST_KERNEL_SRC}/Makefile")
-    SUBLEVEL=$(sed -n 's/^SUBLEVEL *= *\([^ ]\+\)/\1/p' "${HOST_KERNEL_SRC}/Makefile")
-    pat="/boot/vmlinuz-${VERSION}.${PATCHLEVEL}.${SUBLEVEL}${LOCALVERSION}-g"
-    pat+='(.*)'
-    COMMIT=$(git submodule status "${HOST_KERNEL_SRC}" | awk '{print $1}')
-    for VMLINUZ in /boot/vmlinuz-*
-    do
-	[[ $VMLINUZ =~ $pat ]] || continue
-	commitpat="${BASH_REMATCH[1]}"
-	commitpat+='(.*)'
-	[[ $COMMIT =~ $commitpat ]] || continue
-	echo "$VMLINUZ matches commit $COMMIT."
-	echo "Assuming ${HOST_KERNEL_SRC} is already installed."
-	echo "To reinstall: rm -rf /{boot,lib/modules}/*${VERSION}.${PATCHLEVEL}.${SUBLEVEL}${LOCALVERSION}-g*"
-	exit 0
-    done
+    cp "${HOST_KERNEL_CONFIG}" "${HOST_KERNEL_SRC}/.config"
 }
 kbuild() {
-    make -C "${HOST_KERNEL_SRC}" -j $(($(nproc)*2))
+    (
+	export LOCALVERSION="-${KERNEL_LOCALVERSION}"
+	make -C "${HOST_KERNEL_SRC}" -j $(($(nproc)*2))
+    )
 }
 install() {
-    KERNELRELEASE=$(cat "${HOST_KERNEL_SRC}/include/config/kernel.release")
-    sudo rm -rf /boot/{config,initrd.img,System.map,vmlinuz}-${KERNELRELEASE} /lib/modules/${KERNELRELEASE}
-    sudo make -C "${HOST_KERNEL_SRC}" INSTALL_MOD_STRIP=1 modules_install install
     (
-	cd "${HOST_KERNEL_SRC}/tools/perf"
-	make clean
-	make
-	sudo mkdir -p /usr/lib/linux-tools/${KERNELRELEASE}
-	sudo cp perf /usr/lib/linux-tools/${KERNELRELEASE}/
+	kernelrelease=$(cat "${HOST_KERNEL_SRC}/include/config/kernel.release")
+	sudo rm -rf /boot/{config,initrd.img,System.map,vmlinuz}-${kernelrelease} /lib/modules/${kernelrelease}
+	sudo make -C "${HOST_KERNEL_SRC}" INSTALL_MOD_STRIP=1 modules_install install
+	(
+	    cd "${HOST_KERNEL_SRC}/tools/perf"
+	    make clean
+	    make
+	    sudo mkdir -p /usr/lib/linux-tools/${kernelrelease}
+	    sudo cp perf /usr/lib/linux-tools/${kernelrelease}/
+	)
+	sched_log_tool="${HOST_KERNEL_SRC}/tools/sched_monitor/sched_log"
+	if test -f "${sched_log_tool}"
+	then
+	    sudo cp "${sched_log_tool}" /usr/bin/
+	fi
     )
-    SCHED_LOG_TOOL="${HOST_KERNEL_SRC}/tools/sched_monitor/sched_log"
-    if test -f "${SCHED_LOG_TOOL}"
-    then
-	sudo cp "${SCHED_LOG_TOOL}" /usr/bin/
-    fi
 }
 main() {
     check_args "${@}"
