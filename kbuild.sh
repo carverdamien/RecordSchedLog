@@ -4,9 +4,8 @@ set -e -u
 check_args() {
     : ${HOST_KERNEL:=$1}
     host_kernel > /dev/null
-    if host_kernel_installed # > /dev/null
+    if host_kernel_installed > /dev/null
     then
-	echo "lol=$?"
 	echo "${HOST_KERNEL} already installed"
 	echo "To reinstall: rm -rf /{boot,lib/modules}/*$(host_kernel_installed)*"
 	exit 0
