@@ -22,13 +22,30 @@ prepare_src() {
     git submodule sync --recursive "${DIR_SRC}"
     git submodule update --recursive --remote "${DIR_SRC}"
     cp "${KCONFIG_ORG}" "${DIR_SRC}/.config"
+    VERSION=$(sed -n 's/^VERSION *= *\([^ ]\+\)/\1/p' "${DIR_SRC}/Makefile")
+    PATCHLEVEL=$(sed -n 's/^PATCHLEVEL *= *\([^ ]\+\)/\1/p' "${DIR_SRC}/Makefile")
+    SUBLEVEL=$(sed -n 's/^SUBLEVEL *= *\([^ ]\+\)/\1/p' "${DIR_SRC}/Makefile")
+    pat="/boot/vmlinuz-${VERSION}.${PATCHLEVEL}.${SUBLEVEL}${LOCALVERSION}-g"
+    pat+='(.*)'
+    COMMIT=$(git submodule status "${DIR_SRC}" | awk '{print $1}')
+    for VMLINUZ in /boot/vmlinuz-*
+    do
+	[[ $VMLINUZ =~ $pat ]] || continue
+	commitpat="${BASH_REMATCH[1]}"
+	commitpat+='(.*)'
+	[[ $COMMIT =~ $commitpat ]] || continue
+	echo "$VMLINUZ matches commit $COMMIT."
+	echo "Assuming ${DIR_SRC} is already installed."
+	echo "To reinstall: rm -rf /{boot,lib/modules}/*${VERSION}.${PATCHLEVEL}.${SUBLEVEL}${LOCALVERSION}-g*"
+	exit 0
+    done
 }
 kbuild() {
     make -C "${DIR_SRC}" -j $(($(nproc)*2))
 }
 install() {
     KERNELRELEASE=$(cat "${DIR_SRC}/include/config/kernel.release")
-    rm -rf /boot/{config,initrd.img,System.map,vmlinuz}-${KERNELRELEASE} /lib/modules/${KERNELRELEASE}
+    sudo rm -rf /boot/{config,initrd.img,System.map,vmlinuz}-${KERNELRELEASE} /lib/modules/${KERNELRELEASE}
     sudo make -C "${DIR_SRC}" INSTALL_MOD_STRIP=1 modules_install install
     (
 	cd "${DIR_SRC}/tools/perf"
