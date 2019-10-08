@@ -23,7 +23,7 @@ record_attempt_to_reboot() {
     echo "${CMDLINE}" | sudo tee /boot/.kexec_reboot_attempt > /dev/null
 }
 last_attempt_to_reboot_failed() {
-    return ! [ -f /boot/.kexec_reboot_attempt ] || [ "${CMDLINE}" = "$(cat /boot/.kexec_reboot_attempt)" ]
+    ( ! [ -f /boot/.kexec_reboot_attempt ] ) || [ "${CMDLINE}" = "$(cat /boot/.kexec_reboot_attempt)" ]
 }
 main() {
     check_args "${@}"

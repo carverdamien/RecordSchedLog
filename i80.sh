@@ -1,7 +1,16 @@
 #!/bin/bash
 set -e -u -x
 
+export TIMEOUT
+export IPANEMA_MODULE
+export OUTPUT
+export BENCH
+export MONITORING
+export MONITORING_SCHEDULED
+export PHORONIX
+
 function run_bench {
+    : input ${OUTPUT} ${KERNEL_LOCALVERSION} ${SLEEP_STATE} ${NO_TURBO} ${SCALING_GOVERNOR}
     TAR="${OUTPUT}.tar"
     if [[ -e "${TAR}" ]]
     then
@@ -21,39 +30,41 @@ function run_bench {
 	    exit 1
     esac
     ./scripts/kexec.sh  host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION} host/${HOSTNAME}/cmdline/${CMDLINE}
-    echo ${NO_TURBO} | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null
-    echo ${SCALING_GOVERNOR} | sudo tee /sys/devices/system/cpu/cpufreq/policy*/scaling_governor > /dev/null
+    echo ${NO_TURBO} | tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null
+    echo ${SCALING_GOVERNOR} | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_governor > /dev/null
     ./scripts/entrypoint
     if [[ -x ./host/${HOSTNAME}/callback_run_bench.sh ]]
     then
-	echo ./host/${HOSTNAME}/callback_run_bench.sh "${TAR}" || true
+	./host/${HOSTNAME}/callback_run_bench.sh "${TAR}" || true
     fi
 }
 
-export TIMEOUT
-export IPANEMA_MODULE
-export OUTPUT
-export BENCH
-export MONITORING
-export MONITORING_SCHEDULED
-export PHORONIX
-
+NO_TURBO=n
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
 PHORONIX=aobench
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-SCALING_GOVERNOR=performance
-SLEEP_STATE=y
 KERNEL_LOCALVERSION=schedlog
-N=1
 
-OUTPUT="output/"
-OUTPUT+="BENCH=$(basename ${BENCH})/"
-OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-OUTPUT+="PHORONIX=${PHORONIX}/"
-OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
+SLP=(y         n          )
+GOV=(powersave performance)
+RPT=(1         1          )
 
-run_bench
+for I in ${!SLP[@]}
+do
+    SLEEP_STATE=${SLP[$I]}
+    SCALING_GOVERNOR=${GOV[$I]}
+    REPEAT=${RPT[$I]}
+    for N in $(seq ${REPEAT})
+    do
+	OUTPUT="output/"
+	OUTPUT+="BENCH=$(basename ${BENCH})/"
+	OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+	OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+	OUTPUT+="PHORONIX=${PHORONIX}/"
+	OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
+	run_bench
+    done
+done
