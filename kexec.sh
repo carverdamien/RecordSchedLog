@@ -19,9 +19,28 @@ check_args() {
     test -f "${INITRD}"
     CMDLINE="BOOT_IMAGE=${BOOT_IMAGE} ${APPEND}"
 }
+record_attempt_to_reboot() {
+    echo "${CMDLINE}" | sudo tee /boot/.kexec_reboot_attempt > /dev/null
+}
+last_attempt_to_reboot_failed() {
+    return ! [ -f /boot/.kexec_reboot_attempt ] || [ "${CMDLINE}" = "$(cat /boot/.kexec_reboot_attempt)" ]
+}
 main() {
     check_args "${@}"
-    echo sudo kexec -l "${BOOT_IMAGE}" --command-line="${CMDLINE}" --initrd="${INITRD}"
-    echo sudo kexec -e
+    CURRENT_CMDLINE="$(cat /proc/cmdline)"
+    if [ "${CMDLINE}" != "${CURRENT_CMDLINE}" ]
+    then
+	# Need to reboot
+	if last_attempt_to_reboot_failed
+	then
+	    # Avoid infinite reboot attempts
+	    echo 'last_attempt_to_reboot_failed'
+	    sleep inf
+	else
+	    record_attempt_to_reboot
+	    sudo kexec -l "${BOOT_IMAGE}" --command-line="${CMDLINE}" --initrd="${INITRD}"
+	    sudo kexec -e
+	fi
+    fi
 }
 main "${@}"
