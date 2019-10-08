@@ -39,7 +39,7 @@ function run_bench {
     fi
 }
 
-NO_TURBO=n
+NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
