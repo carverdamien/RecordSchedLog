@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e -u
+
+main() {
+    prog="$1"
+    shift
+    
+    case "${IPANEMA_MODULE}" in
+    	"")
+	    exec "${prog}" "${@}"
+	    ;;
+	*)
+	    # Check if kernel support ipanema API
+	    [[ -f /proc/ipanema/policies ]]
+
+	    # Unload module first if already loaded.
+	    module_is_loaded_and_could_not_be_unloaded () {
+		(lsmod | awk '{print $1}' | grep -q "^${IPANEMA_MODULE}\$") && ! rmmod "${IPANEMA_MODULE}"
+	    }
+	    while module_is_loaded_and_could_not_be_unloaded
+	    do
+		echo 'module is loaded and could not be unloaded'
+		sleep 10
+	    done
+	    modprobe "${IPANEMA_MODULE}"
+
+	    # Get ID
+	    grep -q "${IPANEMA_MODULE}" /proc/ipanema/policies
+	    IPANEMA_POLICY_ID=$(grep "${IPANEMA_MODULE}" /proc/ipanema/policies | awk '{print $1}')
+	    exec ipastart "${IPANEMA_POLICY_ID}" "${prog}" "${@}"
+	    ;;
+    esac
+}
+main "$@"

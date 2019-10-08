@@ -1,0 +1,26 @@
+#!/bin/bash
+dmesg > ${OUTPUT}/dmesg.report
+cat > ${OUTPUT}/report.main.json <<EOF
+{
+  "kernel" : {
+  "version" : "$(uname -r)",
+  "cmdline" : "$(cat /proc/cmdline)"
+  },
+  "cpu" : {
+  "scaling_governor" : "$(sort /sys/devices/system/cpu/cpufreq/policy*/scaling_governor | uniq)",
+  "no_turbo" : "$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)"
+  },
+  "bench" : {
+    "prepare" : $(scripts/2jsonString ${BENCH}/prepare),
+    "cleanup" : $(scripts/2jsonString ${BENCH}/cleanup),
+    "report"  : $(scripts/2jsonString ${BENCH}/report),
+    "run"     : $(scripts/2jsonString ${BENCH}/run)
+  },
+  "monitoring" : {
+    "start"  : $(scripts/2jsonString ${MONITORING}/start),
+    "stop"   : $(scripts/2jsonString ${MONITORING}/stop),
+    "report" : $(scripts/2jsonString ${MONITORING}/report)
+  },
+  "main" : $(scripts/2jsonString <(set))
+}
+EOF

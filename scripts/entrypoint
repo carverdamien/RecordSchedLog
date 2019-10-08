@@ -1,0 +1,2 @@
+#!/bin/bash
+exec ./scripts/unshare ./scripts/timeout ./scripts/ipanema ./scripts/main
