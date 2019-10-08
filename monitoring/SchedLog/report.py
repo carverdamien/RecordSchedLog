@@ -4,17 +4,24 @@ import numpy as np
 import pandas as pd
 from threading import Thread, Semaphore
 from multiprocessing import cpu_count
-from tqdm import tqdm
+# from tqdm import tqdm
+def tqdm(*args, **kwargs):
+    return args[0]
 
-EXEC = 0
-BLOCK_EVT = 4
-WAKEUP_EVT = 2
-TICK = 10
+with open('/proc/sched_log_traced_events') as f:
+    for line in f.read().split('\n'):
+        if len(line)==0:
+            continue
+        print(line)
+        eventid, eventname = line.split(' ')[0:2]
+        globals()[eventname] = int(eventid)
+
+# print(globals())
 
 def main():
     _, i_path = sys.argv
-    o_path = os.path.join(i_path, 'sched_monitor', 'tracer')
-    i_path = os.path.join(i_path, 'sched_monitor', 'tracer-raw')
+    o_path = os.path.join(i_path, 'sched_log', 'tracer_npz')
+    i_path = os.path.join(i_path, 'sched_log', 'tracer')
     df, comm = load_tracer_raw(i_path)
     os.makedirs(o_path)
     with open(os.path.join(o_path, 'comm.json'), 'w') as f:
@@ -22,6 +29,7 @@ def main():
     for k in df.columns:
         v=df[k]
         fname = os.path.join(o_path, '{}.npz'.format(k))
+        print(f'writing {fname}')
         np.savez_compressed(fname, **{k:v})
     shutil.rmtree(i_path)
 
@@ -47,7 +55,7 @@ def parallel_compute_nxt_blk_wkp_of_same_pid(dd):
     nxt = np.array(dd['timestamp'])
     idx = np.arange(len(nxt))
     pid = np.unique(dd['pid'])
-    sel_evt = (dd['event'] == BLOCK_EVT) | (dd['event']==WAKEUP_EVT)
+    sel_evt = (dd['event'] == BLOCK) | (dd['event']==WAKEUP)
     @parallel(itertools.product(pid))
     def per_pid(p):
         sel_pid = dd['pid'] == p
