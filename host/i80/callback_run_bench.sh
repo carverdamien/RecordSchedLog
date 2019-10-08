@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -x -u
 TAR="$1"
-SRC_DIR=/mnt/data/damien/git/carverdamien/SchedDisplay/examples/record/output/
+SRC_DIR=/mnt/data/damien/git/carverdamien/RecordSchedLog/output/
 DSTS="damien@amd48b-systeme.rsr.lip6.fr:/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/ damien@i44.rsr.lip6.fr:/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/"
 for DST in ${DSTS}
 do
