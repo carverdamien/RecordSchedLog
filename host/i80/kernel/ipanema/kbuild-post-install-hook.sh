@@ -9,6 +9,6 @@
     (
 	cd "${HOST_KERNEL}/compiler/c-code"
 	make
-	make install
+	sudo make install
     )
 )
