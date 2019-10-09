@@ -10,3 +10,6 @@
 	path = host/i80/kernel/ipanema/compiler
 	url = git@gitlab.inria.fr:ipanema/compiler.git
 	branch = master
+[submodule "host/i80/kernel/sched-freq/src"]
+	path = host/i80/kernel/sched-freq/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
