@@ -13,7 +13,11 @@ check_args() {
     HOST_KERNEL_SRC=$(host_kernel_src)
     HOST_KERNEL_CONFIG=$(host_kernel_config)
     KERNEL_LOCALVERSION=$(host_kernel_localversion)
-    ! test -f "${HOST_KERNEL_SRC}/vmlinux"
+    ! test -f "${HOST_KERNEL_SRC}/vmlinux" || (
+	echo "There is a ${HOST_KERNEL_SRC}/vmlinux"
+	echo "rm -rf ${HOST_KERNEL_SRC}"
+	exit 1
+    )
 }
 clean() {
     rm -rf "${HOST_KERNEL_SRC}"

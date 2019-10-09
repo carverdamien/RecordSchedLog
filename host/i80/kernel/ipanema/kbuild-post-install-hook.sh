@@ -5,10 +5,10 @@
     git submodule update --recursive --remote "${HOST_KERNEL}/compiler"
     make -C "${HOST_KERNEL}/compiler" policies
     export KERNEL=${PWD}/${HOST_KERNEL_SRC}
-    export KERNELRELEASE=${kernelrelease}
+    export KERNELRELEASE=$(cat "${HOST_KERNEL_SRC}/include/config/kernel.release")
     (
 	cd "${HOST_KERNEL}/compiler/c-code"
 	make
-	sudo make install
+	sudo KERNELRELEASE=${KERNELRELEASE} make install
     )
 )
