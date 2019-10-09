@@ -8,7 +8,11 @@ from multiprocessing import cpu_count
 def tqdm(*args, **kwargs):
     return args[0]
 
-with open('/proc/sched_log_traced_events') as f:
+fname = '/proc/sched_log_traced_events'
+# sched_monitor is deprecated. use sched_log instead
+if not os.path.exists(fname):
+    fname = '/proc/sched_monitor_events'
+with open(fname) as f:
     for line in f.read().split('\n'):
         if len(line)==0:
             continue

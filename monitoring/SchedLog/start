@@ -1,21 +1,28 @@
 #!/bin/bash
+# sched_monitor is deprecated. Use sched_log instead
 sched_log_start() {
     mount --bind ./rootproc /proc
     ps -eLfwc > ${OUTPUT}/ps.start
     umount /proc
-    for f in /proc/{schedstat,sched_debug,sched_log_traced_events}
+    for f in /proc/{schedstat,sched_debug,sched_log_traced_events,sched_monitor_events}
     do
-	cp ${f} ${OUTPUT}/$(basename ${f}).start || [ $f = /proc/sched_log_traced_events ]
+	cp ${f} ${OUTPUT}/$(basename ${f}).start ||
+	    [ $f = /proc/sched_log_traced_events ] ||
+	    [ $f = /proc/sched_monitor_events ]
     done
     sched_log start tracer ||
+	sched_monitor start tracer ||
 	true
     sched_log reset tracer ||
+	sched_monitor reset tracer ||
 	true
 }
 sched_log_stop() {
     sched_log stop tracer ||
+	sched_monitor stop tracer ||
 	true
     sched_log dump-raw ${OUTPUT}/sched_log tracer ||
+	sched_monitor dump-raw ${OUTPUT}/sched_log tracer ||
 	true
     for f in /proc/{schedstat,sched_debug,stat}
     do
