@@ -42,10 +42,9 @@ install() {
 	    sudo mkdir -p /usr/lib/linux-tools/${kernelrelease}
 	    sudo cp perf /usr/lib/linux-tools/${kernelrelease}/
 	)
-	sched_log_tool="${HOST_KERNEL_SRC}/tools/sched_log/sched_log"
-	if test -f "${sched_log_tool}"
+	if test -f "${HOST_KERNEL}/kbuild-post-install-hook.sh"
 	then
-	    sudo cp "${sched_log_tool}" /usr/bin/
+	    source "${HOST_KERNEL}/kbuild-post-install-hook.sh"
 	fi
     )
 }
