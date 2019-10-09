@@ -2,3 +2,7 @@
 	path = host/i80/kernel/schedlog/src
 	url = https://github.com/carverdamien/SchedLog
 	branch = SchedLog
+[submodule "host/i80/kernel/ipanema/src"]
+	path = host/i80/kernel/ipanema/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = linux-4.19-ipanema
