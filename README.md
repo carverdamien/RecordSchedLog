@@ -10,7 +10,7 @@ Tool to automate the following steps:
 
 On host `${HOSTNAME}`, executing `./kbuild.sh host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}` builds and installs the kernel.
 
-`host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}` is a directory that contains a kernel config (`.config`) and a kernel source git submodule (`src`).
+`host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}` is a directory that contains a kernel config (`config`) and a kernel source git submodule (`src`).
 
 ## Step 2) kexec
 

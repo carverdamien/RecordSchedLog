@@ -44,7 +44,7 @@ host_kernel_config() {
 	then
 	    return 1
 	fi
-	host_kernel_config="${HOST_KERNEL}/.config"
+	host_kernel_config="${HOST_KERNEL}/config"
 	test -f "${host_kernel_config}"
 	echo "${host_kernel_config}"
 	return 0
