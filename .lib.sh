@@ -119,7 +119,7 @@ __host_kernel_installed() {
 	    commit="${BASH_REMATCH[5]}"
 	    host_kernel_commit_pat="${commit}.*"
 	    [[ ${localversion} = ${host_kernel_localversion} ]] || continue
-	    [[ ${host_kernel_commit_pat} =~ ${commit} ]] || continue
+	    [[ ${host_kernel_commit} =~ ${host_kernel_commit_pat} ]] || continue
 	    echo "${kernelrelease}"
 	done
 	return 0
