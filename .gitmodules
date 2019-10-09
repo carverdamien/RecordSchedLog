@@ -6,3 +6,7 @@
 	path = host/i80/kernel/ipanema/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = linux-4.19-ipanema
+[submodule "host/i80/kernel/ipanema/compiler"]
+	path = host/i80/kernel/ipanema/compiler
+	url = git@gitlab.inria.fr:ipanema/compiler.git
+	branch = master
