@@ -24,7 +24,7 @@ clean() {
 }
 prepare_src() {
     git submodule init "${HOST_KERNEL_SRC}"
-    # git submodule sync --recursive "${HOST_KERNEL_SRC}"
+    git submodule sync --recursive "${HOST_KERNEL_SRC}"
     git submodule update --recursive --remote "${HOST_KERNEL_SRC}"
     cp "${HOST_KERNEL_CONFIG}" "${HOST_KERNEL_SRC}/.config"
 }
