@@ -51,7 +51,7 @@ do
 		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 		    OUTPUT+="IPANEMA=$(basename ${IPANEMA_MODULE})/"
-		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSIONS}/${N}"
+		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 	            run_bench
 	        done
             done

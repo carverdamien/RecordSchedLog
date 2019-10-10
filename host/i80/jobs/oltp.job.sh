@@ -48,7 +48,7 @@ do
 		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSIONS}/${N}"
+		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 	        run_bench
             done
         done
