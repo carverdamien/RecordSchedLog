@@ -16,8 +16,12 @@ function run_bench {
 	then
 	    return 0
 	fi
-	./scripts/kbuild.sh host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}
-	./scripts/kexec.sh  host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION} host/${HOSTNAME}/cmdline/${CMDLINE}
+	(
+	    env -i
+	    source /tmp/RecordSchedLog.env
+	    ./scripts/kbuild.sh host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION}
+	    ./scripts/kexec.sh  host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION} host/${HOSTNAME}/cmdline/${CMDLINE}
+	)
 	echo ${NO_TURBO} | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null
 	echo ${SCALING_GOVERNOR} | sudo tee /sys/devices/system/cpu/cpufreq/policy*/scaling_governor > /dev/null
 	sudo -E ./scripts/entrypoint
@@ -31,6 +35,7 @@ function run_bench {
 function main {
     (
 	flock -n 9 || exit 1
+	export -p > /tmp/RecordSchedLog.env
 	find host/${HOSTNAME} -name '*.job.sh' | sort | while read job
 	do
 	    (source "${job}")
