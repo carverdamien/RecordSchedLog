@@ -17,7 +17,7 @@ MONITORING=monitoring/all
 MONITORING_SCHEDULED=y
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
-KERNEL_LOCALVERSIONS="schedlog sched-freq"
+KERNEL_LOCALVERSIONS="ipanema"
 SLP=(y         n          )
 GOV=(powersave performance)
 RPT=(1         1          )
@@ -44,12 +44,16 @@ do
         do
             for TASKS in 160
             do
-                OUTPUT="output/"
-		OUTPUT+="BENCH=$(basename ${BENCH})/"
-		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSIONS}/${N}"
-	        run_bench
+            	for IPANEMA_MODULE in 12300
+            	do
+                    OUTPUT="output/"
+		    OUTPUT+="BENCH=$(basename ${BENCH})/"
+		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="IPANEMA=$(basename ${IPANEMA_MODULE})/"
+		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSIONS}/${N}"
+	            run_bench
+	        done
             done
         done
     done
