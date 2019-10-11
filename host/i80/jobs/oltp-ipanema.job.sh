@@ -18,6 +18,7 @@ MONITORING_SCHEDULED=y
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
 KERNEL_LOCALVERSIONS="ipanema"
+IPANEMA_MODULES="12300 10261"
 SLP=(y         n          )
 GOV=(powersave performance)
 RPT=(1         1          )
@@ -44,7 +45,7 @@ do
         do
             for TASKS in 160
             do
-            	for IPANEMA_MODULE in 12300
+            	for IPANEMA_MODULE in ${IPANEMA_MODULES}
             	do
                     OUTPUT="output/"
 		    OUTPUT+="BENCH=$(basename ${BENCH})/"
