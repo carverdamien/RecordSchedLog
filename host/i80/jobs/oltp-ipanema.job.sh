@@ -18,9 +18,9 @@ MONITORING_SCHEDULED=y
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
 KERNEL_LOCALVERSIONS="ipanema"
-IPANEMA_MODULES="12300 10261 cfs_wwc"
-SLP=(y         n          )
-GOV=(powersave performance)
+IPANEMA_MODULES="44530 12300 10261 cfs_wwc"
+SLP=(n           y        )
+GOV=(performance powersave)
 RPT=(1         1          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
