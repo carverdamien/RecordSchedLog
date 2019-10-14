@@ -43,7 +43,7 @@ MKDIR_CHOWN_IF_DIRS_DO_NOT_EXIST='ENGINE_BASE_DIR ENGINE_DATA_DIR'
 TOUCH_CHOWN_IF_FILES_DO_NOT_EXIST=''
 
 CLIENT_NAME=sysbench
-CLIENT_BIN=/usr/local/bin/sysbench
+CLIENT_BIN=/usr/local/bin/sysbench-uevt
 CLIENT_VERSION=1.1.0
 CLIENT_DEFAULT_ARGS="--db-driver=mysql \
 --mysql-db=${DATABASE_NAME} \
