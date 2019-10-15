@@ -3,7 +3,7 @@
 mkdir /tmp/kbuild
 src=/tmp/linux
 
-if ! [ -f ${src} ]
+if ! [ -d ${src} ]
 then
     git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ ${src}
 fi
