@@ -1,3 +1,0 @@
-#!/bin/bash
-set -e -u
-exec make -C /tmp/kbuild -j ${TASKS} ${TARGET:=} > ${OUTPUT}/run.out 2> ${OUTPUT}/run.err

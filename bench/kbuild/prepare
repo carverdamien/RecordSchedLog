@@ -1,13 +1,13 @@
 #!/bin/bash
-: ${TASKS}
+: ${TASKS} ${KERNEL_COMMIT}
 mkdir /tmp/kbuild
-tar=/tmp/linux-4.19.tar.xz
+src=/tmp/linux
 
-if ! [ -f ${tar} ]
+if ! [ -f ${src} ]
 then
-    wget --quiet http://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.tar.xz -O ${tar}
+    git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ ${src}
 fi
-
-tar -C /tmp/kbuild -xJf ${tar}
-
+(cd ${src}; git pull origin master)
+git clone ${src} /tmp/kbuild
+(cd /tmp/kbuild; git checkout ${KERNEL_COMMIT})
 make -C /tmp/kbuild/linux* defconfig
