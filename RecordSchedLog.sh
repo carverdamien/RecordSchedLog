@@ -33,7 +33,7 @@ function main {
     (
 	flock -n 9 || exit 1
 	export -p > /tmp/RecordSchedLog.env
-	find host/${HOSTNAME} -name '*.job.sh' | sort | while read job
+	find host/${HOSTNAME}/job -name '*.job.sh' | sort | while read job
 	do
 	    (source "${job}")
 	done
