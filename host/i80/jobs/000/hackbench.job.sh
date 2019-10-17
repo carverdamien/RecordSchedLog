@@ -5,18 +5,15 @@ export OUTPUT
 export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
-export KERNEL_COMMIT
 export TASKS
-export TARGET
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/kbuild
+BENCH=bench/hackbench
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="pull-back sched-freq local local-light ipanema"
-KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
+KERNEL_LOCALVERSIONS="ipanema" #"pull-back sched-freq local local-light ipanema"
 SLP=(y         n          )
 GOV=(powersave performance)
 RPT=(1         1          )
@@ -41,17 +38,14 @@ do
 	REPEAT=${RPT[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 80 160 320
+	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
 	    do
-		for TARGET in all kernel/sched/
-		do
-		    OUTPUT="output/"
-		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
-		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
-		    run_bench
-		done
+		OUTPUT="output/"
+		OUTPUT+="BENCH=$(basename ${BENCH})/"
+		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
+		run_bench
 	    done
 	done
     done
