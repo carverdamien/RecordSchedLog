@@ -33,3 +33,6 @@
 [submodule "host/redha/kernel/ipanema/src/src"]
 	path = host/redha/kernel/ipanema/src/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+[submodule "host/redha/kernel/ipanema/src"]
+	path = host/redha/kernel/ipanema/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
