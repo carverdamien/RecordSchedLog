@@ -30,7 +30,9 @@ function run_bench {
 	sudo -E ./scripts/entrypoint
 	if [[ -x ./host/${HOSTNAME}/callback_run_bench.sh ]]
 	then
-	    ./host/${HOSTNAME}/callback_run_bench.sh "${TAR}" || true
+	    test -e .skip_callback_run_bench ||
+		./host/${HOSTNAME}/callback_run_bench.sh "${TAR}" ||
+		true
 	fi
     )
 }
