@@ -12,7 +12,7 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
 PHORONIXES=(apache-siege apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel)
-PARGUMENTS=(           1            2            3            4            5       0      0          0                  0)
+PARGUMENTS=(           5            4            3            2            1       0      0          0                  0)
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema local-light sched-freq pull-back local schedlog"
@@ -37,11 +37,11 @@ do
     esac
     SCALING_GOVERNOR=${GOV[$I]}
     REPEAT=${RPT[$I]}
-    for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+    for N in $(seq ${REPEAT})
     do
-	for N in $(seq ${REPEAT})
+	for J in ${!PHORONIXES[@]}
 	do
-	    for J in ${!PHORONIXES[@]}
+	    for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 	    do
 		PHORONIX=${PHORONIXES[$J]}
 		PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$J]}
