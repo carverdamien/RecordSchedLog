@@ -12,6 +12,12 @@ function run_bench {
 	export MONITORING
 	export MONITORING_SCHEDULED
 	TAR="${OUTPUT}.tar"
+	if [[ -e .touch ]]
+	then
+	    # like make -t
+	    mkdir -p "$(dirname ${TAR})"
+	    touch "${TAR}"
+	fi
 	if [[ -e "${TAR}" ]]
 	then
 	    return 0
@@ -24,7 +30,9 @@ function run_bench {
 	sudo -E ./scripts/entrypoint
 	if [[ -x ./host/${HOSTNAME}/callback_run_bench.sh ]]
 	then
-	    ./host/${HOSTNAME}/callback_run_bench.sh "${TAR}" || true
+	    test -e .skip_callback_run_bench ||
+		./host/${HOSTNAME}/callback_run_bench.sh "${TAR}" ||
+		true
 	fi
     )
 }

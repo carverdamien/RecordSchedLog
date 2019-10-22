@@ -14,3 +14,4 @@ run phoronix batch-setup
     Prompt for test description (Y/n): n
     Prompt for saved results file-name (Y/n): n
     Run all test options (Y/n): 
+rm /usr/share/phoronix-test-suite/pts-core/objects/pts_openbenchmarking_upload.php
