@@ -12,6 +12,12 @@ function run_bench {
 	export MONITORING
 	export MONITORING_SCHEDULED
 	TAR="${OUTPUT}.tar"
+	if [[ -e .touch ]]
+	then
+	    # like make -t
+	    mkdir -p "$(dirname ${TAR})"
+	    touch "${TAR}"
+	fi
 	if [[ -e "${TAR}" ]]
 	then
 	    return 0
