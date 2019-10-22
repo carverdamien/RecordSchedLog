@@ -4,4 +4,4 @@ export FORCE_TIMES_TO_RUN=1
 export TEST_RESULTS_NAME=schedrecord
 export TEST_RESULTS_IDENTIFIER=schedrecord
 export TEST_RESULTS_DESCRIPTION=schedrecord
-phoronix-test-suite run ${PHORONIX} >${OUTPUT}/run.out 2>${OUTPUT}/run.err <<< "${PHORONIX_TEST_ARGUMENTS}"
+echo  "${PHORONIX_TEST_ARGUMENTS}" | tr '-' '\n' | phoronix-test-suite run ${PHORONIX} >${OUTPUT}/run.out 2>${OUTPUT}/run.err
