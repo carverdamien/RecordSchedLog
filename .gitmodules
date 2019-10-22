@@ -34,3 +34,7 @@
 	path = host/redha/kernel/ipanema/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = linux-4.19-ipanema
+[submodule "host/redha/kernel/local/src"]
+	path = host/redha/kernel/local/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = patch/local
