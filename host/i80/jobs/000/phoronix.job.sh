@@ -11,33 +11,34 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
-PHORONIXES=(aobench apache build-llvm build-linux-kernel apache-seige apache-seige apache-seige apache-seige apache-seige)
-PARGUMENTS=(      0      0          0                  0            1            2            3            4            5)
+PHORONIXES=(apache-seige apache-seige apache-seige apache-seige apache-seige aobench apache build-llvm build-linux-kernel)
+PARGUMENTS=(           1            2            3            4            5       0      0          0                  0)
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema schedlog sched-freq local local-light pull-back"
-SLP=(y         n          )
-GOV=(powersave performance)
-RPT=(1         1          )
-for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+SLP=(n           y        )
+GOV=(performance powersave)
+RPT=(1           1        )
+
+for I in ${!SLP[@]}
 do
-    for I in ${!SLP[@]}
+    SLEEP_STATE=${SLP[$I]}
+    case ${SLEEP_STATE} in
+	y)
+	    CMDLINE=intel_sleep_state_enabled
+	    ;;
+	n)
+	    CMDLINE=intel_sleep_state_disabled
+	    ;;
+	*)
+	    echo '${SLEEP_STATE} must be y|n'
+	    sleep inf
+	    exit 1
+    esac
+    SCALING_GOVERNOR=${GOV[$I]}
+    REPEAT=${RPT[$I]}
+    for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
     do
-	SLEEP_STATE=${SLP[$I]}
-	case ${SLEEP_STATE} in
-	    y)
-		CMDLINE=intel_sleep_state_enabled
-		;;
-	    n)
-		CMDLINE=intel_sleep_state_disabled
-		;;
-	    *)
-		echo '${SLEEP_STATE} must be y|n'
-		sleep inf
-		exit 1
-	esac
-	SCALING_GOVERNOR=${GOV[$I]}
-	REPEAT=${RPT[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    for J in ${!PHORONIXES[@]}
