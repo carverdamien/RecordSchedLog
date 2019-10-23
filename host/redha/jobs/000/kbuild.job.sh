@@ -17,9 +17,9 @@ MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema local local-light"
 KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
-SLP=(y         n          )
+SLP=(y        )
 GOV=(powersave)
-RPT=(1         1          )
+RPT=(1        )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
