@@ -14,9 +14,9 @@ BENCH=bench/hackbench
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema local local-light"
-SLP=(y         n          )
+SLP=(y        )
 GOV=(powersave)
-RPT=(1         1          )
+RPT=(1        )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
@@ -38,7 +38,7 @@ do
 	REPEAT=${RPT[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
+	    for TASKS in 760 # 8000 6000 4000 2000 1000 40
 	    do
 		OUTPUT="output/"
 		OUTPUT+="BENCH=$(basename ${BENCH})/"
