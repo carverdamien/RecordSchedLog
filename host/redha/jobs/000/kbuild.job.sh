@@ -41,7 +41,7 @@ do
 	REPEAT=${RPT[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 80 160 320
+	    for TASKS in 6 12 24
 	    do
 		for TARGET in all kernel/sched/
 		do
