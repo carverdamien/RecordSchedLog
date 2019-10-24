@@ -11,36 +11,40 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
-PHORONIXES="aobench apache build-llvm build-linux-kernel"
+PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel)
+PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0)
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema local local-light"
 SLP=(y        )
 GOV=(powersave)
 RPT=(1        )
-for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+
+for I in ${!SLP[@]}
 do
-    for I in ${!SLP[@]}
+    SLEEP_STATE=${SLP[$I]}
+    case ${SLEEP_STATE} in
+	y)
+	    CMDLINE=intel_sleep_state_enabled
+	    ;;
+	n)
+	    CMDLINE=intel_sleep_state_disabled
+	    ;;
+	*)
+	    echo '${SLEEP_STATE} must be y|n'
+	    sleep inf
+	    exit 1
+    esac
+    SCALING_GOVERNOR=${GOV[$I]}
+    REPEAT=${RPT[$I]}
+    for N in $(seq ${REPEAT})
     do
-	SLEEP_STATE=${SLP[$I]}
-	case ${SLEEP_STATE} in
-	    y)
-		CMDLINE=intel_sleep_state_enabled
-		;;
-	    n)
-		CMDLINE=intel_sleep_state_disabled
-		;;
-	    *)
-		echo '${SLEEP_STATE} must be y|n'
-		sleep inf
-		exit 1
-	esac
-	SCALING_GOVERNOR=${GOV[$I]}
-	REPEAT=${RPT[$I]}
-	for N in $(seq ${REPEAT})
+	for J in ${!PHORONIXES[@]}
 	do
-	    for PHORONIX in ${PHORONIXES}
+	    for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 	    do
+		PHORONIX=${PHORONIXES[$J]}
+		PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$J]}
 		OUTPUT="output/"
 		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
