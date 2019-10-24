@@ -1,8 +1,8 @@
 #!/bin/bash
 
 mount --bind ./rootproc /proc
-perf script -i ${OUTPUT}/perf.out > out.perf || true
+perf script -i "${OUTPUT}/perf.out" > "${OUTPUT}/out.perf" || true
 umount /proc
 git submodule update --init ./monitoring/perf/FlameGraph
-./monitoring/perf/FlameGraph/stackcollapse-perf.pl out.perf > out.folded
-./monitoring/perf/FlameGraph/flamegraph.pl out.folded > kernel.svg
+./monitoring/perf/FlameGraph/stackcollapse-perf.pl "${OUTPUT}/out.perf" > "${OUTPUT}/out.folded"
+./monitoring/perf/FlameGraph/flamegraph.pl "${OUTPUT}/out.folded" > "${OUTPUT}/kernel.svg"
