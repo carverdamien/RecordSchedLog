@@ -1,0 +1,13 @@
+#!/bin/bash
+perf_start() {
+    perf record -F 99 -a -g -- sleep inf &
+    echo $! > ${OUTPUT}/perf.pid
+}
+perf_stop() {
+    kill $(cat ${OUTPUT}/perf.pid)
+}
+case ${MONITORING_SCHEDULED} in
+        n) perf_start ;;
+        y) (sleep ${MONITORING_START_DELAY}; perf_start; sleep ${MONITORING_STOP_DELAY}; perf_stop) & ;;
+        *) exit 1 ;;
+esac

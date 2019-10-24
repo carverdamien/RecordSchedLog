@@ -1,0 +1,5 @@
+#!/bin/bash
+perf script > out.perf
+git submodule update ./monitoring/perf/FlameGraph
+./monitoring/perf/FlameGraph/stackcollapse-perf.pl out.perf > out.folded
+./monitoring/perf/FlameGraph/flamegraph.pl out.folded > kernel.svg
