@@ -9,5 +9,5 @@ do
 done
 if [ -x ./host/${HOSTNAME}/notify ]
 then
-    ./host/${HOSTNAME}/notify "New Record: ${TAR}"
+    ./host/${HOSTNAME}/notify "New Record: [redha] ${TAR}"
 fi
