@@ -12,7 +12,7 @@ IPANEMA_MODULE=
 BENCH=bench/llvmcmake
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq"
+KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back"
 
 SLP=(y        )
 GOV=(powersave)
