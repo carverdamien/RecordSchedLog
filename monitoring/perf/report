@@ -3,6 +3,6 @@
 mount --bind ./rootproc /proc
 perf script -i ${OUTPUT}/perf.out > out.perf || true
 umount /proc
-git submodule update ./monitoring/perf/FlameGraph
+git submodule update --init ./monitoring/perf/FlameGraph
 ./monitoring/perf/FlameGraph/stackcollapse-perf.pl out.perf > out.folded
 ./monitoring/perf/FlameGraph/flamegraph.pl out.folded > kernel.svg
