@@ -46,3 +46,7 @@
 	path = host/i80/kernel/schedule/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = newschedlogevent/schedule
+[submodule "host/redha/kernel/sched-freq/src"]
+	path = host/redha/kernel/sched-freq/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = patch/sched-freq
