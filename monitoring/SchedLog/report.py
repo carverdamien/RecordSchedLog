@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, os, mmap, struct, json, itertools, shutil
+import sys, os, mmap, struct, json, itertools, shutil, socket
 import numpy as np
 import pandas as pd
 from threading import Thread, Semaphore
@@ -213,10 +213,13 @@ def load_tracer_raw(path):
     df = pd.DataFrame(df)
     df.sort_values(by='timestamp', inplace=True)
     df.index = np.arange(len(df))
-    comm = compute_dfcomm(df)
-    df['nxt_timestamp_of_same_evt_on_same_cpu'] = nxt_of_same_evt_on_same_cpu(df, 'timestamp')
-    df['nxt_blk_wkp_of_same_pid'] = parallel_compute_nxt_blk_wkp_of_same_pid(df)
-    df['prv_frq_on_same_cpu'] = parallel_compute_prv_frq_on_same_cpu(df)
+    if socket.gethostname() == "redha":
+        comm = {}
+    else:
+        comm = compute_dfcomm(df)
+        df['nxt_timestamp_of_same_evt_on_same_cpu'] = nxt_of_same_evt_on_same_cpu(df, 'timestamp')
+        df['nxt_blk_wkp_of_same_pid'] = parallel_compute_nxt_blk_wkp_of_same_pid(df)
+        df['prv_frq_on_same_cpu'] = parallel_compute_prv_frq_on_same_cpu(df)
     return df, comm
 
 def load_tracer_raw_per_cpu(path):
