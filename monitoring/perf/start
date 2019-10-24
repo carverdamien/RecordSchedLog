@@ -5,6 +5,7 @@ perf_start() {
 }
 perf_stop() {
     kill $(cat ${OUTPUT}/perf.pid)
+    wait $(cat ${OUTPUT}/perf.pid)
 }
 case ${MONITORING_SCHEDULED} in
         n) perf_start ;;
