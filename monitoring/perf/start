@@ -1,11 +1,11 @@
 #!/bin/bash
 perf_start() {
-    perf record -F 99 -a -g -- sleep inf &
-    echo $! > ${OUTPUT}/perf.pid
+    perf record -o ${OUTPUT}/perf.out -F 99 -a -g -- sleep inf &
+    echo $! | tee ${OUTPUT}/perf.pid
 }
 perf_stop() {
     kill $(cat ${OUTPUT}/perf.pid)
-    wait $(cat ${OUTPUT}/perf.pid)
+    wait $(cat ${OUTPUT}/perf.pid) || true
 }
 case ${MONITORING_SCHEDULED} in
         n) perf_start ;;
