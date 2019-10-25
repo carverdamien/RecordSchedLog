@@ -16,7 +16,7 @@ KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back"
 
 SLP=(y        )
 GOV=(powersave)
-RPT=(1        )
+RPT=(3        )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
