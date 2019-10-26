@@ -10,12 +10,13 @@ export PHORONIX PHORONIX_TEST_ARGUMENTS
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
+IPANEMA_MODULES="cfs_wwc ule_wwc"
 BENCH=bench/phoronix
 PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel)
 PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0)
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema local-light sched-freq pull-back local schedlog"
+KERNEL_LOCALVERSIONS="ipanema"
 SLP=(n           y        )
 GOV=(performance powersave)
 RPT=(1           1        )
@@ -43,15 +44,19 @@ do
 	do
 	    for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 	    do
-		PHORONIX=${PHORONIXES[$J]}
-		PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$J]}
-		OUTPUT="output/"
-		OUTPUT+="BENCH=$(basename ${BENCH})/"
-		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		OUTPUT+="PHORONIX=${PHORONIX}-${PHORONIX_TEST_ARGUMENTS}/"
-		OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
-		run_bench
+		for IPANEMA_MODULE in ${IPANEMA_MODULES}
+		do
+		    PHORONIX=${PHORONIXES[$J]}
+		    PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$J]}
+		    OUTPUT="output/"
+		    OUTPUT+="BENCH=$(basename ${BENCH})/"
+		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="IPANEMA=$(basename ${IPANEMA_MODULE})/"
+		    OUTPUT+="PHORONIX=${PHORONIX}-${PHORONIX_TEST_ARGUMENTS}/"
+		    OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
+		    run_bench
+		done
 	    done
 	done
     done
