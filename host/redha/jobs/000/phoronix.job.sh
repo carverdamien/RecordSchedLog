@@ -18,7 +18,7 @@ MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back"
 SLP=(y        )
 GOV=(powersave)
-RPT=(3        )
+RPT=(5        )
 
 for I in ${!SLP[@]}
 do
