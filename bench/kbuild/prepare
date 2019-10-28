@@ -6,7 +6,7 @@ tarball_dir=/tmp
 
 if ! [ -f ${tarball_dir}/${kernel} ]
 then
-    (cd ${tarball_dir} ; wget https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/$kernel)
+    (cd ${tarball_dir} ; wget https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/$kernel && tar xf ${kernel} -C /tmp/kbuild)
     # git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ ${src}
 fi
 # (cd ${src}; git pull origin master)
