@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e -u
+adrestia -a ${ARRIVAL_RATE_US} -l ${NR_LOOPS} -t ${TASKS} ${TEST} >${OUTPUT}/run.out 2>${OUTPUT}/run.err
