@@ -1,7 +1,3 @@
 #!/bin/bash
-echo 'Nothing to bench'
-for i in $(seq $(nproc))
-do
-    (for j in $(seq 1000000); do :; done)&
-done
-wait
+set -e -u
+adrestia -a ${ARRIVAL_RATE_US} -l ${NR_LOOPS} -t ${TASKS} ${TEST} >${OUTPUT}/run.out 2>${OUTPUT}/run.err
