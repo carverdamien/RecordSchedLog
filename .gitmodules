@@ -65,3 +65,7 @@
 	path = host/redha/kernel/pull-back-no-freq/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = patch/pull-back-no-freq
+[submodule "host/whisper-XPS-13-7390/kernel/ipanema/src"]
+	path = host/whisper-XPS-13-7390/kernel/ipanema/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = linux-4.19-ipanema
