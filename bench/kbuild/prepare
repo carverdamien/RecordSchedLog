@@ -12,6 +12,6 @@ fi
 # git clone ${src} /tmp/kbuild
 # (cd /tmp/kbuild; git checkout ${KERNEL_COMMIT})
 rm -rf /tmp/kbuild
-tar xf ${tarball}/${kernel} -C /tmp/
+tar xf ${tarball_dir}/${kernel} -C /tmp/
 mv /tmp/${kernel%%.tar.gz} /tmp/kbuild
 make -C /tmp/kbuild defconfig
