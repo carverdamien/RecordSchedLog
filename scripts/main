@@ -8,9 +8,9 @@ source ${MONITORING}/start
 (source scripts/time ${BENCH}/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err) &
 wait $!
 source ${MONITORING}/stop
-source scripts/report
 source ${BENCH}/report
 source ${MONITORING}/report
+source scripts/report
 tar cf "${OUTPUT}.tar" "${OUTPUT}"
 source ${BENCH}/cleanup
 source scripts/cleanup
