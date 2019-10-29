@@ -12,7 +12,7 @@ export TEST
 
 NO_TURBO=0
 TIMEOUT=3600
-IPANEMA_MODULES="cfs_wwc ule_wwc cfs_unblock_wwc"
+IPANEMA_MODULES="cfs_wwc ule_wwc cfs_unblock_wwc cfs_wwc_preempt_on_wakeup"
 BENCH=bench/adrestia
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n

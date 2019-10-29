@@ -10,7 +10,7 @@ export PHORONIX PHORONIX_TEST_ARGUMENTS
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-IPANEMA_MODULES="cfs_wwc ule_wwc"
+IPANEMA_MODULES="cfs_wwc ule_wwc cfs_wwc_preempt_on_wakeup"
 BENCH=bench/phoronix
 PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel)
 PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0)
