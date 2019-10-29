@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
+set -u -e
 
 function parse_phoronix() {
     path="$1"
     phoro_benches=$(find $path  -name '*.tar' | rev | cut -d'/' -f3 | rev | sort -u)
 
     for pb in $phoro_benches ; do
-	for t in $(find $path -path */$pb/*/*.tar | rev | cut -d'/' -f2 | rev | uniq) ; do
+	for t in $(find $path -path */$pb/*/*.tar | perl -ne "$FILTER" | rev | cut -d'/' -f2 | rev | uniq) ; do
 	    perf="=AVERAGE("
 	    energy="=AVERAGE("
-	    for s in $(find $path -path */$pb/$t/*.tar) ; do
-		rm -rf /tmp/redha/*
-		mkdir -p /tmp/redha
-		tar xf $s -C /tmp/redha
+	    for s in $(find $path -path */$pb/$t/*.tar | perl -ne "$FILTER" | tee >(cat >&2)) ; do
+		TMP=$(mktemp -d /tmp/XXXXXX)
+		tar xf $s -C $TMP
 
-		phoronix_file=$(find /tmp/redha/ -name 'phoronix.json')
+		phoronix_file=$(find $TMP -name 'phoronix.json')
 		perf="${perf}$(grep '"value"' ${phoronix_file} | cut -d'"' -f4),"
 
-		energy_file=$(find /tmp/redha/ -name 'cpu-energy-meter.out')
+		energy_file=$(find $TMP -name 'cpu-energy-meter.out')
 		energy="${energy}$(echo $(grep joules $energy_file | cut -d'=' -f2 | tr '\n' '+')0 | bc -l),"
+
+		rm -rf $TMP
 	    done
 	    perf=${perf%%,}
 	    perf="${perf})"
@@ -42,16 +44,17 @@ function parse_ours() {
 	
 	perf="=AVERAGE("
 	energy="=AVERAGE("
-	for t in $(find $p -name '*.tar') ; do
-	    rm -rf /tmp/redha/*
-	    mkdir -p /tmp/redha
-	    tar xf $t -C /tmp/redha
+	for t in $(find $p -name '*.tar' | perl -ne "$FILTER") ; do
+	    TMP=$(mktemp -d /tmp/XXXXXX)
+	    tar xf $t -C $TMP
 
-	    time_file=$(find /tmp/redha/ -name 'time.err')
+	    time_file=$(find $TMP -name 'time.err')
 	    perf="${perf}$(grep -v '+' $time_file),"
 
-	    energy_file=$(find /tmp/redha/ -name 'cpu-energy-meter.out')
+	    energy_file=$(find $TMP -name 'cpu-energy-meter.out')
 	    energy="${energy}$(echo $(grep joules $energy_file | cut -d'=' -f2 | tr '\n' '+')0 | bc -l),"
+
+	    rm -rf $TMP
 	done
 	perf=${perf%%,}
 	perf="${perf})"
@@ -67,6 +70,7 @@ function parse_ours() {
 
 [ $# -ne 1 ] && { echo "Usage: $0 dir"; exit 1; }
 
+: ${FILTER:='print if true'}
 path="$1"
 bench=$(basename $path | cut -d'=' -f2)
 
