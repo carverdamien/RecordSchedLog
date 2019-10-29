@@ -12,11 +12,11 @@ IPANEMA_MODULE=
 BENCH=bench/llvmcmake
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back"
+KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back pull-back-no-freq"
 
 SLP=(y        )
 GOV=(powersave)
-RPT=(3        )
+RPT=(5        )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}

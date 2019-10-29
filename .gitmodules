@@ -57,3 +57,11 @@
 [submodule "monitoring/perf/FlameGraph"]
 	path = monitoring/perf/FlameGraph
 	url = https://github.com/brendangregg/FlameGraph
+[submodule "host/redha/kernel/pull-back-print/src"]
+	path = host/redha/kernel/pull-back-print/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = patch/pull-back-print
+[submodule "host/redha/kernel/pull-back-no-freq/src"]
+	path = host/redha/kernel/pull-back-no-freq/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = patch/pull-back-no-freq

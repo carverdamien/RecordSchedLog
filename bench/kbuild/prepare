@@ -1,13 +1,17 @@
 #!/bin/bash
 : ${TASKS} ${KERNEL_COMMIT}
-mkdir /tmp/kbuild
-src=/tmp/linux
+kernel=linux-5.4-rc1.tar.gz
+tarball_dir=/tmp
 
-if ! [ -d ${src} ]
+if ! [ -f ${tarball_dir}/${kernel} ]
 then
-    git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ ${src}
+    (cd ${tarball_dir} ; wget https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/$kernel)
+    # git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ ${src}
 fi
-(cd ${src}; git pull origin master)
-git clone ${src} /tmp/kbuild
-(cd /tmp/kbuild; git checkout ${KERNEL_COMMIT})
+# (cd ${src}; git pull origin master)
+# git clone ${src} /tmp/kbuild
+# (cd /tmp/kbuild; git checkout ${KERNEL_COMMIT})
+rm -rf /tmp/kbuild
+tar xf ${tarball_dir}/${kernel} -C /tmp/
+mv /tmp/${kernel%%.tar.gz} /tmp/kbuild
 make -C /tmp/kbuild defconfig

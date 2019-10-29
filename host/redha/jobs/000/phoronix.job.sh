@@ -15,10 +15,10 @@ PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege 
 PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0)
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back"
+KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back pull-back-no-freq"
 SLP=(y        )
 GOV=(powersave)
-RPT=(3        )
+RPT=(5        )
 
 for I in ${!SLP[@]}
 do
