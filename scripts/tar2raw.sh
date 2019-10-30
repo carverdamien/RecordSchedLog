@@ -35,7 +35,7 @@ energy() {
     else
 	value=$(echo $(grep joules $value_file | cut -d'=' -f2 | tr '\n' '+')0 | bc -l)
     fi
-    test -z $value
+    test -n $value
     rm -rf $TMP
     echo $value
 }
@@ -51,7 +51,7 @@ usr_bin_time() {
     else
 	value=$(grep -v '+' $value_file)
     fi
-    test -z $value
+    test -n $value
     rm -rf $TMP
     echo $value
 }
@@ -67,7 +67,7 @@ phoronix() {
     else
 	value=$(grep '"value"' ${value_file} | cut -d'"' -f4)
     fi
-    test -z $value
+    test -n $value
     rm -rf $TMP
     echo $value
 }
