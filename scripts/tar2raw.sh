@@ -11,25 +11,23 @@ main() {
     case "$1" in
 	'master')
 	    shift
-	    master "$1" "$2"
+	    master "$1" | tee "$2"
 	    ;;
 	*)
-	    sequential "$1" "$2"
+	    sequential "$1" | tee "$2"
 	    ;;
     esac
 }
 
 sequential() {
     input_dir="$1"
-    output_raw="$2"
 
     printf "$FORMAT" "${COLUMNS[@]}"
-    find "$input_dir"  -name '*.tar' | slave | tee "$2"
+    find "$input_dir"  -name '*.tar' | slave
 }
 
 master() {
     input_dir="$1"
-    output_raw="$2"
 
     printf "$FORMAT" "${COLUMNS[@]}"
 
@@ -41,7 +39,7 @@ master() {
     do
 	CHILDREN+="<(find '$input_dir'  -name '*.tar' | tail -n +$(( (i-1)*(batch)+1 )) | head -n $batch | slave | sponge) "
     done
-    eval cat $CHILDREN | tee "$2"
+    eval cat $CHILDREN
 }
 
 slave() {
