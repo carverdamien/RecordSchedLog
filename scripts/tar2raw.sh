@@ -29,17 +29,14 @@ fname() {
 
 energy() {
     tar=$1
-    TMP=$(mktemp -d /tmp/XXXXXX)
-    tar xf $tar -C $TMP
-    value_file=$(find $TMP -name 'cpu-energy-meter.out')
+    value_file=$(lstar $tar | grep -E 'cpu-energy-meter.out$')
     if test -z $value_file
     then
 	value=NaN
     else
-	value=$(echo $(grep joules $value_file | cut -d'=' -f2 | tr '\n' '+')0 | bc -l)
+	value=$(echo $(grep joules <(gettar $tar $value_file) | cut -d'=' -f2 | tr '\n' '+')0 | bc -l)
     fi
     test -n $value
-    rm -rf $TMP
     echo $value
 }
 
