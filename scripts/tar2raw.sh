@@ -4,6 +4,9 @@ set -u -e # -x
 COLUMNS=(fname usr_bin_time phoronix energy)
 FORMAT="%s;%s;%s;%s\n"
 
+lstar() { tar tf "$1"; }
+gettar() { tar -O -xf "$1" "$2"; }
+
 main() {
     input_dir=$1
     output_raw=$2
@@ -42,33 +45,27 @@ energy() {
 
 usr_bin_time() {
     tar=$1
-    TMP=$(mktemp -d /tmp/XXXXXX)
-    tar xf $tar -C $TMP
-    value_file=$(find $TMP -name 'time.err')
+    value_file=$(lstar $tar | grep -E 'time.err$')
     if test -z $value_file
     then
 	value=NaN
     else
-	value=$(grep -v '+' $value_file)
+	value=$(grep -v '+' <(gettar $tar $value_file))
     fi
     test -n $value
-    rm -rf $TMP
     echo $value
 }
 
 phoronix() {
     tar=$1
-    TMP=$(mktemp -d /tmp/XXXXXX)
-    tar xf $tar -C $TMP
-    value_file=$(find $TMP -name 'phoronix.json')
+    value_file=$(lstar $tar | grep -E 'phoronix.json$')
     if test -z $value_file
     then
 	value=NaN
     else
-	value=$(grep '"value"' ${value_file} | cut -d'"' -f4)
+	value=$(grep '"value"' <(gettar $tar ${value_file}) | cut -d'"' -f4)
     fi
     test -n $value
-    rm -rf $TMP
     echo $value
 }
 
