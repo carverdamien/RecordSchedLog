@@ -10,11 +10,11 @@ export TASKS
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-IPANEMA_MODULES="cfs_wwc ule_wwc" #"cfs_wwc cfs_wwc_preempt_on_wakeup ule_wwc cfs_unblock_wwc cfs_ticklike_wwc"
+IPANEMA_MODULES="cfs_wwc ule_wwc ule" #"cfs_wwc cfs_wwc_preempt_on_wakeup ule_wwc cfs_unblock_wwc cfs_ticklike_wwc"
 BENCH=bench/hackbench
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema schedule"
+KERNEL_LOCALVERSIONS="ipanema"# "schedule"
 SLP=(n           y        )
 GOV=(performance powersave)
 RPT=(1           1        )

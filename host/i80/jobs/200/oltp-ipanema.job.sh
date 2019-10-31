@@ -18,10 +18,10 @@ MONITORING_SCHEDULED=y
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
 KERNEL_LOCALVERSIONS="ipanema"
-IPANEMA_MODULES="cfs_wwc ule_wwc" #"44530 12300 10261 cfs_wwc cfs_wwc_preempt_on_wakeup ule_wwc cfs_unblock_wwc cfs_ticklike_wwc"
+IPANEMA_MODULES="cfs_wwc ule_wwc ule" #"44530 12300 10261 cfs_wwc cfs_wwc_preempt_on_wakeup ule_wwc cfs_unblock_wwc cfs_ticklike_wwc"
 SLP=(n           y        )
 GOV=(performance powersave)
-RPT=(1         1          )
+RPT=(3         1          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
