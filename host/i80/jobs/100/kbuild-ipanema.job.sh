@@ -20,7 +20,7 @@ IPANEMA_MODULES="cfs_wwc ule_wwc" #"44530 12300 10261 cfs_wwc cfs_wwc_preempt_on
 KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
 SLP=(y         n          )
 GOV=(powersave performance)
-RPT=(1         1          )
+RPT=(1         3          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
