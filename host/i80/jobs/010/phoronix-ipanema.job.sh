@@ -19,7 +19,7 @@ MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema"
 SLP=(n           y        )
 GOV=(performance powersave)
-RPT=(1           1        )
+RPT=(3           1        )
 
 for I in ${!SLP[@]}
 do
