@@ -15,11 +15,11 @@ IPANEMA_MODULE=
 BENCH=bench/kbuild
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="no-preempt-wakeup pull-back sched-freq local local-light ipanema"
+KERNEL_LOCALVERSIONS="ipanema" # "no-preempt-wakeup pull-back sched-freq local local-light ipanema"
 KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
 SLP=(y         n          )
 GOV=(powersave performance)
-RPT=(3         1          )
+RPT=(1         3          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
