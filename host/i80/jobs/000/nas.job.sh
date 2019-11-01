@@ -21,10 +21,10 @@ MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
-KERNEL_LOCALVERSIONS="pull-back ipanema schedlog sched-freq local local-light"
+KERNEL_LOCALVERSIONS="ipanema" # "pull-back ipanema schedlog sched-freq local local-light"
 SLP=(y         n          )
 GOV=(powersave performance)
-RPT=(1         1          )
+RPT=(1         3          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
