@@ -41,7 +41,7 @@ do
 	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
 	    do
 		OUTPUT="output/"
-		OUTPUT+="BENCH=$(basename ${BENCH})/"
+		OUTPUT+="BENCH=$(basename ${BENCH})_2/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
