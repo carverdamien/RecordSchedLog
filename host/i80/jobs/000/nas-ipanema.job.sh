@@ -15,8 +15,8 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(   bt cg dc ep ft    lu mg sp sp ua ua ) # is
-BENCH_CLASSES=( B  C  A  C  C     B  D  A  B  B  C )  # D
+BENCH_NAMES=(   bt cg ) #dc ep ft    lu mg sp sp ua ua ) # is
+BENCH_CLASSES=( B  C  ) #A  C  C     B  D  A  B  B  C )  # D
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 MONITORING_START_DELAY=60
@@ -25,7 +25,7 @@ KERNEL_LOCALVERSIONS="ipanema"
 IPANEMA_MODULES="cfs_wwc cfs_wwc_flat ule_wwc ule cfs_unblock_wwc" #"44530 12300 10261 cfs_wwc cfs_wwc_preempt_on_wakeup ule_wwc cfs_unblock_wwc cfs_ticklike_wwc"
 SLP=(n           y        )
 GOV=(performance powersave)
-RPT=(3         1          )
+RPT=(6         1          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
@@ -57,7 +57,7 @@ do
                         BENCH_CLASS=${BENCH_CLASSES[$I]}
 
                         OUTPUT="output/"
-                        OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
+                        OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}_2/"
                         OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
                         OUTPUT+="MONITORING=$(basename ${MONITORING})/"
                         OUTPUT+="IPANEMA=$(basename ${IPANEMA_MODULE})/"

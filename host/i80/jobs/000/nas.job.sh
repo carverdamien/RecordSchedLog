@@ -15,8 +15,8 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(   bt cg dc ep ft    lu mg sp sp ua ua ) # is
-BENCH_CLASSES=( B  C  A  C  C     B  D  A  B  B  C )  # D
+BENCH_NAMES=(   bt cg )#dc ep ft    lu mg sp sp ua ua ) # is
+BENCH_CLASSES=( B  C  )#A  C  C     B  D  A  B  B  C )  # D
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 MONITORING_START_DELAY=60
@@ -24,7 +24,7 @@ MONITORING_STOP_DELAY=10
 KERNEL_LOCALVERSIONS="ipanema" # "pull-back ipanema schedlog sched-freq local local-light"
 SLP=(y         n          )
 GOV=(powersave performance)
-RPT=(1         3          )
+RPT=(1         6          )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
@@ -54,7 +54,7 @@ do
                     BENCH_CLASS=${BENCH_CLASSES[$I]}
 
                     OUTPUT="output/"
-                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
+                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}_2/"
                     OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
                     OUTPUT+="MONITORING=$(basename ${MONITORING})/"
                     OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
