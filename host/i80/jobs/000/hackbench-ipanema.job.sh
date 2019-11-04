@@ -15,9 +15,9 @@ BENCH=bench/hackbench
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema" # "schedule"
-SLP=(n           y        )
-GOV=(performance powersave)
-RPT=(6           1        )
+SLP=(n          ) # y        )
+GOV=(performance) # powersave)
+RPT=(6          ) # 1        )
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}

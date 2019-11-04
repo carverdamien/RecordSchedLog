@@ -14,9 +14,9 @@ BENCH=bench/hackbench
 MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema" # "schedule no-preempt-wakeup ipanema pull-back sched-freq local local-light"
-SLP=(y         n          )
-GOV=(powersave performance)
-RPT=(1         6          )
+SLP=(n          ) # y
+GOV=(performance) # powersave
+RPT=(6          ) # 1
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
