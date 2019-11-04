@@ -49,7 +49,7 @@ do
         do
             for I in ${!BENCH_NAMES[@]}
             do
-                for TASKS in 80 160
+                for TASKS in 160 # 80
                 do
                     for IPANEMA_MODULE in ${IPANEMA_MODULES}
                     do

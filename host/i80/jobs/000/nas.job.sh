@@ -48,7 +48,7 @@ do
         do
             for I in ${!BENCH_NAMES[@]}
             do
-                for TASKS in 80 160
+                for TASKS in 160 # 80
                 do
                     BENCH_NAME=${BENCH_NAMES[$I]}
                     BENCH_CLASS=${BENCH_CLASSES[$I]}
