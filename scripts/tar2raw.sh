@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -u -e # -x
 
-COLUMNS=(fname usr_bin_time phoronix energy sysbench_trps)
-FORMAT="%s;%s;%s;%s;%s\n"
+COLUMNS=(fname usr_bin_time phoronix energy sysbench_trps kernel_version)
+FORMAT="%s;%s;%s;%s;%s;%s\n"
 
 lstar() { tar tf "$1"; }
 gettar() { tar -O -xf "$1" "$2"; }
@@ -98,6 +98,22 @@ phoronix() {
 	value=NaN
     else
 	value=$(grep '"value"' <(gettar "$tar" "$value_file") | cut -d'"' -f4)
+    fi
+    if test -z "$value"
+    then
+	value=NaN
+    fi
+    echo "$value"
+}
+
+kernel_version() {
+    tar="$1"
+    value_file=$(lstar "$tar" | grep -E 'report.main.json$')
+    if test -z "$value_file"
+    then
+	value=NaN
+    else
+	value=$(jq '.kernel.version' <(gettar "$tar" "$value_file"))
     fi
     if test -z "$value"
     then
