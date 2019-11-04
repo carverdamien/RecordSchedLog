@@ -49,7 +49,7 @@ do
             	    for IPANEMA_MODULE in ${IPANEMA_MODULES}
             	    do
 			OUTPUT="output/"
-			OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
+			OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})_2/"
 			OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 			OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 			OUTPUT+="IPANEMA=$(basename ${IPANEMA_MODULE})/"

@@ -46,7 +46,7 @@ do
 		for TARGET in all kernel/sched/
 		do
 		    OUTPUT="output/"
-		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
+		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})_2/"
 		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
