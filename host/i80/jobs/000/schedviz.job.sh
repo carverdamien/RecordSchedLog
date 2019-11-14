@@ -11,12 +11,12 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/hackbench
-MONITORING=monitoring/all
+MONITORING=monitoring/schedviz
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema" # "schedule no-preempt-wakeup ipanema pull-back sched-freq local local-light"
 SLP=(n          ) # y
 GOV=(performance) # powersave
-RPT=(6          ) # 1
+RPT=(1          ) # 1
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
@@ -41,7 +41,7 @@ do
 	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
 	    do
 		OUTPUT="output/"
-		OUTPUT+="BENCH=$(basename ${BENCH})_2/"
+		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
