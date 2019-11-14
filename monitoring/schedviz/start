@@ -1,0 +1,10 @@
+#!/bin/bash
+schedviz_start() {
+}
+schedviz_stop() {
+}
+case ${MONITORING_SCHEDULED} in
+        n) schedviz_start ;;
+        y) (sleep ${MONITORING_START_DELAY}; schedviz_start; sleep ${MONITORING_STOP_DELAY}; schedviz_stop) & ;;
+        *) exit 1 ;;
+esac
