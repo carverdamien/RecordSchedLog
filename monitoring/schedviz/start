@@ -1,7 +1,54 @@
 #!/bin/bash
+declare -a SCHEDVIZ_EVENTS=("sched:sched_switch" "sched:sched_wakeup" "sched:sched_wakeup_new" "sched:sched_migrate_task")
+: ${SCHEDVIZ_BUFSIZEK:=$((2**20))} # 1GB
+
+schedviz_trace_set() {
+    local on=/sys/kernel/debug/tracing/tracing_on
+    [[ -f "${on}" ]] && echo "$1" >"${on}"
+}
+
 schedviz_start() {
+    schedviz_trace_set 0
+    echo nop > /sys/kernel/debug/tracing/current_tracer
+    echo ${SCHEDVIZ_BUFSIZEK} > /sys/kernel/debug/tracing/buffer_size_kb
+    echo > /sys/kernel/debug/tracing/set_event
+    for event in "${SCHEDVIZ_EVENTS[@]}"
+    do
+	echo ${event} >> /sys/kernel/debug/tracing/set_event
+    done
+    schedviz_trace_set 1
 }
 schedviz_stop() {
+    schedviz_trace_set 0
+    mkdir -p ${OUTPUT}/schedviz/{traces,topology}
+
+    # Save the metadata file
+    echo -e "trace_type: FTRACE\nrecorder: \"trace.sh\"" > "${OUTPUT}/schedviz/metadata.textproto"
+    
+    # Save the event formats
+    for event in "${SCHEDVIZ_EVENTS[@]}"
+    do
+	event_format_path=`echo ${event} | sed -r 's/:/\//'`
+	mkdir -p "${OUTPUT}/schedviz/formats/${event_format_path}"
+	cat "/sys/kernel/debug/tracing/events/${event_format_path}/format" >> "${OUTPUT}/schedviz/formats/${event_format_path}/format"
+    done
+
+    # Save the topology
+    find /sys/devices/system/node -regex "/sys/devices/system/node/node[0-9]+/cpu[0-9]+" -print0 | xargs -0 -I{} cp -RL -f --parents {}/topology .
+    mv sys/devices/system/node/* "${OUTPUT}/schedviz/topology"
+    rm -rf sys/
+    
+    cat "/sys/kernel/debug/tracing/events/header_page" > "${OUTPUT}/schedviz/formats/header_page"
+    for cf in /sys/kernel/debug/tracing/per_cpu/cpu*
+    do
+	cpuname="${cf##*/}"
+	touch "${OUTPUT}/schedviz/traces/${cpuname}"
+	dd iflag=nonblock if="${cf}/trace_pipe_raw" of="${OUTPUT}/schedviz/traces/${cpuname}" || true
+    done
+
+    chmod -R a+rwX "${OUTPUT}/schedviz"
+    tar -C "${OUTPUT}/schedviz" -zcf "${OUTPUT}/schedviz.tar.gz" .
+    chmod a+rw "${OUTPUT}/schedviz.tar.gz"
 }
 case ${MONITORING_SCHEDULED} in
         n) schedviz_start ;;
