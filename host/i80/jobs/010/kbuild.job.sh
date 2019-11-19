@@ -17,9 +17,9 @@ MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS="ipanema pull-back local-freq-base" # "no-preempt-wakeup pull-back sched-freq local local-light ipanema"
 KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
-SLP=(n           y)
-GOV=(performance powersave)
-RPT=(1           3)
+SLP=(y           n)
+GOV=(powersave performance)
+RPT=(3           1)
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
