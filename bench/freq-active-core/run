@@ -2,25 +2,44 @@
 
 set -e -x -u
 
-infloop() { set +x; while :; do:; done; }
+infloop() { set +x; while :; do :; done; }
+getpid() {
+    read f < /proc/self/stat
+    pid=${f%% *}
+}
 cpupin() {
+    getpid
+    echo pid=$pid
     cpumask="$1"
     fnt="$2"
-    cgroup="/sys/fs/cgroup/cpuset/freq-active-core/$$"
+    cgroup="/sys/fs/cgroup/cpuset/freq-active-core/$pid"
     ! test -e "$cgroup"
     mkdir -p "$cgroup"
-    echo "$cpumask" > "$cgroup/cpuset.cpus"
-    (echo $$ > "$cgroup/tasks" && $fnt) &
+    # Setting defaults
+    cp /sys/fs/cgroup/cpuset/cpuset.cpus /sys/fs/cgroup/cpuset/freq-active-core/cpuset.cpus
+    cp /sys/fs/cgroup/cpuset/freq-active-core/cpuset.cpus "$cgroup/cpuset.cpus"
+    cp /sys/fs/cgroup/cpuset/cpuset.mems /sys/fs/cgroup/cpuset/freq-active-core/cpuset.mems
+    cp /sys/fs/cgroup/cpuset/freq-active-core/cpuset.mems "$cgroup/cpuset.mems"
+    #
+    tee "$cgroup/cpuset.cpus" <<< "$cpumask"
+    (
+	getpid
+	echo pid=$pid
+	tee "$cgroup/tasks" <<< $pid
+	$fnt
+    ) &
     clean() {
+	set -x
 	kill -9 $(cat "$cgroup/tasks")
-	rmdir $cgroup
-	kill -9 $$
+	until rmdir $cgroup; do sleep 1; done
     }
-    trap clean SIGTERM
-    exec sleep inf
+    done='sleep 1'
+    trap 'clean; done=break' SIGTERM
+    set +x
+    while :; do $done; done
 }
 
-cpupin 0 infloop &
-pid=$!
-sleep 1
-kill $pid
+cpupin 10-10 infloop &
+cpupinpid=$!
+sleep 10
+kill -SIGTERM $cpupinpid
