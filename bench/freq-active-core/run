@@ -1,7 +1,26 @@
 #!/bin/bash
-echo 'Nothing to bench'
-for i in $(seq $(nproc))
-do
-    (for j in $(seq 1000000); do :; done)&
-done
-wait
+
+set -e -x -u
+
+infloop() { set +x; while :; do:; done; }
+cpupin() {
+    cpumask="$1"
+    fnt="$2"
+    cgroup="/sys/fs/cgroup/cpuset/freq-active-core/$$"
+    ! test -e "$cgroup"
+    mkdir -p "$cgroup"
+    echo "$cpumask" > "$cgroup/cpuset.cpus"
+    (echo $$ > "$cgroup/tasks" && $fnt) &
+    clean() {
+	kill -9 $(cat "$cgroup/tasks")
+	rmdir $cgroup
+	kill -9 $$
+    }
+    trap clean SIGTERM
+    exec sleep inf
+}
+
+cpupin 0 infloop &
+pid=$!
+sleep 1
+kill $pid
