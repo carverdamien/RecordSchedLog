@@ -38,8 +38,31 @@ cpupin() {
     set +x
     while :; do $done; done
 }
-
+scaling_cur_freq() {
+    for cpu in /sys/devices/system/cpu/cpu{0..9}*
+    do
+	(
+	    done='sleep 1'
+	    trap 'done=break' SIGTERM
+	    cpuid=${cpu##*cpu}
+	    set +x
+	    exec 1>"${cpuid}.csv"
+	    # echo "cpu,freq"
+	    while :
+	    do
+		echo "${cpuid},$(cat $cpu/cpufreq/scaling_cur_freq)"
+		$done
+	    done
+	) &
+	echo $!
+    done
+}
+tokill=$(scaling_cur_freq)
+sleep 1
 cpupin 10-10 infloop &
 cpupinpid=$!
-sleep 10
-kill -SIGTERM $cpupinpid
+sleep 5
+kill $cpupinpid
+wait $cpupinpid
+sleep 1
+kill $tokill
