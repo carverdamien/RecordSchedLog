@@ -9,16 +9,18 @@ import seaborn as sns
 sns.set()
 
 def main():
-    _, output_file, input_file = sys.argv
+    # ./scripts/heatmap.py out.pdf in.csv energy|usr_bin_time
+    _, output_file, input_file, column_name = sys.argv
     print(output_file, input_file)
     raw = pd.read_csv(input_file, sep=';')
+    raw[column_name] = raw[column_name].astype(float)
     print(raw)
     Y = [
         {
             'index' : f"kbuild-{target}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/BENCH=kbuild-{target}/POWER=powersave-y/MONITORING=all/{tasks}-$kernel/.*tar"),
             'match' : lambda y, kernel    : y['template'].substitute(kernel=kernel),
-            'perf'  : lambda y, match     : np.mean(raw[raw['fname'].str.match(match)]['usr_bin_time']),
+            'perf'  : lambda y, match     : np.mean(raw[raw['fname'].str.match(match)][column_name]),
             'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
         }
         for target in ['all','sched']
@@ -28,7 +30,7 @@ def main():
             'index' : f"{bench}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/BENCH={bench}/POWER=powersave-y/MONITORING=all/{tasks}-$kernel/.*tar"),
             'match' : lambda y, kernel    : y['template'].substitute(kernel=kernel),
-            'perf'  : lambda y, match     : np.mean(raw[raw['fname'].str.match(match)]['usr_bin_time']),
+            'perf'  : lambda y, match     : np.mean(raw[raw['fname'].str.match(match)][column_name]),
             'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B']
