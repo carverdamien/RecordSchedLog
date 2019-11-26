@@ -13,13 +13,13 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/kbuild
-MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema pull-back local-freq-base" # "no-preempt-wakeup pull-back sched-freq local local-light ipanema"
+KERNEL_LOCALVERSIONS="schedlog" # "ipanema pull-back local-freq-base" # "no-preempt-wakeup pull-back sched-freq local local-light ipanema"
 KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
-SLP=(y           n)
-GOV=(powersave performance)
-RPT=(3           1)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 10)
+MON=(all monitoring/scheduledcpu-energy-meter)
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
@@ -39,6 +39,7 @@ do
 	esac
 	SCALING_GOVERNOR=${GOV[$I]}
 	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    for TASKS in 80 160 320

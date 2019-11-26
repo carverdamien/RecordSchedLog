@@ -17,14 +17,14 @@ IPANEMA_MODULE=
 BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
-MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
-KERNEL_LOCALVERSIONS="ipanema" # "pull-back ipanema schedlog sched-freq local local-light"
-SLP=(n          ) # y
-GOV=(performance) # powersave
-RPT=(6          ) # 1
+KERNEL_LOCALVERSIONS="schedlog" # "ipanema" # "pull-back ipanema schedlog sched-freq local local-light"
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 10)
+MON=(all monitoring/scheduledcpu-energy-meter)
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
@@ -44,6 +44,7 @@ do
         esac
         SCALING_GOVERNOR=${GOV[$I]}
         REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
         for N in $(seq ${REPEAT})
         do
             for I in ${!BENCH_NAMES[@]}
