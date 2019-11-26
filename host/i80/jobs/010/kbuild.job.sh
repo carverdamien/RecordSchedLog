@@ -19,7 +19,7 @@ KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
 SLP=(y y)
 GOV=(powersave powersave)
 RPT=(1 10)
-MON=(all monitoring/scheduledcpu-energy-meter)
+MON=(monitoring/all monitoring/scheduledcpu-energy-meter)
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
