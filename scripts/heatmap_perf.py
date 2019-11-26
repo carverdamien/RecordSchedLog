@@ -23,6 +23,16 @@ def main():
         }
         for target in ['all','sched']
         for tasks in ['80','160','320']
+    ] + [
+        {
+            'index' : f"{bench}-{tasks}",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/BENCH={bench}/POWER=powersave-y/MONITORING=all/{tasks}-$kernel/.*tar"),
+            'match' : lambda y, kernel    : y['template'].substitute(kernel=kernel),
+            'perf'  : lambda y, match     : np.mean(raw[raw['fname'].str.match(match)]['usr_bin_time']),
+            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+        }
+        for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B']
+        for tasks in ['80','160']
     ]
     X = ['ipanema', 'local', 'local-light', 'pull-back', 'sched-freq']
     XREF = X[0]
@@ -36,7 +46,6 @@ def main():
     cmap = sns.diverging_palette(240, 10, n=9)
     ax = sns.heatmap(df, annot=True, fmt="2.1f", vmin=vmin, vmax=vmax, cmap=cmap)
     ax.set_yticklabels(ax.get_yticklabels(), rotation=0)
-    # fig.tight_layout()
     fig.savefig(output_file)
 
 if __name__ == '__main__':
