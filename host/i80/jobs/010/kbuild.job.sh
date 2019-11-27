@@ -5,7 +5,6 @@ export OUTPUT
 export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
-export KERNEL_COMMIT
 export TASKS
 export TARGET
 
@@ -14,8 +13,7 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="schedlog" # "ipanema pull-back local-freq-base" # "no-preempt-wakeup pull-back sched-freq local local-light ipanema"
-KERNEL_COMMIT=54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c
+KERNEL_LOCALVERSIONS="schedlog"
 SLP=(y y)
 GOV=(powersave powersave)
 RPT=(1 10)
