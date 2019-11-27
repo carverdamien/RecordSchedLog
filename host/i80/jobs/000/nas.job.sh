@@ -24,7 +24,7 @@ KERNEL_LOCALVERSIONS="schedlog" # "ipanema" # "pull-back ipanema schedlog sched-
 SLP=(y y)
 GOV=(powersave powersave)
 RPT=(1 10)
-MON=(monitoring/all monitoring/scheduledcpu-energy-meter)
+MON=(monitoring/all monitoring/cpu-energy-meter)
 for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
 do
     for I in ${!SLP[@]}
