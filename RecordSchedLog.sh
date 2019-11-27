@@ -32,7 +32,7 @@ function run_bench {
 	    '')
 		;;
 	    *)
-		/sbin/sysctl -w ${SYSCTL}
+		sudo /sbin/sysctl -w ${SYSCTL}
 		;;
 	esac
 	sudo -E ./scripts/entrypoint
