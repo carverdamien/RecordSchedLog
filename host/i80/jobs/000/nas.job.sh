@@ -55,7 +55,7 @@ do
                     BENCH_CLASS=${BENCH_CLASSES[$I]}
 
                     OUTPUT="output/"
-                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}_2/"
+                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
                     OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
                     OUTPUT+="MONITORING=$(basename ${MONITORING})/"
                     OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
