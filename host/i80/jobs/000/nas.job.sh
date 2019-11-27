@@ -30,9 +30,10 @@ do
     LP_VALUE=${LP_VALUES[$J]}
     case ${LP_VALUE} in
 	n)
+	    SYSCTL=''
 	    ;;
 	*)
-	    /sbin/sysctl -w kernel.sched_local_placement=\"${LP_VALUE}\"
+	    SYSCTL=kernel.sched_local_placement=\"${LP_VALUE}\"
 	    ;;
     esac
     for I in ${!SLP[@]}

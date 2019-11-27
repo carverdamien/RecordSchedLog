@@ -5,6 +5,7 @@ function run_bench {
     (
 	: isdefined ${TIMEOUT} ${IPANEMA_MODULE} ${BENCH} ${MONITORING} ${MONITORING_SCHEDULED}
 	: isdefined ${OUTPUT} ${KERNEL_LOCALVERSION} ${CMDLINE} ${NO_TURBO} ${SCALING_GOVERNOR}
+	: isdefined ${SYSCTL}
 	export TIMEOUT
 	export IPANEMA_MODULE
 	export OUTPUT
@@ -27,6 +28,13 @@ function run_bench {
 	    ./scripts/kexec.sh  host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION} host/${HOSTNAME}/cmdline/${CMDLINE};"
 	echo ${NO_TURBO} | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null
 	echo ${SCALING_GOVERNOR} | sudo tee /sys/devices/system/cpu/cpufreq/policy*/scaling_governor > /dev/null
+	case ${SYSCTL} in
+	    '')
+		;;
+	    *)
+		/sbin/sysctl -w ${SYSCTL}
+		;;
+	esac
 	sudo -E ./scripts/entrypoint
 	if [[ -x ./host/${HOSTNAME}/callback_run_bench.sh ]]
 	then
