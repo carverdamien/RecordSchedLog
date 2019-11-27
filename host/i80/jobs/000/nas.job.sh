@@ -32,7 +32,7 @@ do
 	n)
 	    ;;
 	*)
-	    sysctl -w kernel.sched_local_placement=\"${LP_VALUE}\"
+	    /sbin/sysctl -w kernel.sched_local_placement=\"${LP_VALUE}\"
 	    ;;
     esac
     for I in ${!SLP[@]}
