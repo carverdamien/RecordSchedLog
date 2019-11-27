@@ -18,13 +18,23 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="schedlog"
+KERNEL_LOCALVERSIONS=(lp lp lp schedlog)
+LP_VALUES=(0 1 2 n)
 SLP=(y y)
 GOV=(powersave powersave)
 RPT=(1 10)
 MON=(monitoring/all monitoring/cpu-energy-meter)
-for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
+    KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
+    LP_VALUE=${LP_VALUES[$J]}
+    case ${LP_VALUE} in
+	n)
+	    ;;
+	*)
+	    sysctl -w kernel.sched_local_placement=\"${LP_VALUE}\"
+	    ;;
+    esac
     for I in ${!SLP[@]}
     do
         SLEEP_STATE=${SLP[$I]}
@@ -57,6 +67,7 @@ do
                     OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
                     OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
                     OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="LP=${LP_VALUE}/"
                     OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
                     run_bench
                 done
