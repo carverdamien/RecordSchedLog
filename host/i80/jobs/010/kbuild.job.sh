@@ -7,6 +7,7 @@ export MONITORING
 export MONITORING_SCHEDULED
 export TASKS
 export TARGET
+export SYSCTL=''
 
 NO_TURBO=0
 TIMEOUT=3600

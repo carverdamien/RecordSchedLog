@@ -6,6 +6,7 @@ export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
 export TASKS
+export SYSCTL=''
 
 NO_TURBO=0
 TIMEOUT=3600
