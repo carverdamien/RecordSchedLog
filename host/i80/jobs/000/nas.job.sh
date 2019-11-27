@@ -55,6 +55,7 @@ do
                     BENCH_CLASS=${BENCH_CLASSES[$I]}
 
                     OUTPUT="output/"
+                    OUTPUT+="HOST=${HOSTNAME}/"
                     OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
                     OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
                     OUTPUT+="MONITORING=$(basename ${MONITORING})/"

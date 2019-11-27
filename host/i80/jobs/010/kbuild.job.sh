@@ -47,6 +47,7 @@ do
 		for TARGET in all kernel/sched/
 		do
 		    OUTPUT="output/"
+		    OUTPUT+="HOST=${HOSTNAME}/"
 		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
 		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
