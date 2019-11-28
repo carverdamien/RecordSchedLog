@@ -30,7 +30,7 @@ do
 	    SYSCTL=''
 	    ;;
 	*)
-	    SYSCTL=kernel.sched_local_placement=\"${LP_VALUE}\"
+	    SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
 	    ;;
     esac
     for I in ${!SLP[@]}
