@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -u -e # -x
 
-COLUMNS=(fname usr_bin_time phoronix energy sysbench_trps kernel_version)
-FORMAT="%s;%s;%s;%s;%s;%s\n"
+COLUMNS=(fname usr_bin_time phoronix energy sysbench_trps kernel_version sysctl_sched_local_placement)
+FORMAT="%s;%s;%s;%s;%s;%s;%s\n"
 
 lstar() { tar tf "$1"; }
 gettar() { tar -O -xf "$1" "$2"; }
@@ -137,5 +137,21 @@ sysbench_trps() {
     fi
     echo "$value"
 }
+
+sysctl_sched_local_placement() {
+    tar="$1"
+    value_file=$(lstar "$tar" | grep -E 'sysctl.prepare$')
+    if test -z "$value_file"
+    then
+	value=NaN
+    else
+	value=$(sed -n 's/kernel.sched_local_placement = \([0-9]*\)/\1/p' <(gettar "$tar" "$value_file"))
+    fi
+    if test -z "$value"
+    then
+	value=NaN
+    fi
+    echo "$value"
+}			      
 
 main "$@"
