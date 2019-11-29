@@ -6,11 +6,14 @@ export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
 export SYSCTL=''
+export PHORONIX PHORONIX_TEST_ARGUMENTS
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/llvmcmake
+BENCH=bench/phoronix
+PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel)
+PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0)
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema)
 LP_VALUES=(1 2 0 n n n n)
@@ -51,14 +54,20 @@ do
 	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    OUTPUT="output/"
-	    OUTPUT+="HOST=${HOSTNAME}/"
-	    OUTPUT+="BENCH=$(basename ${BENCH})/"
-	    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-	    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-	    OUTPUT+="LP=${LP_VALUE}/"
-	    OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
-	    run_bench
+	    for K in ${!PHORONIXES[@]}
+	    do
+		PHORONIX=${PHORONIXES[$K]}
+		PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$K]}
+		OUTPUT="output/"
+		OUTPUT+="HOST=${HOSTNAME}/"
+		OUTPUT+="BENCH=$(basename ${BENCH})/"
+		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		OUTPUT+="LP=${LP_VALUE}/"
+		OUTPUT+="PHORONIX=${PHORONIX}-${PHORONIX_TEST_ARGUMENTS}/"
+		OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
+		run_bench
+	    done
 	done
     done
 done
