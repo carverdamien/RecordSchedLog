@@ -16,6 +16,7 @@ def main():
         'min'  : np.min,
         'max'  : np.max,
         'mean' : np.mean,
+        'median' : np.median,
     }[agg]
     raw = pd.read_csv(input_file, sep=';')
     raw[column_name] = raw[column_name].astype(float)
@@ -33,6 +34,16 @@ def main():
         }
         for bench in ['kbuild-all','kbuild-sched']
         for tasks in ['80','160','320']
+    ] + [
+        {
+            'index' : f"{bench}-{tasks}",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
+            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+        }
+        for bench in ['hackbench']
+        for tasks in ['10000']
     ] + [
         {
             'index' : f"{bench}-{tasks}",
