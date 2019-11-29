@@ -6,19 +6,31 @@ export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
 export TASKS
+export SYSCTL=''
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/hackbench
-MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema" # "schedule no-preempt-wakeup ipanema pull-back sched-freq local local-light"
-SLP=(n          ) # y
-GOV=(performance) # powersave
-RPT=(6          ) # 1
-for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema)
+LP_VALUES=(1 2 0 n n n n)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 10)
+MON=(monitoring/all monitoring/cpu-energy-meter)
+for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
+    KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
+    LP_VALUE=${LP_VALUES[$J]}
+    case ${LP_VALUE} in
+	n)
+	    SYSCTL=''
+	    ;;
+	*)
+	    SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    ;;
+    esac
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
@@ -36,14 +48,17 @@ do
 	esac
 	SCALING_GOVERNOR=${GOV[$I]}
 	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
 	    do
 		OUTPUT="output/"
-		OUTPUT+="BENCH=$(basename ${BENCH})_2/"
+		OUTPUT+="HOST=${HOSTNAME}/"
+		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		OUTPUT+="LP=${LP_VALUE}/"
 		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		run_bench
 	    done

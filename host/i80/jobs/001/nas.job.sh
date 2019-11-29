@@ -10,6 +10,7 @@ export MONITORING_SCHEDULED
 export MONITORING_START_DELAY
 export MONITORING_STOP_DELAY
 export TASKS
+export SYSCTL
 
 NO_TURBO=0
 TIMEOUT=3600
@@ -17,16 +18,25 @@ IPANEMA_MODULE=
 BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
-MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-MONITORING_START_DELAY=60
-MONITORING_STOP_DELAY=10
-KERNEL_LOCALVERSIONS="ipanema" # "pull-back ipanema schedlog sched-freq local local-light"
-SLP=(n          ) # y
-GOV=(performance) # powersave
-RPT=(6          ) # 1
-for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema)
+LP_VALUES=(1 2 0 n n n n)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 10)
+MON=(monitoring/all monitoring/cpu-energy-meter)
+for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
+    KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
+    LP_VALUE=${LP_VALUES[$J]}
+    case ${LP_VALUE} in
+	n)
+	    SYSCTL=''
+	    ;;
+	*)
+	    SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    ;;
+    esac
     for I in ${!SLP[@]}
     do
         SLEEP_STATE=${SLP[$I]}
@@ -44,21 +54,23 @@ do
         esac
         SCALING_GOVERNOR=${GOV[$I]}
         REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
         for N in $(seq ${REPEAT})
         do
             for I in ${!BENCH_NAMES[@]}
             do
-                for TASKS in 160 # 80
+                for TASKS in 160 80 320
                 do
                     BENCH_NAME=${BENCH_NAMES[$I]}
                     BENCH_CLASS=${BENCH_CLASSES[$I]}
 
                     OUTPUT="output/"
-                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}_2/"
+                    OUTPUT+="HOST=${HOSTNAME}/"
+                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
                     OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
                     OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="LP=${LP_VALUE}/"
                     OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
-
                     run_bench
                 done
             done

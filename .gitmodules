@@ -69,3 +69,9 @@
 	path = host/i80/kernel/local-freq-base/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = patch/local-freq-base
+[submodule "host/i80/kernel/lp/src"]
+	path = host/i80/kernel/lp/src
+	url = https://github.com/carverdamien/SchedLog
+[submodule "host/dc-Latitude-7390/kernel/src"]
+	path = host/dc-Latitude-7390/kernel/lp/src
+	url = https://github.com/carverdamien/SchedLog

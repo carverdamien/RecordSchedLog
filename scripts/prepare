@@ -2,3 +2,4 @@ modprobe msr
 modprobe cpuid
 mkdir -p "${OUTPUT}"
 dmesg > ${OUTPUT}/dmesg.prepare
+sysctl -a > ${OUTPUT}/sysctl.prepare
