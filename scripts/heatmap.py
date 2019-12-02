@@ -60,9 +60,18 @@ def main():
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/2.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
             'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
-            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref, # Lower is better
         }
-        for phoronix in ['aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'redis-1', 'rust-prime-0', 'schbench-6-7']
+        for phoronix in ['aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'rust-prime-0', 'schbench-6-7']
+    ] + [
+        {
+            'index' : f"{phoronix}",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/2.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
+            'norm'  : lambda y, perf, ref : -100.0*(ref-perf)/ref, # higher is better
+        }
+        for phoronix in ['apache-0', 'redis-1', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5' ]
     ]
     X = [
         {
