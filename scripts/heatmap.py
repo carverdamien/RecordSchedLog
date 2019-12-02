@@ -54,6 +54,15 @@ def main():
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B']
         for tasks in ['80','160','320']
+    ] + [
+        {
+            'index' : f"{phoronix}",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/2.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
+            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+        }
+        for phoronix in ['aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'redis-1', 'rust-prime-0', 'schbench-6-7']
     ]
     X = [
         {
