@@ -9,9 +9,9 @@ import seaborn as sns
 sns.set()
 
 def main():
-    # ./scripts/heatmap.py out.pdf in.csv energy|usr_bin_time
-    _, output_file, input_file, column_name, agg = sys.argv
-    print(output_file, input_file, column_name, agg)
+    # ./scripts/heatmap.py out.pdf in.csv energy|perf min|max|mean|median
+    _, output_file, input_file, value, agg = sys.argv
+    print(output_file, input_file, value, agg)
     agg = {
         'min'  : np.min,
         'max'  : np.max,
@@ -19,7 +19,8 @@ def main():
         'median' : np.median,
     }[agg]
     raw = pd.read_csv(input_file, sep=';')
-    raw[column_name] = raw[column_name].astype(float)
+    for column_name in ['usr_bin_time', 'phoronix', 'energy', 'sysbench_trps']:
+        raw[column_name] = raw[column_name].astype(float)
     print(raw)
     HOST='i80'
     POWER='powersave-y'
@@ -29,8 +30,8 @@ def main():
             'index' : f"{bench}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
-            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
-            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'usr_bin_time'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['kbuild-all','kbuild-sched']
         for tasks in ['80','160','320']
@@ -39,8 +40,8 @@ def main():
             'index' : f"{bench}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
-            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
-            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'usr_bin_time'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['hackbench']
         for tasks in ['10000']
@@ -49,27 +50,27 @@ def main():
             'index' : f"{bench}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
-            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
-            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'usr_bin_time'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B']
         for tasks in ['80','160','320']
     ] + [
         {
             'index' : f"{phoronix}",
-            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/2.tar"),
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
-            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
-            'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref, # Lower is better
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'phoronix'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref, # Lower is better
         }
         for phoronix in ['aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'rust-prime-0', 'schbench-6-7']
     ] + [
         {
             'index' : f"{phoronix}",
-            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/2.tar"),
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=phoronix/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/PHORONIX={phoronix}/$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
-            'perf'  : lambda y, match     : agg(raw[raw['fname'].str.match(match)][column_name]),
-            'norm'  : lambda y, perf, ref : -100.0*(ref-perf)/ref, # higher is better
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'phoronix'}[value]]),
+            'norm'  : lambda y, v, ref : (-1 if value=='perf' else 1) * 100.0*(ref-v)/ref, # higher is better
         }
         for phoronix in ['apache-0', 'redis-1', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5' ]
     ]
@@ -106,7 +107,7 @@ def main():
     XREF = X[1]
     i=6
     print(Y[i]['match'](Y[i],X[0]))
-    CELL = lambda x,y : y['norm'](y, y['perf'](y, y['match'](y, x)),y['perf'](y, y['match'](y, XREF)))
+    CELL = lambda x,y : y['norm'](y, y['value'](y, y['match'](y, x)),y['value'](y, y['match'](y, XREF)))
     data = [[CELL(x,y) for x in X] for y in Y]
     df = pd.DataFrame(data, columns=[x['index'] for x in X], index=[y['index'] for y in Y])
     print(df)
