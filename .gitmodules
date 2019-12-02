@@ -1,7 +1,7 @@
 [submodule "host/i80/kernel/schedlog/src"]
 	path = host/i80/kernel/schedlog/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
-	branch = SchedLog
+	branch = 5.4
 [submodule "host/i80/kernel/ipanema/src"]
 	path = host/i80/kernel/ipanema/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
@@ -10,34 +10,34 @@
 	path = host/i80/kernel/ipanema/compiler
 	url = git@gitlab.inria.fr:ipanema/compiler.git
 	branch = master
-[submodule "host/i80/kernel/sched-freq/src"]
+[submodule "host/i80/kernel/delayed-placement/src"]
 	path = host/i80/kernel/delayed-placement/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/sched-freq
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-delayed-placement
 [submodule "host/i80/kernel/local/src"]
 	path = host/i80/kernel/local/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/local
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local
 [submodule "host/i80/kernel/local-light/src"]
 	path = host/i80/kernel/local-light/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/local-light
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-light
 [submodule "host/redha/kernel/ipanema/src"]
 	path = host/redha/kernel/ipanema/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = linux-4.19-ipanema
 [submodule "host/redha/kernel/local/src"]
 	path = host/redha/kernel/local/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/local
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local
 [submodule "host/redha/kernel/local-light/src"]
 	path = host/redha/kernel/local-light/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/local-light
-[submodule "host/redha/kernel/sched-freq/src"]
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-light
+[submodule "host/redha/kernel/delayed-placement/src"]
 	path = host/redha/kernel/delayed-placement/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/sched-freq
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-delayed-placement
 [submodule "monitoring/perf/FlameGraph"]
 	path = monitoring/perf/FlameGraph
 	url = https://github.com/brendangregg/FlameGraph
@@ -47,3 +47,4 @@
 [submodule "host/dc-Latitude-7390/kernel/src"]
 	path = host/dc-Latitude-7390/kernel/local-placement/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-placement
