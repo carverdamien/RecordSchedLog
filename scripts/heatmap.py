@@ -53,7 +53,7 @@ def main():
             'norm'  : lambda y, perf, ref : 100.0*(ref-perf)/ref,
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B']
-        for tasks in ['80','160']
+        for tasks in ['80','160','320']
     ]
     X = [
         {
@@ -94,7 +94,7 @@ def main():
     print(df)
     vmax = df.max().max()
     vmin = -vmax
-    fig = plt.figure(figsize=(2*6.4, 1*4.8))
+    fig = plt.figure(figsize=(2*6.4, 2*4.8))
     cmap = sns.diverging_palette(240, 10, n=9)
     ax = sns.heatmap(df, annot=True, fmt="2.1f", vmin=vmin, vmax=vmax, cmap=cmap)
     ax.set_yticklabels(ax.get_yticklabels(), rotation=0)
