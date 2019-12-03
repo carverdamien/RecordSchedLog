@@ -19,8 +19,8 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema)
-LP_VALUES=(1 2 0 n n n n)
+KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema delayed-placement)
+LP_VALUES=(1 2 0 n n n n n)
 SLP=(y y)
 GOV=(powersave powersave)
 RPT=(1 10)
@@ -59,7 +59,7 @@ do
         do
             for I in ${!BENCH_NAMES[@]}
             do
-                for TASKS in 160 80 320
+                for TASKS in 160 80 # 320
                 do
                     BENCH_NAME=${BENCH_NAMES[$I]}
                     BENCH_CLASS=${BENCH_CLASSES[$I]}
