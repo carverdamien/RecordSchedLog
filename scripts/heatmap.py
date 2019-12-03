@@ -47,6 +47,15 @@ def main():
         for tasks in ['10000']
     ] + [
         {
+            'index' : f"{bench}",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/$kernel/.*.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'usr_bin_time'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
+        }
+        for bench in ['llvmcmake']
+    ] + [
+        {
             'index' : f"{bench}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
