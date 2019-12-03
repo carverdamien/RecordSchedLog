@@ -1,9 +1,13 @@
 #!/bin/bash
 : ${TASKS}
 tarball_dir=/tmp
-# kernel=linux-5.4-rc1.tar.gz
-kernel=linux-5.4.tar.xz
+
+# ext=.tar.gz
+# kernel=linux-5.4-rc1$ext
 # kernel_url=https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/$kernel
+
+ext=.tar.xz
+kernel=linux-5.4$ext
 kernel_url=https://cdn.kernel.org/pub/linux/kernel/v5.x/$kernel
 
 if ! [ -f ${tarball_dir}/${kernel} ]
@@ -12,5 +16,5 @@ then
 fi
 rm -rf /tmp/kbuild
 tar xf ${tarball_dir}/${kernel} -C /tmp/
-mv /tmp/${kernel%%.tar.gz} /tmp/kbuild
+mv /tmp/${kernel%%$ext} /tmp/kbuild
 make -C /tmp/kbuild defconfig
