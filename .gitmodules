@@ -11,7 +11,7 @@
 	url = git@gitlab.inria.fr:ipanema/compiler.git
 	branch = master
 [submodule "host/i80/kernel/sched-freq/src"]
-	path = host/i80/kernel/sched-freq/src
+	path = host/i80/kernel/delayed-placement/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-delayed-placement
 [submodule "host/i80/kernel/pull-back/src"]
