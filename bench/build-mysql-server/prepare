@@ -1,0 +1,12 @@
+#!/bin/bash
+: ${TASK}
+
+CLONE_DIR=/tmp/mysql-server
+
+if ! [ -d ${CLONE_DIR} ]
+then
+	git clone --branch 8.0 --depth 1 https://github.com/mysql/mysql-server ${CLONE_DIR}
+fi
+rm -rf ${CLONE_DIR}/build
+mkdir ${CLONE_DIR}/build
+(cd ${CLONE_DIR}/build; cmake .. -DDOWNLOAD_BOOST=1 -DWITH_BOOST=boost)

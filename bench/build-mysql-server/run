@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e -u
+exec make -C ${CLONE_DIR}/build -j ${TASKS} > ${OUTPUT}/run.out 2> ${OUTPUT}/run.err
