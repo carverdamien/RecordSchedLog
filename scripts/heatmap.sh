@@ -7,6 +7,9 @@ for value in perf energy
 do
     for agg in min max mean median
     do
-	./scripts/heatmap.py "heatmaps/$value.$agg.pdf" i80.csv $value $agg
+	for n in normed raw
+	do
+	    ./scripts/heatmap.py "heatmaps/$n.$value.$agg.pdf" i80.csv $value $agg $n
+	done
     done
 done

@@ -9,9 +9,9 @@ import seaborn as sns
 sns.set()
 
 def main():
-    # ./scripts/heatmap.py out.pdf in.csv energy|perf min|max|mean|median
-    _, output_file, input_file, value, agg = sys.argv
-    print(output_file, input_file, value, agg)
+    # ./scripts/heatmap.py out.pdf in.csv energy|perf min|max|mean|median normed|raw
+    _, output_file, input_file, value, agg, use_norm = sys.argv
+    print(output_file, input_file, value, agg, use_norm)
     agg = {
         'min'  : np.min,
         'max'  : np.max,
@@ -107,7 +107,12 @@ def main():
     XREF = X[1]
     i=6
     print(Y[i]['match'](Y[i],X[0]))
-    CELL = lambda x,y : y['norm'](y, y['value'](y, y['match'](y, x)),y['value'](y, y['match'](y, XREF)))
+    if use_norm=='normed':
+        CELL = lambda x,y : y['norm'](y, y['value'](y, y['match'](y, x)),y['value'](y, y['match'](y, XREF)))
+    elif use_norm=='raw':
+        CELL = lambda x,y : y['value'](y, y['match'](y, x))
+    else:
+        raise Exception()
     data = [[CELL(x,y) for x in X] for y in Y]
     df = pd.DataFrame(data, columns=[x['index'] for x in X], index=[y['index'] for y in Y])
     print(df)
