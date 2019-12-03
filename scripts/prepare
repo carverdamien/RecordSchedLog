@@ -1,3 +1,4 @@
+(lsmod | grep msr) && (rmmod msr || true)
 modprobe msr
 modprobe cpuid
 mkdir -p "${OUTPUT}"
