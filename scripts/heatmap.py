@@ -17,6 +17,7 @@ def main():
         'max'  : np.max,
         'mean' : np.mean,
         'median' : np.median,
+        'std' : np.std,
     }[agg]
     raw = pd.read_csv(input_file, sep=';')
     for column_name in ['usr_bin_time', 'phoronix', 'energy', 'sysbench_trps']:

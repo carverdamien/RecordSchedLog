@@ -5,7 +5,7 @@ set -e -x -u
 
 for value in perf energy
 do
-    for agg in min max mean median
+    for agg in min max mean median std
     do
 	for n in normed raw
 	do
