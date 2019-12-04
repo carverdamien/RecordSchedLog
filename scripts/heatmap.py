@@ -22,7 +22,7 @@ def main():
     raw = pd.read_csv(input_file, sep=';')
     for column_name in ['usr_bin_time', 'phoronix', 'energy', 'sysbench_trps']:
         raw[column_name] = raw[column_name].astype(float)
-    print(raw)
+    print(raw.head())
     HOST='i80'
     POWER='powersave-y'
     MONITORING='cpu-energy-meter'
@@ -83,6 +83,15 @@ def main():
             'norm'  : lambda y, v, ref : (-1 if value=='perf' else 1) * 100.0*(ref-v)/ref, # higher is better
         }
         for phoronix in ['apache-0', 'redis-1', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5' ]
+    ] + [
+        {
+            'index' : f"oltp-{tasks}",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH=oltp-mysql/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'sysbench_trps'}[value]]),
+            'norm'  : lambda y, v, ref : (-1 if value=='perf' else 1) * 100.0*(ref-v)/ref, # higher is better
+        }
+        for tasks in ['80','160','320']
     ]
     X = [
         {
@@ -119,7 +128,7 @@ def main():
         },
     ]
     XREF = X[1]
-    i=6
+    i=-1
     print(Y[i]['match'](Y[i],X[0]))
     if use_norm=='normed':
         CELL = lambda x,y : y['norm'](y, y['value'](y, y['match'](y, x)),y['value'](y, y['match'](y, XREF)))
@@ -129,7 +138,7 @@ def main():
         raise Exception()
     data = [[CELL(x,y) for x in X] for y in Y]
     df = pd.DataFrame(data, columns=[x['index'] for x in X], index=[y['index'] for y in Y])
-    print(df)
+    print(df.head())
     vmax = df.max().max()
     vmin = -vmax
     fig = plt.figure(figsize=(2*6.4, 2*4.8))
