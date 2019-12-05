@@ -73,7 +73,7 @@ def main():
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'phoronix'}[value]]),
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref, # Lower is better
         }
-        for phoronix in ['aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'rust-prime-0', 'schbench-6-7']
+        for phoronix in ['aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'rust-prime-0', 'schbench-6-7', 'go-benchmark-1', 'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4']
     ] + [
         {
             'index' : f"{phoronix}",
@@ -82,7 +82,7 @@ def main():
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'phoronix'}[value]]),
             'norm'  : lambda y, v, ref : (-1 if value=='perf' else 1) * 100.0*(ref-v)/ref, # higher is better
         }
-        for phoronix in ['apache-0', 'redis-1', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5' ]
+        for phoronix in ['apache-0', 'redis-1', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3', 'apache-siege-4', 'apache-siege-5', 'scimark2-1', 'scimark2-2', 'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6', 'node-octane-1']
     ] + [
         {
             'index' : f"oltp-{tasks}",
