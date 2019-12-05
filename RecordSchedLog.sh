@@ -49,6 +49,14 @@ function main {
     (
 	flock -n 9 || exit 1
 	export -p > /tmp/RecordSchedLog.env
+	touch host/${HOSTNAME}/discard
+	while read file_shasum file_path
+	do
+	    if [ "$(shasum $file_path)" = "$file_shasum  $file_path" ]
+	    then
+		rm -f "$file_path"
+	    fi
+	done < host/${HOSTNAME}/discard
 	find host/${HOSTNAME}/jobs -name '*.job.sh' | sort | while read job
 	do
 	    (source "${job}")
