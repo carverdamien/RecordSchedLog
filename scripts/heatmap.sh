@@ -12,14 +12,20 @@ main() {
     ./scripts/filter_cpu_energy_meter.py filter_cpu_energy_meter.csv i80.csv
     sed 's/.mnt.data.damien.git.carverdamien.SchedDisplay.examples.trace/output/' filter_cpu_energy_meter.csv | xargs shasum > host/i80/discard
     rm -f $(cat filter_cpu_energy_meter.csv)
-    
-    for value in perf energy
+
+    export MONITORING
+    for MONITORING in all cpu-energy-meter
     do
-	for agg in min max mean median std
+	for value in perf energy
 	do
-	    for n in normed raw
+	    for agg in min max mean median std
 	    do
-		./scripts/heatmap.py "heatmaps/$n.$value.$agg.pdf" i80.csv $value $agg $n
+		for n in normed raw
+		do
+		    pdf="heatmaps/MONITORING=$MONITORING/$n.$value.$agg.pdf"
+		    mkdir -p $(dirname $pdf)
+		    ./scripts/heatmap.py $pdf i80.csv $value $agg $n
+		done
 	    done
 	done
     done
