@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.7
 
-import sys
+import sys, os
 import pandas as pd
 import numpy as np
 from string import Template
@@ -23,9 +23,9 @@ def main():
     for column_name in ['usr_bin_time', 'phoronix', 'energy', 'sysbench_trps']:
         raw[column_name] = raw[column_name].astype(float)
     print(raw.head())
-    HOST='i80'
-    POWER='powersave-y'
-    MONITORING='cpu-energy-meter'
+    HOST=os.environ.get('HOST','i80')
+    POWER=os.environ.get('POWER','powersave-y')
+    MONITORING=os.environ.get('MONITORING','cpu-energy-meter')
     Y = [
         {
             'index' : f"{bench}-{tasks}",
