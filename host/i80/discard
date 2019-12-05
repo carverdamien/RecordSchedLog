@@ -1,0 +1,3 @@
+f30e14b88648f225cf99a61b683fc2f9a7e26fe5  output/HOST=i80/BENCH=nas_mg.D/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=2/160-lp/10.tar
+ff46aabc5d8e9e332fe7a306d793194621c966c5  output/HOST=i80/BENCH=llvmcmake/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=0/lp/3.tar
+9a9a0316970d4a644afb88c7ea799e83a1ed29a6  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-llvm-0/delayed-placement/8.tar
