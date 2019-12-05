@@ -64,7 +64,7 @@ def main():
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B', 'nas_mg.D']
-        for tasks in ['80','160','320']
+        for tasks in ['80','160']
     ] + [
         {
             'index' : f"{phoronix}",
