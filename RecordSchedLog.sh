@@ -54,7 +54,7 @@ function main {
 	do
 	    if [ "$(shasum $file_path)" = "$file_shasum  $file_path" ]
 	    then
-		rm -f "$file_path"
+		sudo rm -f "$file_path"
 	    fi
 	done < host/${HOSTNAME}/discard
 	find host/${HOSTNAME}/jobs -name '*.job.sh' | sort | while read job
