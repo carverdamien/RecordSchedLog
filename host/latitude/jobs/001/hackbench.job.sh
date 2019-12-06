@@ -51,7 +51,7 @@ do
 	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
+	    for TASKS in 1000
 	    do
 		OUTPUT="output/"
 		OUTPUT+="HOST=${HOSTNAME}/"
