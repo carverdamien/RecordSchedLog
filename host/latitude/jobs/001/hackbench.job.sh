@@ -15,10 +15,10 @@ BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(delayed-placement)
 LP_VALUES=(n)
-SLP=(y y)
-GOV=(powersave powersave)
-RPT=(1 10)
-MON=(monitoring/all monitoring/cpu-energy-meter)
+SLP=(y)
+GOV=(powersave)
+RPT=(10)
+MON=(monitoring/cpu-energy-meter)
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
