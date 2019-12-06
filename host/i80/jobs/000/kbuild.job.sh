@@ -19,7 +19,7 @@ LP_VALUES=(1 2 0 n n n n n)
 SLP=(y y n)
 GOV=(powersave powersave performance)
 RPT=(1 10 1)
-MON=(monitoring/all monitoring/cpu-energy-meter)
+MON=(monitoring/all monitoring/cpu-energy-meter monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
