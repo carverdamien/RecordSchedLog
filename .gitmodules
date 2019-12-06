@@ -80,3 +80,7 @@
 	path = host/latitude/kernel/delayed-placement/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-delayed-placement
+[submodule "host/latitude/kernel/local-light/src"]
+	path = host/latitude/kernel/local-light/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-light
