@@ -84,3 +84,7 @@
 	path = host/latitude/kernel/local-light/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-local-light
+[submodule "host/latitude/kernel/local/src"]
+	path = host/latitude/kernel/local/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local
