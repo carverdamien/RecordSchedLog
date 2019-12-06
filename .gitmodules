@@ -73,5 +73,5 @@
 	path = host/i80/kernel/lp/src
 	url = https://github.com/carverdamien/SchedLog
 [submodule "host/dc-Latitude-7390/kernel/src"]
-	path = host/dc-Latitude-7390/kernel/lp/src
+	path = host/latitude/kernel/lp/src
 	url = https://github.com/carverdamien/SchedLog
