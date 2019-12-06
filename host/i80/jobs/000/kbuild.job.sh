@@ -16,9 +16,9 @@ BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema delayed-placement)
 LP_VALUES=(1 2 0 n n n n n)
-SLP=(y y)
-GOV=(powersave powersave)
-RPT=(1 10)
+SLP=(y y n)
+GOV=(powersave powersave performance)
+RPT=(1 10 1)
 MON=(monitoring/all monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
