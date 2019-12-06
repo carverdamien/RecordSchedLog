@@ -14,8 +14,8 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(lp lp lp)
-LP_VALUES=(1 2 0)
+KERNEL_LOCALVERSIONS=(delayed-placement) # lp lp lp)
+LP_VALUES=(n) # 1 2 0)
 SLP=(y)
 GOV=(powersave)
 RPT=(10)
@@ -53,7 +53,7 @@ do
 	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 80 160 320
+	    for TASKS in 4 8 16
 	    do
 		for TARGET in all kernel/sched/
 		do
