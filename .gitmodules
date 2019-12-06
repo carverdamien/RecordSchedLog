@@ -72,9 +72,10 @@
 [submodule "host/i80/kernel/lp/src"]
 	path = host/i80/kernel/lp/src
 	url = https://github.com/carverdamien/SchedLog
-[submodule "host/dc-Latitude-7390/kernel/src"]
+[submodule "host/latitude/kernel/lp/src"]
 	path = host/latitude/kernel/lp/src
-	url = https://github.com/carverdamien/SchedLog
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-placement
 [submodule "host/latitude/kernel/delayed-placement/src"]
 	path = host/latitude/kernel/delayed-placement/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
