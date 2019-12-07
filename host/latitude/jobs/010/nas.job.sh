@@ -16,8 +16,9 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
-BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
+# mg.D too much memory
+BENCH_NAMES=(   bt cg ep ft    lu sp ua ) # mg # ua sp dc # is
+BENCH_CLASSES=( B  C  C  C     B  B  B  ) # D  # C  A  A  # D
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(delayed-placement)
 LP_VALUES=(n)
