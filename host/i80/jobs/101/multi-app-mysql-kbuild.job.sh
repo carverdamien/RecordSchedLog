@@ -20,7 +20,7 @@ KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema delayed-placem
 LP_VALUES=(1 2 0 n n n n n)
 SLP=(y)
 GOV=(powersave)
-RPT=(1)
+RPT=(10)
 MON=(monitoring/cpu-energy-meter)
 
 TARGET=all
