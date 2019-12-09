@@ -1,3 +1,1 @@
 #!/bin/bash
-cat ${OUTPUT}/oltp-mysql.out ${OUTPUT}/kbuild.out > ${OUTPUT}/run.out
-cat ${OUTPUT}/oltp-mysql.err ${OUTPUT}/kbuild.err > ${OUTPUT}/run.err

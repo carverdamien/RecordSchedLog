@@ -1,5 +1,12 @@
 #!/bin/bash
 set -e -u
-bash bench/oltp-mysql/run &
+(
+    OUTPUT+="/oltp-mysql"
+    ./scripts/time bench/oltp-mysql/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
+) &
 sleep 60
-bash bench/kbuild/run
+(
+    OUTPUT+="/kbuild"
+    ./scripts/time bench/kbuild/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
+) &
+wait
