@@ -12,14 +12,14 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
-PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel scimark2 scimark2 scimark2 scimark2 scimark2 scimark2 go-benchmark go-benchmark go-benchmark go-benchmark node-octane)
-PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0        1        2        3        4        5        6            1            2            3            4           1)
+PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel scimark2 scimark2 scimark2 scimark2 scimark2 scimark2 go-benchmark go-benchmark go-benchmark go-benchmark node-octane cloudsuite-da cloudsuite-ga cloudsuite-ma cloudsuite-ms cloudsuite-ws)
+PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0        1        2        3        4        5        6            1            2            3            4           1             1             1             1             1             1)
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema delayed-placement)
 LP_VALUES=(1 2 0 n n n n n)
 SLP=(y y)
 GOV=(powersave powersave)
-RPT=(1 10)
+RPT=(1 1)
 MON=(monitoring/all monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
