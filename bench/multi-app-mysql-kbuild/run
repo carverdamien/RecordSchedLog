@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e -u
+bash bench/oltp-mysql/run &
+sleep 60
+bash bench/kbuild/run
