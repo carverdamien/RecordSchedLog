@@ -1,13 +1,14 @@
 #!/bin/bash
 set -e -u
 (
-    OUTPUT+="/oltp-mysql"
-    ./scripts/time > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
+    BENCH=bench/oltpmysql;
+    OUTPUT+="/${BENCH}"
+    ./scripts/time ${BENCH}/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
 ) &
 sleep 60
 (
     BENCH=bench/kbuild;
-    OUTPUT+="/kbuild"
-    ./scripts/time > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
+    OUTPUT+="/${BENCH}"
+    ./scripts/time ${BENCH}/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
 ) &
 wait
