@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -u
 (
-    BENCH=bench/oltpmysql;
+    BENCH=bench/oltp-mysql;
     OUTPUT+="/${BENCH}"
     ./scripts/time ${BENCH}/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err
 ) &
