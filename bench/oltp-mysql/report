@@ -1,5 +1,1 @@
 #!/bin/bash
-
-# TODO: Remove cp
-cp ${OUTPUT}/oltp-mysql.out ${OUTPUT}/run.out
-cp ${OUTPUT}/oltp-mysql.err ${OUTPUT}/run.err
