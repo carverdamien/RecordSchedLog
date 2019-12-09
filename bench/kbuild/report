@@ -1,1 +1,5 @@
 #!/bin/bash
+
+# TODO: Remove cp
+cp ${OUTPUT}/kbuild.out ${OUTPUT}/run.out
+cp ${OUTPUT}/kbuild.err ${OUTPUT}/run.err
