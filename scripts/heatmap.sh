@@ -7,24 +7,25 @@ main() {
     
     set -e -x -u
     date
-    
-    ./scripts/tar2raw.sh master /mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST=i80 i80.csv
-    ./scripts/filter_cpu_energy_meter.py filter_cpu_energy_meter.csv i80.csv
-    sed 's/.mnt.data.damien.git.carverdamien.SchedDisplay.examples.trace/output/' filter_cpu_energy_meter.csv | xargs shasum > host/i80/discard
-    rm -f $(cat filter_cpu_energy_meter.csv)
-
-    export MONITORING
-    for MONITORING in all cpu-energy-meter
+    export MONITORING HOST
+    for HOST in i80 latitude
     do
-	for value in perf energy
+	./scripts/tar2raw.sh master /mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST=$HOST $HOST.csv
+	# ./scripts/filter_cpu_energy_meter.py filter_cpu_energy_meter.csv data.csv
+	# sed 's/.mnt.data.damien.git.carverdamien.SchedDisplay.examples.trace/output/' filter_cpu_energy_meter.csv | xargs shasum > host/i80/discard
+	# rm -f $(cat filter_cpu_energy_meter.csv)
+	for MONITORING in all cpu-energy-meter
 	do
-	    for agg in min max mean median std
+	    for value in perf energy
 	    do
-		for n in normed raw
+		for agg in min max mean median std
 		do
-		    pdf="heatmaps/MONITORING=$MONITORING/$n.$value.$agg.pdf"
-		    mkdir -p $(dirname $pdf)
-		    ./scripts/heatmap.py $pdf i80.csv $value $agg $n
+		    for n in normed raw
+		    do
+			pdf="heatmaps/HOST=$HOST/MONITORING=$MONITORING/$n.$value.$agg.pdf"
+			mkdir -p $(dirname $pdf)
+			./scripts/heatmap.py $pdf $HOST.csv $value $agg $n
+		    done
 		done
 	    done
 	done

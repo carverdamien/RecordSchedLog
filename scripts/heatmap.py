@@ -34,8 +34,8 @@ def main():
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'usr_bin_time'}[value]]),
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
-        for bench in ['kbuild-all','kbuild-sched']
-        for tasks in ['80','160','320']
+        for bench in {'latitude':['kbuild-all','kbuild-sched'], 'i80':['kbuild-all','kbuild-sched','build-mysql-server']}[HOST]
+        for tasks in {'latitude':['4','8','16'], 'i80':['80','160','320']}[HOST]
     ] + [
         {
             'index' : f"{bench}-{tasks}",
@@ -45,7 +45,7 @@ def main():
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['hackbench']
-        for tasks in ['10000']
+        for tasks in {'latitude':['1000'],'i80':['10000']}[HOST]
     ] + [
         {
             'index' : f"{bench}",
@@ -64,7 +64,7 @@ def main():
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B', 'nas_mg.D']
-        for tasks in ['80','160']
+        for tasks in {'latitude':['4','8'], 'i80':['80','160']}[HOST]
     ] + [
         {
             'index' : f"{phoronix}",
@@ -91,7 +91,7 @@ def main():
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'sysbench_trps'}[value]]),
             'norm'  : lambda y, v, ref : (-1 if value=='perf' else 1) * 100.0*(ref-v)/ref, # higher is better
         }
-        for tasks in ['80','160','320']
+        for tasks in {'latitude':[], 'i80':['80','160','320']}[HOST]
     ]
     X = [
         {
