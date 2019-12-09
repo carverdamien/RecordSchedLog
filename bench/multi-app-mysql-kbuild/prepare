@@ -1,4 +1,4 @@
 #!/bin/bash
-source bench/kbuild/prepare
-source bench/oltp-mysql/prepare
+(BENCH=bench/kbuild;     source ${BENCH}/prepare)
+(BENCH=bench/oltp-mysql; source ${BENCH}/prepare)
 mkdir -p ${OUTPUT}/kbuild ${OUTPUT}/oltp-mysql
