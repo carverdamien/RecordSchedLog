@@ -1,6 +1,6 @@
 #!/bin/bash
 : ${TASKS}
-${BENCH}/engine.sh cleanup || true
-${BENCH}/engine.sh prepare
-${BENCH}/engine.sh start
-${BENCH}/client.sh ${TASKS} prepare
+bench/oltp-mysql/engine.sh cleanup || true
+bench/oltp-mysql/engine.sh prepare
+bench/oltp-mysql/engine.sh start
+bench/oltp-mysql/client.sh ${TASKS} prepare

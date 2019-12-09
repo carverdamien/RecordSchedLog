@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e -u
-source host/${HOSTNAME}/${BENCH}/config
+source host/${HOSTNAME}/bench/oltp-mysql/config
 
 function usage {
     echo "Usage: $0 CLIENTS [all|prepare|run|cleanup]"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e -u
-source host/${HOSTNAME}/${BENCH}/config
+source host/${HOSTNAME}/bench/oltp-mysql/config
 
 help() {
     echo "Usage: $0 [status|start|stop|help|prepare|cleanup|client]"
