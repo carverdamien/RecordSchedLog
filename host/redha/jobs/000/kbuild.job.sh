@@ -53,7 +53,7 @@ do
 	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 4 8 16
+	    for TASKS in 6 12 24
 	    do
 		for TARGET in all kernel/sched/
 		do
