@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3
 
 import sys, os
 import pandas as pd
@@ -120,7 +120,7 @@ def main():
         },
         {
             'index' : '5.4',
-            'sub' : {'kernel':'schedlog','lp':'n'},
+            'sub' : {'kernel':'5.4' if HOST == 'redha' else 'schedlog','lp':'n'},
         },
         {
             'index' : 'local',
