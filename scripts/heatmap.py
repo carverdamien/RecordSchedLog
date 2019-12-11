@@ -28,14 +28,34 @@ def main():
     MONITORING=os.environ.get('MONITORING','cpu-energy-meter')
     Y = [
         {
+            'index' : f"mysql-kbuild-kbtime",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'kbuild_usr_bin_time'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
+        }
+        for bench in {'redha':[], 'latitude':[], 'i80':['multi-app-mysql-kbuild-all']}[HOST]
+        for tasks in {'redha':[], 'latitude':[], 'i80':['80']}[HOST]
+    ] + [
+        {
+            'index' : f"mysql-kbuild-trps",
+            'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
+            'match' : lambda y, x    : y['template'].substitute(**x['sub']),
+            'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'sysbench_trps'}[value]]),
+            'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
+        }
+        for bench in {'redha':[], 'latitude':[], 'i80':['multi-app-mysql-kbuild-all']}[HOST]
+        for tasks in {'redha':[], 'latitude':[], 'i80':['80']}[HOST]
+    ] + [
+        {
             'index' : f"{bench}-{tasks}",
             'template' : Template(f"/mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST={HOST}/BENCH={bench}/POWER={POWER}/MONITORING={MONITORING}/LP=$lp/{tasks}-$kernel/.*.tar"),
             'match' : lambda y, x    : y['template'].substitute(**x['sub']),
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'usr_bin_time'}[value]]),
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
-        for bench in {'latitude':['kbuild-all','kbuild-sched'], 'i80':['kbuild-all','kbuild-sched','build-mysql-server']}[HOST]
-        for tasks in {'latitude':['4','8','16'], 'i80':['80','160','320']}[HOST]
+        for bench in {'redha':['kbuild-all','kbuild-sched'], 'latitude':['kbuild-all','kbuild-sched'], 'i80':['kbuild-all','kbuild-sched','build-mysql-server']}[HOST]
+        for tasks in {'redha':['6','12','24'], 'latitude':['4','8','16'], 'i80':['80','160','320']}[HOST]
     ] + [
         {
             'index' : f"{bench}-{tasks}",
@@ -45,7 +65,7 @@ def main():
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['hackbench']
-        for tasks in {'latitude':['1000'],'i80':['10000']}[HOST]
+        for tasks in {'redha':['1000'], 'latitude':['1000'],'i80':['10000']}[HOST]
     ] + [
         {
             'index' : f"{bench}",
@@ -64,7 +84,7 @@ def main():
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref,
         }
         for bench in ['nas_bt.B', 'nas_cg.C', 'nas_ep.C', 'nas_ft.C', 'nas_lu.B', 'nas_sp.B', 'nas_ua.B', 'nas_mg.D']
-        for tasks in {'latitude':['4','8'], 'i80':['80','160']}[HOST]
+        for tasks in {'redha':['6','12'], 'latitude':['4','8'], 'i80':['80','160']}[HOST]
     ] + [
         {
             'index' : f"{phoronix}",
@@ -73,7 +93,7 @@ def main():
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'phoronix'}[value]]),
             'norm'  : lambda y, v, ref : 100.0*(ref-v)/ref, # Lower is better
         }
-        for phoronix in ['aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'rust-prime-0', 'schbench-6-7', 'go-benchmark-1', 'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4']
+        for phoronix in ['aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2', 'rust-prime-0', 'schbench-6-7', 'go-benchmark-1', 'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4', 'cloudsuite-da-1', 'cloudsuite-ga-1', 'cloudsuite-ma-1', 'cloudsuite-ms-1', 'cloudsuite-ws-1']
     ] + [
         {
             'index' : f"{phoronix}",
@@ -91,7 +111,7 @@ def main():
             'value' : lambda y, match     : agg(raw[raw['fname'].str.match(match)][{'energy':'energy','perf':'sysbench_trps'}[value]]),
             'norm'  : lambda y, v, ref : (-1 if value=='perf' else 1) * 100.0*(ref-v)/ref, # higher is better
         }
-        for tasks in {'latitude':[], 'i80':['80','160','320']}[HOST]
+        for tasks in {'redha':[], 'latitude':[], 'i80':['80','160','320']}[HOST]
     ]
     X = [
         {
