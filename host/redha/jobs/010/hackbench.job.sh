@@ -6,19 +6,31 @@ export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
 export TASKS
+export SYSCTL=''
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/hackbench
-MONITORING=monitoring/all
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS="ipanema local local-light sched-freq pull-back pull-back-no-freq"
-SLP=(y        )
+KERNEL_LOCALVERSIONS=(5.4 delayed-placement lp)
+LP_VALUES=(n n 2)
+SLP=(y)
 GOV=(powersave)
-RPT=(5        )
-for KERNEL_LOCALVERSION in ${KERNEL_LOCALVERSIONS}
+RPT=(10)
+MON=(monitoring/cpu-energy-meter)
+for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
+    KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
+    LP_VALUE=${LP_VALUES[$J]}
+    case ${LP_VALUE} in
+	n)
+	    SYSCTL=''
+	    ;;
+	*)
+	    SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    ;;
+    esac
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
@@ -36,14 +48,17 @@ do
 	esac
 	SCALING_GOVERNOR=${GOV[$I]}
 	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in 760 # 8000 6000 4000 2000 1000 40
+	    for TASKS in 1000
 	    do
 		OUTPUT="output/"
+		OUTPUT+="HOST=${HOSTNAME}/"
 		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		OUTPUT+="LP=${LP_VALUE}/"
 		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		run_bench
 	    done

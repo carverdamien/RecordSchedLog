@@ -20,8 +20,8 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu sp ua ) # mg # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  B  B  ) # D  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(delayed-placement lp lp lp)
-LP_VALUES=(n 2 1 0)
+KERNEL_LOCALVERSIONS=(5.4 delayed-placement lp)
+LP_VALUES=(n n 2)
 SLP=(y)
 GOV=(powersave)
 RPT=(10)
@@ -60,7 +60,7 @@ do
         do
             for I in ${!BENCH_NAMES[@]}
             do
-                for TASKS in 4 8
+                for TASKS in 6 12
                 do
                     BENCH_NAME=${BENCH_NAMES[$I]}
                     BENCH_CLASS=${BENCH_CLASSES[$I]}

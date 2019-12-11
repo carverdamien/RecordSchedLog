@@ -1,0 +1,3 @@
+#!/bin/bash
+(BENCH=bench/kbuild;     source ${BENCH}/cleanup)
+(BENCH=bench/oltp-mysql; source ${BENCH}/cleanup)

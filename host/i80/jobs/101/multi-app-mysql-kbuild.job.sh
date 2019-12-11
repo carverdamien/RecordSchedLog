@@ -3,29 +3,28 @@ export TIMEOUT
 export IPANEMA_MODULE
 export OUTPUT
 export BENCH
-export BENCH_NAME
-export BENCH_CLASS
 export MONITORING
 export MONITORING_SCHEDULED
 export MONITORING_START_DELAY
 export MONITORING_STOP_DELAY
 export TASKS
-export SYSCTL
+export TARGET
+export SYSCTL=''
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/nas
-# mg.D too much memory
-BENCH_NAMES=(   bt cg ep ft    lu sp ua ) # mg # ua sp dc # is
-BENCH_CLASSES=( B  C  C  C     B  B  B  ) # D  # C  A  A  # D
+BENCH=bench/multi-app-mysql-kbuild
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(delayed-placement lp lp lp)
-LP_VALUES=(n 2 1 0)
+KERNEL_LOCALVERSIONS=(lp lp lp schedlog local local-light ipanema delayed-placement)
+LP_VALUES=(1 2 0 n n n n n)
 SLP=(y)
 GOV=(powersave)
 RPT=(10)
 MON=(monitoring/cpu-energy-meter)
+
+TARGET=all
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
@@ -58,24 +57,17 @@ do
 	MONITORING=${MON[$I]}
         for N in $(seq ${REPEAT})
         do
-            for I in ${!BENCH_NAMES[@]}
+            for TASKS in 80
             do
-                for TASKS in 4 8
-                do
-                    BENCH_NAME=${BENCH_NAMES[$I]}
-                    BENCH_CLASS=${BENCH_CLASSES[$I]}
-
-                    OUTPUT="output/"
-                    OUTPUT+="HOST=${HOSTNAME}/"
-                    OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
-                    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-                    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		    OUTPUT+="LP=${LP_VALUE}/"
-                    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
-                    run_bench
-                done
+                OUTPUT="output/"
+		OUTPUT+="HOST=${HOSTNAME}/"
+		OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
+		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		OUTPUT+="LP=${LP_VALUE}/"
+		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
+	        run_bench
             done
         done
     done
 done
-

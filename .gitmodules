@@ -88,3 +88,15 @@
 	path = host/latitude/kernel/local/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-local
+[submodule "host/redha/kernel/delayed-placement/src"]
+	path = host/redha/kernel/delayed-placement/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-delayed-placement
+[submodule "host/redha/kernel/lp/src"]
+	path = host/redha/kernel/lp/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-placement
+[submodule "host/redha/kernel/5.4/src"]
+	path = host/redha/kernel/5.4/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4
