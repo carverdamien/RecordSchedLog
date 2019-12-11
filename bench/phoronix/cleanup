@@ -1,2 +1,4 @@
 #!/bin/bash
 yes | phoronix-test-suite remove-installed-test ${PHORONIX}
+docker container prune -f || true
+docker volume prune -f || true
