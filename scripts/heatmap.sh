@@ -8,7 +8,7 @@ main() {
     set -e -x -u
     date
     export MONITORING HOST
-    for HOST in i80 latitude
+    for HOST in i80 latitude redha
     do
 	./scripts/tar2raw.sh master /mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST=$HOST $HOST.csv
 	# ./scripts/filter_cpu_energy_meter.py filter_cpu_energy_meter.csv data.csv
@@ -25,6 +25,9 @@ main() {
 			pdf="heatmaps/HOST=$HOST/MONITORING=$MONITORING/$n.$value.$agg.pdf"
 			mkdir -p $(dirname $pdf)
 			./scripts/heatmap.py $pdf $HOST.csv $value $agg $n
+			barpdf="barplots/HOST=$HOST/MONITORING=$MONITORING/$n.$value.$agg"
+			mkdir -p $(dirname ${barpdf})
+			./scripts/barplot.py ${pdf}.csv ${barpdf}.pdf ${barpdf}-no-ticks.pdf
 		    done
 		done
 	    done

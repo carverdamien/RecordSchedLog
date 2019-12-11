@@ -166,6 +166,7 @@ def main():
     ax = sns.heatmap(df, annot=True, fmt="2.1f", vmin=vmin, vmax=vmax, cmap=cmap)
     ax.set_yticklabels(ax.get_yticklabels(), rotation=0)
     fig.savefig(output_file)
+    df.to_csv(output_file+".csv", float_format="%2.1f")
 
 if __name__ == '__main__':
     main()
