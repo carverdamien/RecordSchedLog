@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -u -e # -x
 
-COLUMNS=(fname usr_bin_time phoronix energy sysbench_trps kernel_version sysctl_sched_local_placement)
-FORMAT="%s;%s;%s;%s;%s;%s;%s\n"
+COLUMNS=(fname usr_bin_time phoronix energy sysbench_trps kernel_version sysctl_sched_local_placement kbuild_usr_bin_time)
+FORMAT="%s;%s;%s;%s;%s;%s;%s;%s\n"
 
 lstar() { tar tf "$1"; }
 gettar() { tar -O -xf "$1" "$2"; }
@@ -90,6 +90,22 @@ usr_bin_time() {
     echo "$value"
 }
 
+kbuild_usr_bin_time() {
+    tar="$1"
+    value_file=$(lstar "$tar" | grep -E 'kbuild/time.err$')
+    if test -z "$value_file"
+    then
+	value=NaN
+    else
+	value=$(grep -v '+' <(gettar "$tar" "$value_file"))
+    fi
+    if test -z "$value"
+    then
+	value=NaN
+    fi
+    echo "$value"
+}
+
 phoronix() {
     tar="$1"
     value_file=$(lstar "$tar" | grep -E 'phoronix.json$')
@@ -124,18 +140,23 @@ kernel_version() {
 
 sysbench_trps() {
     tar="$1"
-    value_file=$(lstar "$tar" | grep -E 'run.out$')
-    if test -z "$value_file"
-    then
-	value=NaN
-    else
-	value=$(sed -n 's/ *transactions: *[0-9]* *.\([^ ]\+\) per sec../\1/p' <(gettar "$tar" "$value_file"))
-    fi
-    if test -z "$value"
-    then
-	value=NaN
-    fi
-    echo "$value"
+    lstar "$tar" | grep -E 'run.out$' | while read value_file
+    do
+	if test -z "$value_file"
+	then
+	    value=NaN
+	    continue
+	else
+	    value=$(sed -n 's/ *transactions: *[0-9]* *.\([^ ]\+\) per sec../\1/p' <(gettar "$tar" "$value_file"))
+	fi
+	if test -z "$value"
+	then
+	    value=NaN
+	    continue
+	fi
+	echo "$value"
+	break
+    done | cat - <(echo 'NaN')| head -n 1 
 }
 
 sysctl_sched_local_placement() {
