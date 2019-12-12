@@ -130,6 +130,14 @@ def main():
             'index' : 'local-light',
             'sub' : {'kernel':'local-light','lp':'n'},
         },
+                {
+            'index' : 'local-cw',
+            'sub' : {'kernel':'local-cpuofwaker','lp':'n'},
+        },
+        {
+            'index' : 'local-light-cw',
+            'sub' : {'kernel':'local-light-cpuofwaker','lp':'n'},
+        },
         {
             'index' : 'lp-0',
             'sub' : {'kernel':'lp','lp':'0'},
