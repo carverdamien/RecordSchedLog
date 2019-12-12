@@ -1,0 +1,5 @@
+#!/bin/bash
+(
+    cd ${OUTPUT}/frequency_logger
+    ./test_apps/test_loop.sh
+)

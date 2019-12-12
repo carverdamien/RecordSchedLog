@@ -1,0 +1,5 @@
+#!/bin/bash
+(
+    cd ${OUTPUT}/frequency_logger
+    ./plot.py traces traces.pdf
+)
