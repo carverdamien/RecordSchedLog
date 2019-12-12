@@ -120,7 +120,7 @@ def main():
         },
         {
             'index' : '5.4',
-            'sub' : {'kernel':'5.4' if HOST == 'redha' else 'schedlog','lp':'n'},
+            'sub' : {'kernel':{'redha':'5.4','i80':'schedlog','latitude':'lp'}[HOST],'lp':'0' if HOST == 'latitude' else 'n'},
         },
         {
             'index' : 'local',
