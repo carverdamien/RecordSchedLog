@@ -81,7 +81,7 @@ usr_bin_time() {
     then
 	value=NaN
     else
-	value=$(grep -v '+' <(gettar "$tar" "$value_file"))
+	value=$(grep -v '+' <(gettar "$tar" "$value_file") | egrep -v '[a-Z]')
     fi
     if test -z "$value"
     then
@@ -97,7 +97,7 @@ kbuild_usr_bin_time() {
     then
 	value=NaN
     else
-	value=$(grep -v '+' <(gettar "$tar" "$value_file"))
+	value=$(grep -v '+' <(gettar "$tar" "$value_file") | egrep -v '[a-Z]')
     fi
     if test -z "$value"
     then
