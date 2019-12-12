@@ -104,3 +104,7 @@
 	path = host/i80/kernel/local-cpuofwaker/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-local-cpuofwaker
+[submodule "host/i80/kernel/local-light-cpuofwaker/src"]
+	path = host/i80/kernel/local-light-cpuofwaker/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local-light-cpuofwaker
