@@ -1,2 +1,4 @@
 #!/bin/bash
 git clone --depth=1 https://github.com/rgouicem/frequency_logger ${OUTPUT}/frequency_logger
+make -C ${OUTPUT}/frequency_logger
+make -C ${OUTPUT}/frequency_logger/test_apps
