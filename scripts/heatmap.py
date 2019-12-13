@@ -154,6 +154,10 @@ def main():
             'index' : 'dp',
             'sub' : {'kernel':'delayed-placement','lp':'n'},
         },
+        {
+            'index' : 'dp-300',
+            'sub' : {'kernel':'delayed-placement','lp':'300000'},
+        },
     ]
     XREF = X[1]
     i=-1
