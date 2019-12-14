@@ -151,12 +151,16 @@ def main():
             'sub' : {'kernel':'lp','lp':'2'},
         },
         {
-            'index' : 'dp',
+            'index' : 'dp-50',
             'sub' : {'kernel':'delayed-placement','lp':'n'},
         },
         {
-            'index' : 'dp-300',
-            'sub' : {'kernel':'delayed-placement','lp':'300000'},
+            'index' : 'dp-100',
+            'sub' : {'kernel':'delayed-placement','lp':'100000'},
+        },
+        {
+            'index' : 'dp-150',
+            'sub' : {'kernel':'delayed-placement','lp':'150000'},
         },
     ]
     XREF = X[1]

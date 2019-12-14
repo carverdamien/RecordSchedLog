@@ -22,8 +22,8 @@ for d in data.iterrows():
                                'gain':   d[1]['lp-2'] },
                              ignore_index=True) 
     newData = newData.append({ 'bench': d[1]['Unnamed: 0'],
-                               'sched': 'dp',
-                               'gain':   d[1]['dp'] },
+                               'sched': 'dp-50',
+                               'gain':   d[1]['dp-50'] },
                              ignore_index=True) 
 
 fig = plt.figure(figsize=(17,2.5))
