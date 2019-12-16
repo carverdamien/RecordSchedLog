@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e -u -x
+
+main() {
+    : ${HOST_KERNEL:=$1}
+    : ${HOST_APPEND:=$2}
+
+    # TODO
+    #
+    # Add/Edit /etc/grub.d/10_RecordSchedLog (using HOST_KERNEL and HOST_APPEND)
+    # Run grub-mkconfig -o /boot/grub/grub.cfg
+    # Find RecordSchedLogEntry in /boot/grub/grub.cfg (using scripts/grub-list)
+    # Run grub-reboot RecordSchedLogEntry
+    
+    # WIP
+    exit 1
+}
+
+main "${@}"
