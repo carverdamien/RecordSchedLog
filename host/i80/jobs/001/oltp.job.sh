@@ -17,8 +17,8 @@ BENCH=bench/oltp-mysql
 MONITORING_SCHEDULED=y
 MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
-KERNEL_LOCALVERSIONS=(local-cpuofwaker local-light-cpuofwaker lp lp lp schedlog local local-light ipanema delayed-placement)
-LP_VALUES=(n n 1 2 0 n n n n n)
+KERNEL_LOCALVERSIONS=(local-cpuofwaker local-light-cpuofwaker lp lp lp schedlog local local-light ipanema delayed-placement delayed-placement delayed-placement)
+LP_VALUES=(n n 1 2 0 n n n n n 100000 150000)
 SLP=(y y)
 GOV=(powersave powersave)
 RPT=(1 10)
@@ -33,7 +33,11 @@ do
 	    SYSCTL=''
 	    ;;
 	*)
-	    SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    if [ ${KERNEL_LOCALVERSION} == "delayed-placement" ] ; then
+		SYSCTL="kernel.sched_delayed_placement=${LP_VALUE}"
+	    else
+		SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    fi
 	    ;;
     esac
     for I in ${!SLP[@]}
