@@ -4,16 +4,41 @@ set -e -u -x
 main() {
     : ${HOST_KERNEL:=$1}
     : ${HOST_APPEND:=$2}
-
-    # TODO
     #
-    # Add/Edit /etc/grub.d/10_RecordSchedLog (using HOST_KERNEL and HOST_APPEND)
+    # TODO
+    BOOT_IMAGE="/vmlinuz-linux-5.4-local"
+    APPEND="root=UUID=97eff336-0f79-4f5f-a0b1-945c20580061 ro quiet"
+    INITRD="/initramfs-linux-5.4-local.img"
+    #
+    # Add/Edit /etc/grub.d/99_RecordSchedLog (using HOST_KERNEL and HOST_APPEND)
+    cat_grubd_RecordSchedLog | sudo tee /etc/grub.d/99_RecordSchedLog
+    sudo chmod +x /etc/grub.d/99_RecordSchedLog
     # Run grub-mkconfig -o /boot/grub/grub.cfg
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
     # Find RecordSchedLogEntry in /boot/grub/grub.cfg (using scripts/grub-list)
+    RecordSchedLogEntry=$(scripts/grub-list | grep RecordSchedLogEntry | awk '{print $1}')
+    test -n "${RecordSchedLogEntry}"
     # Run grub-reboot RecordSchedLogEntry
-    
-    # WIP
-    exit 1
+    sudo grub-reboot "${RecordSchedLogEntry}"
+    echo sudo reboot
+}
+
+cat_grubd_RecordSchedLog() {
+cat <<EOF2
+cat <<EOF
+menuentry 'RecordSchedLogEntry' --class gnu-linux --class gnu --class os \\\$menuentry_id_option 'RecordSchedLogEntry' {
+	  load_video
+	  set gfxpayload=keep
+	  insmod gzio
+	  insmod part_gpt
+	  insmod fat
+	  echo 'Loading ${BOOT_IMAGE} ${APPEND}'
+	  linux ${BOOT_IMAGE} ${APPEND}
+	  echo 'Loading ${INITRD}'
+	  initrd /intel-ucode.img ${INITRD}
+}
+EOF
+EOF2
 }
 
 main "${@}"
