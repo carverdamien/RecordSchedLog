@@ -1,26 +1,43 @@
 #!/bin/bash
 set -e -u -x
-
-main() {
+. .lib.sh
+check_args() {
     : ${HOST_KERNEL:=$1}
     : ${HOST_APPEND:=$2}
-    #
-    # TODO
-    BOOT_IMAGE="/vmlinuz-linux-5.4-local"
-    APPEND="root=UUID=97eff336-0f79-4f5f-a0b1-945c20580061 ro quiet"
-    INITRD="/initramfs-linux-5.4-local.img"
-    #
-    # Add/Edit /etc/grub.d/99_RecordSchedLog (using HOST_KERNEL and HOST_APPEND)
-    cat_grubd_RecordSchedLog | sudo tee /etc/grub.d/99_RecordSchedLog
-    sudo chmod +x /etc/grub.d/99_RecordSchedLog
-    # Run grub-mkconfig -o /boot/grub/grub.cfg
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
-    # Find RecordSchedLogEntry in /boot/grub/grub.cfg (using scripts/grub-list)
-    RecordSchedLogEntry=$(scripts/grub-list | grep RecordSchedLogEntry | awk '{print $1}')
-    test -n "${RecordSchedLogEntry}"
-    # Run grub-reboot RecordSchedLogEntry
-    sudo grub-reboot "${RecordSchedLogEntry}"
-    echo sudo reboot
+    host_kernel > /dev/null
+    if ! host_kernel_installed > /dev/null
+    then
+	echo "${HOST_KERNEL} not installed"
+	echo "run ./kbuild.sh ${HOST_KERNEL}"
+	exit 1
+    fi
+    KERNELRELEASE=$(host_kernel_installed)
+    APPEND=$(cat "${HOST_APPEND}")
+    BOOT_IMAGE="/boot/vmlinuz-${KERNELRELEASE}"
+    INITRD="/boot/initrd.img-${KERNELRELEASE}"
+    test -f "${BOOT_IMAGE}"
+    test -f "${INITRD}"
+    BOOT_IMAGE="/$(basename ${BOOT_IMAGE})"
+    INITRD="/$(basename ${INITRD})"
+    CMDLINE="BOOT_IMAGE=${BOOT_IMAGE} ${APPEND}"
+}
+main() {
+    check_args "${@}"
+    CURRENT_CMDLINE="$(cat /proc/cmdline)"
+    if [ "${CMDLINE}" != "${CURRENT_CMDLINE}" ]
+    then
+	# Add/Edit /etc/grub.d/99_RecordSchedLog (using HOST_KERNEL and HOST_APPEND)
+	cat_grubd_RecordSchedLog | sudo tee /etc/grub.d/99_RecordSchedLog
+	sudo chmod +x /etc/grub.d/99_RecordSchedLog
+	# Run grub-mkconfig -o /boot/grub/grub.cfg
+	sudo grub-mkconfig -o /boot/grub/grub.cfg
+	# Find RecordSchedLogEntry in /boot/grub/grub.cfg (using scripts/grub-list)
+	RecordSchedLogEntry=$(scripts/grub-list | grep RecordSchedLogEntry | awk '{print $1}')
+	test -n "${RecordSchedLogEntry}"
+	# Run grub-reboot RecordSchedLogEntry
+	sudo grub-reboot "${RecordSchedLogEntry}"
+	sudo reboot
+    fi
 }
 
 cat_grubd_RecordSchedLog() {
