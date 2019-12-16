@@ -20,8 +20,8 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu sp ua ) # mg # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  B  B  ) # D  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(delayed-placement lp lp lp)
-LP_VALUES=(n 2 1 0)
+KERNEL_LOCALVERSIONS=(delayed-placement delayed-placement delayed-placement lp lp lp)
+LP_VALUES=(100000 150000 n 2 1 0)
 SLP=(y)
 GOV=(powersave)
 RPT=(10)
@@ -35,7 +35,11 @@ do
 	    SYSCTL=''
 	    ;;
 	*)
-	    SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    if [ ${KERNEL_LOCALVERSION} == "delayed-placement" ] ; then
+		SYSCTL="kernel.sched_delayed_placement=${LP_VALUE}"
+	    else
+		SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
+	    fi
 	    ;;
     esac
     for I in ${!SLP[@]}
