@@ -151,6 +151,10 @@ def main():
             'sub' : {'kernel':'lp','lp':'2'},
         },
         {
+            'index' : 'dp-5',
+            'sub' : {'kernel':'delayed-placement','lp':'5000'},
+        },
+        {
             'index' : 'dp-50',
             'sub' : {'kernel':'delayed-placement','lp':'n'},
         },
