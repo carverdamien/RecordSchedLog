@@ -18,7 +18,7 @@ KERNEL_LOCALVERSIONS=(local-cpuofwaker) # local-light-cpuofwaker lp lp lp schedl
 LP_VALUES=(n) # n 1 2 0 n n n n n)
 SLP=(y n)
 GOV=(powersave performance)
-RPT=(2 2)
+RPT=(3 3)
 MON=(monitoring/nop monitoring/nop monitoring/nop)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
