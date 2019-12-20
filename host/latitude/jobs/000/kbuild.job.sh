@@ -16,10 +16,10 @@ BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(delayed-placement delayed-placement delayed-placement lp lp lp)
 LP_VALUES=(100000 150000 n 2 1 0)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 10)
+MON=(monitoring/all monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
