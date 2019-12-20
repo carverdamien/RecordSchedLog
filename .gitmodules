@@ -36,8 +36,8 @@
 	branch = linux-4.19-ipanema
 [submodule "host/redha/kernel/local/src"]
 	path = host/redha/kernel/local/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/local
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-local
 [submodule "host/redha/kernel/local-light/src"]
 	path = host/redha/kernel/local-light/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
@@ -50,21 +50,9 @@
 	path = host/redha/kernel/sched-freq/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = patch/sched-freq
-[submodule "host/redha/kernel/pull-back/src"]
-	path = host/redha/kernel/pull-back/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/pull-back
 [submodule "monitoring/perf/FlameGraph"]
 	path = monitoring/perf/FlameGraph
 	url = https://github.com/brendangregg/FlameGraph
-[submodule "host/redha/kernel/pull-back-print/src"]
-	path = host/redha/kernel/pull-back-print/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/pull-back-print
-[submodule "host/redha/kernel/pull-back-no-freq/src"]
-	path = host/redha/kernel/pull-back-no-freq/src
-	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
-	branch = patch/pull-back-no-freq
 [submodule "host/i80/kernel/local-freq-base/src"]
 	path = host/i80/kernel/local-freq-base/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
