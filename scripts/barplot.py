@@ -27,17 +27,16 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
                         'oltp-mysql-160', 'oltp-mysql-320', 'oltp-mysql-80', 'redis-1',
                         'rust-prime-0', 'schbench-6-7', 'scimark2-1', 'scimark2-2',
                         'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6' ],
-               'latitude': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2',
-                             'apache-siege-3', 'apache-siege-4', 'apache-siege-5',
+               'latitude': [ 'aobench-0', 'apache-siege-1', 'apache-siege-2',
+                             'apache-siege-3', 'apache-siege-4',
                              'build-linux-kernel-0', 'build-llvm-0', 'go-benchmark-1',
-                             'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
                              'hackbench-1000', 'kbuild-all-16', 'kbuild-all-4', 'kbuild-all-8',
                              'kbuild-sched-16', 'kbuild-sched-4', 'kbuild-sched-8', 'llvmcmake',
                              'mkl-dnn-7-1', 'mkl-dnn-7-2', 'nas_bt.B-4', 'nas_bt.B-8',
                              'nas_cg.C-4', 'nas_cg.C-8', 'nas_ep.C-4', 'nas_ep.C-8',
                              'nas_ft.C-4', 'nas_ft.C-8', 'nas_lu.B-4', 'nas_lu.B-8',
                              'nas_sp.B-4', 'nas_sp.B-8', 'nas_ua.B-4', 'nas_ua.B-8',
-                             'node-octane-1', 'redis-1', 'rust-prime-0', 'schbench-6-7',
+                             'node-octane-1', 'redis-1', 'rust-prime-0',
                              'scimark2-1', 'scimark2-2', 'scimark2-3', 'scimark2-4',
                              'scimark2-5', 'scimark2-6' ],
                'redha': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2',
@@ -119,8 +118,8 @@ for bench in benchmarks[host]:
 
 # Split data around +-5%
 sorted_bench_perf = [k for k, v in sorted(perf_means.items(), key=lambda item: item[1])]
-for s in sorted_bench_perf:
-    print("{}: {}".format(s, perf_means[s]))
+# for s in sorted_bench_perf:
+#     print("{}: {}".format(s, perf_means[s]))
 sorted_bench_energy = [k for k, v in sorted(energy_means.items(), key=lambda item: item[1])]
 # idx = plot_data.loc[(plot_data['perf'] > 5) | (plot_data['perf'] < -5)].index
 # plot_data_small = plot_data.drop(idx)
