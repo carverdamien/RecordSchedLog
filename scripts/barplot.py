@@ -134,7 +134,7 @@ for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     sb.barplot(ax=ax, data=plot_data, x='bench', y=p_or_e,
                order=sorted_bench_perf,
                hue='sched', hue_order=schedulers[host],
-               estimator=np.mean, ci=90, errwidth=1)
+               estimator=np.mean, ci='sd', errwidth=1)
     ax.tick_params(axis='x', labelrotation=90)
     ax.set_xlabel("")
     ax.set_ylabel('{} (%)'.format('Performance' if p_or_e=='perf' else 'Energy'))
@@ -145,5 +145,6 @@ axP.tick_params(axis='x', which='both', labelbottom=False)
 handles, labels = axP.get_legend_handles_labels()
 axE.set_ylim(-70, 70)
 #fig.suptitle('{}'.format(hosts[host]), fontsize=14, fontweight='bold')
-fig.legend(handles=handles, labels=labels, ncol=4, loc='upper center')
+new_labels = map(lambda x: sched_renames[x], labels)
+fig.legend(handles=handles, labels=new_labels, ncol=4, loc='upper center')
 fig.savefig(output_file, bbox_inches='tight')
