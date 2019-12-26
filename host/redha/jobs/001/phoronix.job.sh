@@ -15,8 +15,8 @@ BENCH=bench/phoronix
 PHORONIXES=(redis mkl-dnn mkl-dnn schbench apache-siege rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel scimark2 scimark2 scimark2 scimark2 scimark2 scimark2 go-benchmark go-benchmark go-benchmark go-benchmark node-octane)
 PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4            3            2            1       0      0          0                  0        1        2        3        4        5        6            1            2            3            4           1)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4 delayed-placement delayed-placement delayed-placement delayed-placement lp lp local)
-LP_VALUES=(n n 5000 100000 150000 1 2 n)
+KERNEL_LOCALVERSIONS=(5.4 delayed-placement delayed-placement delayed-placement delayed-placement lp lp local dpv)
+LP_VALUES=(n n 5000 100000 150000 1 2 n 5000)
 SLP=(y)
 GOV=(powersave)
 RPT=(10)
@@ -31,7 +31,7 @@ do
 	    SYSCTL=''
 	    ;;
 	*)
-	    if [ ${KERNEL_LOCALVERSION} == "delayed-placement" ] ; then
+	    if [ ${KERNEL_LOCALVERSION} == "delayed-placement" ] || [ ${KERNEL_LOCALVERSION} == "dpv" ] ; then
 		SYSCTL="kernel.sched_delayed_placement=${LP_VALUE}"
 	    else
 		SYSCTL="kernel.sched_local_placement=${LP_VALUE}"
