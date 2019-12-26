@@ -25,9 +25,9 @@ main() {
 			pdf="heatmaps/HOST=$HOST/MONITORING=$MONITORING/$n.$value.$agg.pdf"
 			mkdir -p $(dirname $pdf)
 			./scripts/heatmap.py $pdf $HOST.csv $value $agg $n
-			barpdf="barplots/HOST=$HOST/MONITORING=$MONITORING/$n.$value.$agg"
-			mkdir -p $(dirname ${barpdf})
-			./scripts/barplot.py ${pdf}.csv ${barpdf}.pdf ${barpdf}-no-ticks.pdf
+			# barpdf="barplots/HOST=$HOST/MONITORING=$MONITORING/$n.$value.$agg"
+			# mkdir -p $(dirname ${barpdf})
+			# ./scripts/barplot.py ${pdf}.csv ${barpdf}.pdf ${barpdf}-no-ticks.pdf
 		    done
 		done
 	    done
