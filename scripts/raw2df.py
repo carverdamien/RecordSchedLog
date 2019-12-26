@@ -51,10 +51,10 @@ for d in in_data.iterrows():
 
     if sched in [ '5.4', 'schedlog' ]:
         kernel = kernel
-    elif 'delayed-placement' in sched:
+    elif 'delayed-placement' in sched or 'dpv' in sched:
         if lp == 'n':
             lp = 50
-        sched = 'dp-{}'.format(lp)
+        sched = '{}-{}'.format('dpv' if 'dpv' in sched else 'dp', lp)
     elif 'local-placement' in sched or 'lp' in sched:
         sched = 'lp-{}'.format(lp)
     else:
