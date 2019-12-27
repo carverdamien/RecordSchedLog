@@ -15,12 +15,12 @@ BENCH=bench/phoronix
 PHORONIXES=(apache-siege redis mkl-dnn mkl-dnn schbench rust-prime apache-siege apache-siege apache-siege apache-siege aobench apache build-llvm build-linux-kernel scimark2 scimark2 scimark2 scimark2 scimark2 scimark2 go-benchmark go-benchmark go-benchmark go-benchmark node-octane cloudsuite-da cloudsuite-ga cloudsuite-ma cloudsuite-ms cloudsuite-ws)
 PARGUMENTS=(           5     1   '7-1'   '7-2'    '6-7'          0            4            3            2            1       0      0          0                  0        1        2        3        4        5        6            1            2            3            4           1             1             1             1             1             1)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(schedlog delayed-placement delayed-placement delayed-placement delayed-placement local-cpuofwaker local-light-cpuofwaker lp lp lp local local-light ipanema)
-LP_VALUES=(n 100000 150000 300000 n n n 1 2 0 n n n)
-SLP=(y y)
-GOV=(powersave powersave)
-RPT=(1 10)
-MON=(monitoring/all monitoring/cpu-energy-meter)
+KERNEL_LOCALVERSIONS=(schedlog delayed-placement lp lp lp local)
+LP_VALUES=(n n 1 2 0 n)
+SLP=(y)
+GOV=(powersave)
+RPT=(10)
+MON=(monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
