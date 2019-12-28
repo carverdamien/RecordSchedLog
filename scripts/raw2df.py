@@ -14,13 +14,16 @@ for column_name in ['usr_bin_time', 'phoronix', 'energy', 'sysbench_trps']:
 out_data = pd.DataFrame(columns=['bench', 'power', 'sched', 'id', 'perf', 'energy'])
 tmp_list = []
 
+# For each record in the csv file
 for d in in_data.iterrows():
     lp = ''
-    
+
+    # Exclude non 5.4.0 kernels
     kernel = d[1]['kernel_version']
     if '5.4.0' not in kernel:
         continue
 
+    # File name parsing
     fname = d[1]['fname'].split('/')
     for f in fname:
         if 'BENCH=' in f:
@@ -42,6 +45,7 @@ for d in in_data.iterrows():
     if monitor != 'cpu-energy-meter':
         continue
 
+    # Handle llvmcmake and phoronix specific naming
     sched = fname[-2]
     if bench not in ['llvmcmake', 'phoronix']:
         bench = '{}-{}'.format(bench, sched.split('-')[0])
@@ -49,6 +53,7 @@ for d in in_data.iterrows():
     elif bench == 'phoronix':
         bench = phoronix
 
+    # Parse scheduler
     if sched in [ '5.4', 'schedlog' ]:
         kernel = kernel
     elif 'delayed-placement' in sched or 'dpv' in sched:
@@ -57,9 +62,12 @@ for d in in_data.iterrows():
         sched = '{}-{}'.format('dpv' if 'dpv' in sched else 'dp', lp)
     elif 'local-placement' in sched or 'lp' in sched:
         sched = 'lp-{}'.format(lp)
+    elif sched.endswith('local'):
+        sched = 'local'
     else:
         continue
 
+    # Parse benchmark performance and energy
     if bench.startswith(('kbuild', 'hackbench', 'llvmcmake', 'nas_')):
         perf = d[1]['usr_bin_time']
     elif bench.startswith(('aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
@@ -77,16 +85,8 @@ for d in in_data.iterrows():
 
     tmp_list.append({ 'bench': bench, 'sched': sched, 'power': power, 'id': run_id, 'perf': perf, 'energy': energy })
 
+# Add to dataframe
 out_data = out_data.append(tmp_list, ignore_index = True)
 
+# Save in pickle format
 out_data.to_pickle(output_file)
-
-# Sanity checks
-benchmarks = np.unique(out_data['bench'].values)
-schedulers = np.unique(out_data['sched'].values)
-
-for b in benchmarks:
-    for s in schedulers:
-        data = out_data[(out_data['bench'] == b) & (out_data['sched'] == s)]
-        if len(data) != 10:
-            print("WARNING: BENCH={} SCHED={} has {} records instead of 10".format(b, s, len(data)))

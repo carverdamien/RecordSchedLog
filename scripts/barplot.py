@@ -62,15 +62,15 @@ base_sched = { 'i80': 'schedlog',
                'latitude': 'lp-0',
                'redha': '5.4',
 }
-schedulers = { 'i80': [ 'dp-50', 'lp-2' ],
-               'latitude': [ 'dp-50', 'lp-2' ],
-               'redha': [ 'dp-50', 'lp-2' ],
+schedulers = { 'i80': [ 'dp-50', 'lp-2', 'local' ],
+               'latitude': [ 'dp-50', 'lp-2', 'local' ],
+               'redha': [ 'dp-50', 'lp-2', 'local' ],
 }
 hosts = { 'i80': 'Server',
           'latitude': 'Laptop',
           'redha': 'Desktop',
 }
-sched_renames = { 'dp-50': 'delayed placement', 'lp-2': 'local placement' }
+sched_renames = { 'dp-50': 'delayed placement', 'lp-2': 'local fork placement', 'local': 'local' }
 
 df = pd.read_pickle(input_file)
 
@@ -134,7 +134,8 @@ for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     sb.barplot(ax=ax, data=plot_data, x='bench', y=p_or_e,
                order=sorted_bench_perf,
                hue='sched', hue_order=schedulers[host],
-               estimator=np.mean, ci='sd', errwidth=1)
+               estimator=np.mean, ci='sd', errwidth=1,
+               palette='hls')
     ax.tick_params(axis='x', labelrotation=90)
     ax.set_xlabel("")
     ax.set_ylabel('{} (%)'.format('Performance' if p_or_e=='perf' else 'Energy'))
@@ -143,7 +144,7 @@ for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     
 axP.tick_params(axis='x', which='both', labelbottom=False)
 handles, labels = axP.get_legend_handles_labels()
-axE.set_ylim(-70, 70)
+# axE.set_ylim(-70, 70)
 #fig.suptitle('{}'.format(hosts[host]), fontsize=14, fontweight='bold')
 new_labels = map(lambda x: sched_renames[x], labels)
 fig.legend(handles=handles, labels=new_labels, ncol=4, loc='upper center')
