@@ -62,15 +62,15 @@ base_sched = { 'i80': 'schedlog',
                'latitude': 'lp-0',
                'redha': '5.4',
 }
-schedulers = { 'i80': [ 'dp-50', 'lp-2', 'local' ],
+schedulers = { 'i80': [ 'dp-50', 'dpi-50', 'lp-2', 'local' ],
                'latitude': [ 'dp-50', 'lp-2', 'local' ],
-               'redha': [ 'dp-50', 'lp-2', 'local' ],
+               'redha': [ 'dp-50', 'dpi-50', 'lp-2', 'local' ],
 }
 hosts = { 'i80': 'Server',
           'latitude': 'Laptop',
           'redha': 'Desktop',
 }
-sched_renames = { 'dp-50': 'delayed placement', 'lp-2': 'local fork placement', 'local': 'local' }
+sched_renames = { 'dp-50': 'delayed placement', 'lp-2': 'local fork placement', 'local': 'local', 'dpi-50': 'dpi-50' }
 
 df = pd.read_pickle(input_file)
 
