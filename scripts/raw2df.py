@@ -56,13 +56,15 @@ for d in in_data.iterrows():
     # Parse scheduler
     if sched in [ '5.4', 'schedlog' ]:
         kernel = kernel
-    elif 'delayed-placement' in sched or 'dpi' in sched or 'dp2' in sched:
-        if lp == 'n':
-            lp = 50
-        sched = '{}-{}'.format('dpi' if 'dpi' in sched else 'dp' if 'dp' in sched else 'dp2', lp)
-    elif 'local-placement' in sched or 'lp' in sched:
+    elif sched in [ 'delayed-placement', 'dp' ]:
+        sched = 'dp-{}'.format(50 if lp == 'n' else lp)
+    elif sched in [ 'delayed-placement-idle', 'dpi' ]:
+        sched = 'dpi-{}'.format(50 if lp == 'n' else lp)
+    elif sched in [ 'delayed-placement-2', 'dp2' ]:
+        sched = 'dp2-{}'.format(50 if lp == 'n' else lp)
+    elif sched in [ 'local-placement', 'lp' ]:
         sched = 'lp-{}'.format(lp)
-    elif sched.endswith('local'):
+    elif sched == 'local':
         sched = 'local'
     else:
         continue
