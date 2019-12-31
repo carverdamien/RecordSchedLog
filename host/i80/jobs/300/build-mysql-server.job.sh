@@ -35,9 +35,19 @@ do
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
+	SCALING_GOVERNOR=${GOV[$I]}
+	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	case ${SLEEP_STATE} in
 	    y)
-		CMDLINE=intel_sleep_state_enabled
+		case ${SCALING_GOVERNOR} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
 		;;
 	    n)
 		CMDLINE=intel_sleep_state_disabled
@@ -47,9 +57,6 @@ do
 		sleep inf
 		exit 1
 	esac
-	SCALING_GOVERNOR=${GOV[$I]}
-	REPEAT=${RPT[$I]}
-	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    for TASKS in 80 160 320

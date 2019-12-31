@@ -39,22 +39,29 @@ do
     esac
     for I in ${!SLP[@]}
     do
-        SLEEP_STATE=${SLP[$I]}
-        case ${SLEEP_STATE} in
-            y)
-                CMDLINE=intel_sleep_state_enabled
-                ;;
-            n)
-                CMDLINE=intel_sleep_state_disabled
-                ;;
-            *)
-                echo '${SLEEP_STATE} must be y|n'
-                sleep inf
-                exit 1
-        esac
-        SCALING_GOVERNOR=${GOV[$I]}
-        REPEAT=${RPT[$I]}
+	SLEEP_STATE=${SLP[$I]}
+	SCALING_GOVERNOR=${GOV[$I]}
+	REPEAT=${RPT[$I]}
 	MONITORING=${MON[$I]}
+	case ${SLEEP_STATE} in
+	    y)
+		case ${SCALING_GOVERNOR} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
+		;;
+	    n)
+		CMDLINE=intel_sleep_state_disabled
+		;;
+	    *)
+		echo '${SLEEP_STATE} must be y|n'
+		sleep inf
+		exit 1
+	esac
         for N in $(seq ${REPEAT})
         do
             for TASKS in 80
