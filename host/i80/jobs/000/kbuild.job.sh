@@ -16,10 +16,10 @@ BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(schedlog lp lp lp local delayed-placement dpi dp2 dp3)
 LP_VALUES=(n 1 2 0 n n n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10)
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -42,7 +42,14 @@ do
 	SLEEP_STATE=${SLP[$I]}
 	case ${SLEEP_STATE} in
 	    y)
-		CMDLINE=intel_sleep_state_enabled
+		case ${GOV} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
 		;;
 	    n)
 		CMDLINE=intel_sleep_state_disabled
