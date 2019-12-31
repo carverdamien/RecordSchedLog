@@ -50,8 +50,12 @@ for d in in_data.iterrows():
     if bench not in ['llvmcmake', 'phoronix']:
         bench = '{}-{}'.format(bench, sched.split('-')[0])
         sched = '-'.join(sched.split('-')[1:])
+        phoronix = False
     elif bench == 'phoronix':
         bench = phoronix
+        phoronix = True
+    else:
+        phoronix = False
 
     # Parse scheduler
     if sched in [ '5.4', 'schedlog' ]:
@@ -62,6 +66,8 @@ for d in in_data.iterrows():
         sched = 'dpi-{}'.format(50 if lp == 'n' else lp)
     elif sched in [ 'delayed-placement-2', 'dp2' ]:
         sched = 'dp2-{}'.format(50 if lp == 'n' else lp)
+    elif sched in [ 'delayed-placement-3', 'dp3' ]:
+        sched = 'dp3-{}'.format(50 if lp == 'n' else lp)
     elif sched in [ 'local-placement', 'lp' ]:
         sched = 'lp-{}'.format(lp)
     elif sched == 'local':
@@ -72,11 +78,7 @@ for d in in_data.iterrows():
     # Parse benchmark performance and energy
     if bench.startswith(('kbuild', 'hackbench', 'llvmcmake', 'nas_')):
         perf = d[1]['usr_bin_time']
-    elif bench.startswith(('aobench-0', 'build-linux-kernel-0', 'build-llvm-0', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
-                           'rust-prime-0', 'schbench-6-7', 'go-benchmark-1', 'go-benchmark-2', 'go-benchmark-3',
-                           'go-benchmark-4', 'apache-0', 'redis-1', 'apache-siege-1', 'apache-siege-2',
-                           'apache-siege-3', 'apache-siege-4', 'apache-siege-5', 'scimark2-1', 'scimark2-2',
-                           'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6', 'node-octane-1')):
+    elif phoronix:
         perf = d[1]['phoronix']
     elif bench.startswith(('oltp')):
         perf = d[1]['sysbench_trps']

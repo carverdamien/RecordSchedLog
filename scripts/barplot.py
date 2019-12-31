@@ -19,7 +19,8 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
                         'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
                         'hackbench-10000', 'kbuild-all-160', 'kbuild-all-320',
                         'kbuild-all-80', 'kbuild-sched-160', 'kbuild-sched-320',
-                        'kbuild-sched-80', 'llvmcmake', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
+                        'kbuild-sched-80', 'llvmcmake', # 'mkl-dnn-7-1',
+                        'mkl-dnn-7-2',
                         'nas_bt.B-160', 'nas_bt.B-80', 'nas_cg.C-160', 'nas_cg.C-80',
                         'nas_ep.C-160', 'nas_ep.C-80', 'nas_ft.C-160', 'nas_ft.C-80',
                         'nas_lu.B-80', 'nas_mg.D-160', 'nas_mg.D-80', 'nas_sp.B-160',
@@ -62,9 +63,11 @@ base_sched = { 'i80': 'schedlog',
                'latitude': 'lp-0',
                'redha': '5.4',
 }
-schedulers = { 'i80': [ 'dp-50', 'dpi-50', 'dp2-50', 'lp-2', 'local' ],
+schedulers = { 'i80': [ 'dpi-50', 'dp-50' , 'dp2-50', 'dp3-50' # 'lp-2', 'local' 
+],
                'latitude': [ 'dp-50', 'lp-2', 'local' ],
-               'redha': [ 'dp-50', 'dpi-50', 'dp2-50', 'lp-2', 'local' ],
+               'redha': [ 'dpi-50', 'dp-50', 'dp2-50', 'dp3-50'# , 'lp-2', 'local'
+               ],
 }
 hosts = { 'i80': 'Server',
           'latitude': 'Laptop',
