@@ -132,3 +132,7 @@
 	path = host/redha/kernel/5.4-hrtimers/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-hrtimers
+[submodule "host/redha/kernel/dpi2/src"]
+	path = host/redha/kernel/dpi2/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-delayed-placement-idle-2

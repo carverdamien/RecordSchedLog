@@ -19,15 +19,17 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
                         'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
                         'hackbench-10000', 'kbuild-all-160', 'kbuild-all-320',
                         'kbuild-all-80', 'kbuild-sched-160', 'kbuild-sched-320',
-                        'kbuild-sched-80', 'llvmcmake', # 'mkl-dnn-7-1',
+                        'kbuild-sched-80', 'llvmcmake', 'mkl-dnn-7-1',
                         'mkl-dnn-7-2',
                         'nas_bt.B-160', 'nas_bt.B-80', 'nas_cg.C-160', 'nas_cg.C-80',
                         'nas_ep.C-160', 'nas_ep.C-80', 'nas_ft.C-160', 'nas_ft.C-80',
-                        'nas_lu.B-80', 'nas_mg.D-160', 'nas_mg.D-80', 'nas_sp.B-160',
+                        'nas_lu.B-80', 'nas_lu.B-160', 'nas_mg.D-160', 'nas_mg.D-80', 'nas_sp.B-160',
                         'nas_sp.B-80', 'nas_ua.B-160', 'nas_ua.B-80', 'node-octane-1',
                         'oltp-mysql-160', 'oltp-mysql-320', 'oltp-mysql-80', 'redis-1',
                         'rust-prime-0', 'schbench-6-7', 'scimark2-1', 'scimark2-2',
-                        'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6' ],
+                        'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6',
+                        'c-ray-0', 'compress-7zip-0', 'deepspeech-0', 'git-0', 'openssl-0', 'perl-benchmark-1',
+                        'perl-benchmark-2', 'php-1', 'php-2', 'phpbench-0' ],
                'latitude': [ 'aobench-0', 'apache-siege-1', 'apache-siege-2',
                              'apache-siege-3', 'apache-siege-4',
                              'build-linux-kernel-0', 'build-llvm-0', 'go-benchmark-1',
@@ -66,14 +68,14 @@ base_sched = { 'i80': 'schedlog',
 schedulers = { 'i80': [ 'dpi-50', 'dp-50' , 'dp2-50', 'dp3-50' # 'lp-2', 'local' 
 ],
                'latitude': [ 'dp-50', 'lp-2', 'local' ],
-               'redha': [ 'dpi-50', 'dp-50', 'dp2-50', 'dp3-50'# , 'lp-2', 'local'
+               'redha': [ 'dpi-50', 'dp-50', 'dp2-50', 'dp3-50', 'dpi2-50'# , 'lp-2', 'local'
                ],
 }
 hosts = { 'i80': 'Server',
           'latitude': 'Laptop',
           'redha': 'Desktop',
 }
-sched_renames = { 'dp-50': 'delayed placement', 'lp-2': 'local fork placement', 'local': 'local', 'dpi-50': 'dpi-50', 'dp2-50': 'dp2-50' }
+sched_renames = { 'lp-2': 'local fork placement' }
 
 df = pd.read_pickle(input_file)
 
@@ -112,28 +114,23 @@ for bench in benchmarks[host]:
         b_data['perf'] = 100 * (1 - (b_data['perf'] / base_perf))
     # Energy is always 'lower is better'
     b_data['energy'] = 100 * (1 - (b_data['energy'] / base_energy))
-    
+
+    if len(b_data) == 0:
+        continue
     plot_data = plot_data.append(b_data, ignore_index=True, sort=False)
 
     first_sched = b_data[b_data['sched'] == schedulers[host][0]]
     perf_means[bench] = np.mean(first_sched['perf'].values)
     energy_means[bench] = np.mean(first_sched['energy'].values)
 
-# Split data around +-5%
 sorted_bench_perf = [k for k, v in sorted(perf_means.items(), key=lambda item: item[1])]
 # for s in sorted_bench_perf:
 #     print("{}: {}".format(s, perf_means[s]))
 sorted_bench_energy = [k for k, v in sorted(energy_means.items(), key=lambda item: item[1])]
-# idx = plot_data.loc[(plot_data['perf'] > 5) | (plot_data['perf'] < -5)].index
-# plot_data_small = plot_data.drop(idx)
-# plot_data_big   = plot_data.loc[idx,:]
-plot_data_big = plot_data
 
 # Plot perf figures
 fig, (axP, axE) = plt.subplots(2, 1, figsize=(17,5))
-# fig, ax = plt.subplots(1, 1, figsize=(17,2.5))
 for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
-# for ax, data in [ (ax, plot_data) ]:
     sb.barplot(ax=ax, data=plot_data, x='bench', y=p_or_e,
                order=sorted_bench_perf,
                hue='sched', hue_order=schedulers[host],
@@ -149,6 +146,6 @@ axP.tick_params(axis='x', which='both', labelbottom=False)
 handles, labels = axP.get_legend_handles_labels()
 # axE.set_ylim(-70, 70)
 #fig.suptitle('{}'.format(hosts[host]), fontsize=14, fontweight='bold')
-new_labels = map(lambda x: sched_renames[x], labels)
+new_labels = map(lambda x: sched_renames.get(x, x), labels)
 fig.legend(handles=handles, labels=new_labels, ncol=4, loc='upper center')
 fig.savefig(output_file, bbox_inches='tight')
