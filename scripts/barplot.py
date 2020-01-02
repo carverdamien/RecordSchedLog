@@ -13,7 +13,10 @@ import matplotlib.pyplot as plt
 
 _, host, input_file, output_file = sys.argv
 
-benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2',
+benchmarks = {
+    'hrtimers': [ 'schbench-6-1', 'schbench-6-2', 'schbench-6-3',
+                  'schbench-6-4', 'schbench-6-5', 'schbench-6-6', 'schbench-6-7'],
+    'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2',
                         'apache-siege-3', 'apache-siege-4', 'apache-siege-5',
                         'build-linux-kernel-0', 'build-llvm-0', 'go-benchmark-1',
                         'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
@@ -61,11 +64,14 @@ higher_is_better = [ 'apache-0', 'apache-siege-1', 'apache-siege-2', 'apache-sie
                      'oltp-mysql-320', 'oltp-mysql-80', 'redis-1', 'scimark2-1', 'scimark2-2',
                      'scimark2-3',  'scimark2-4', 'scimark2-5', 'scimark2-6']
 
-base_sched = { 'i80': 'schedlog',
+base_sched = { 'hrtimers': 'schedlog',
+               'i80': 'schedlog',
                'latitude': 'lp-0',
                'redha': '5.4',
 }
-schedulers = { 'i80': [ 'dpi-50', 'dp-50' , 'dp2-50', 'dp3-50' # 'lp-2', 'local' 
+schedulers = {
+    'hrtimers' : ['5.4-hrtimers'],
+    'i80': [ 'dpi-50', 'dp-50' , 'dp2-50', 'dp3-50' # 'lp-2', 'local'
 ],
                'latitude': [ 'dp-50', 'lp-2', 'local' ],
                'redha': [ 'dpi-50', 'dp-50', 'dp2-50', 'dp3-50', 'dpi2-50'# , 'lp-2', 'local'
