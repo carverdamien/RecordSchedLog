@@ -29,7 +29,8 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
                         'rust-prime-0', 'schbench-6-7', 'scimark2-1', 'scimark2-2',
                         'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6',
                         'c-ray-0', 'compress-7zip-0', 'deepspeech-0', 'git-0', 'openssl-0', 'perl-benchmark-1',
-                        'perl-benchmark-2', 'php-1', 'php-2', 'phpbench-0' ],
+                        'perl-benchmark-2', 'php-1', 'php-2', 'phpbench-0'
+],
                'latitude': [ 'aobench-0', 'apache-siege-1', 'apache-siege-2',
                              'apache-siege-3', 'apache-siege-4',
                              'build-linux-kernel-0', 'build-llvm-0', 'go-benchmark-1',
@@ -59,16 +60,29 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
 higher_is_better = [ 'apache-0', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3',
                      'apache-siege-4', 'apache-siege-5', 'node-octane-1', 'oltp-mysql-160',
                      'oltp-mysql-320', 'oltp-mysql-80', 'redis-1', 'scimark2-1', 'scimark2-2',
-                     'scimark2-3',  'scimark2-4', 'scimark2-5', 'scimark2-6']
+                     'scimark2-3',  'scimark2-4', 'scimark2-5', 'scimark2-6', 'compress-7zip-0', 'openssl-0' ]
 
-base_sched = { 'i80': 'schedlog',
-               'latitude': 'lp-0',
-               'redha': '5.4',
+base_sched = { 'i80':      { 'sched': 'schedlog', 'gov': 'powersave-y' },
+               'latitude': { 'sched': 'lp-0',     'gov': 'powersave-y' },
+               'redha':    { 'sched': '5.4',      'gov': 'powersave-y' },
 }
-schedulers = { 'i80': [ 'dpi-50', 'dp-50' , 'dp2-50', 'dp3-50' # 'lp-2', 'local' 
+schedulers = { 'i80': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
+                        { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
+                        { 'sched': 'dp-50',   'gov': 'powersave-y' },
+                        { 'sched': 'dp2-50',  'gov': 'powersave-y' },
+                        { 'sched': 'dp3-50',  'gov': 'powersave-y' },
+                        { 'sched': 'schedlog', 'gov': 'schedutil-y' }
+                        # 'lp-2', 'local' 
 ],
-               'latitude': [ 'dp-50', 'lp-2', 'local' ],
-               'redha': [ 'dpi-50', 'dp-50', 'dp2-50', 'dp3-50', 'dpi2-50'# , 'lp-2', 'local'
+               'latitude': [ { 'sched': 'dp-50', 'gov': 'powersave-y' },
+                             { 'sched': 'lp-2',  'gov': 'powersave-y' },
+                             { 'sched': 'local', 'gov': 'powersave-y' } ],
+               'redha': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
+                          { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
+                          { 'sched': 'dp-50',   'gov': 'powersave-y' },
+                          { 'sched': 'dp2-50',  'gov': 'powersave-y' },
+                          { 'sched': 'dp3-50',  'gov': 'powersave-y' }
+                          # , 'lp-2', 'local'
                ],
 }
 hosts = { 'i80': 'Server',
@@ -76,6 +90,7 @@ hosts = { 'i80': 'Server',
           'redha': 'Desktop',
 }
 sched_renames = { 'lp-2': 'local fork placement' }
+short_gov = { 'powersave-y': 'ps', 'schedutil-y': 'su' }
 
 df = pd.read_pickle(input_file)
 
@@ -84,18 +99,20 @@ idx = []
 for b in benchmarks[host]:
     idx.extend(df[df['bench'] == b].index)
 df = df.loc[idx,:].copy()
-# print(df)
 
 # Isolate baseline scheduler and prune from data
-idx = df[df['sched'] == base_sched[host]].index
+idx = df[(df['sched'] == base_sched[host]['sched']) & (df['power'] == base_sched[host]['gov'])].index
 baseline = df.loc[idx,:].copy()
 df.drop(idx, inplace=True)
 
-# Prune unused schedulers
+# Prune unused schedulers/governors
 idx = []
 for s in schedulers[host]:
-    idx.extend(df[df['sched'] == s].index)
+    idx.extend(df[(df['sched'] == s['sched']) & (df['power'] == s['gov'])].index)
 df = df.loc[idx,:].copy()
+
+# Merge sched and power columns
+df['sched'] = df['sched'] + '/' + df['power']
 
 # Normalize results to baseline mean, and store means of first sched
 plot_data = pd.DataFrame(columns = ['bench', 'sched', 'perf', 'energy'])
@@ -103,10 +120,14 @@ perf_means = {}
 energy_means = {}
 for bench in benchmarks[host]:
     base = baseline.loc[baseline['bench'] == bench]
+    if len(base) == 0:
+        continue
     base_perf = base['perf'].mean()
     base_energy = base['energy'].mean()
     b_data = df[df['bench'] == bench].copy()
-    
+    if len(b_data) == 0:
+        continue
+
     # Higher is better
     if bench in higher_is_better:
         b_data['perf'] = 100 * ((b_data['perf'] / base_perf) - 1)
@@ -115,11 +136,9 @@ for bench in benchmarks[host]:
     # Energy is always 'lower is better'
     b_data['energy'] = 100 * (1 - (b_data['energy'] / base_energy))
 
-    if len(b_data) == 0:
-        continue
     plot_data = plot_data.append(b_data, ignore_index=True, sort=False)
 
-    first_sched = b_data[b_data['sched'] == schedulers[host][0]]
+    first_sched = b_data[b_data['sched'] == (schedulers[host][0]['sched'] + '/' + schedulers[host][0]['gov'])]
     perf_means[bench] = np.mean(first_sched['perf'].values)
     energy_means[bench] = np.mean(first_sched['energy'].values)
 
@@ -133,7 +152,7 @@ fig, (axP, axE) = plt.subplots(2, 1, figsize=(17,5))
 for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     sb.barplot(ax=ax, data=plot_data, x='bench', y=p_or_e,
                order=sorted_bench_perf,
-               hue='sched', hue_order=schedulers[host],
+               hue='sched', #hue_order=schedulers[host],
                estimator=np.mean, ci='sd', errwidth=1,
                palette='hls')
     ax.tick_params(axis='x', labelrotation=90)
