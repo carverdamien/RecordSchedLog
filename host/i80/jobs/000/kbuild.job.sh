@@ -21,6 +21,11 @@ GOV=(powersave schedutil)
 RPT=(10 10)
 MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
 
+SLP+=(y)
+GOV+=(schedutil)
+RPT+=(1)
+MON+=(monitoring/all)
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
