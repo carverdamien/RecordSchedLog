@@ -13,7 +13,10 @@ import matplotlib.pyplot as plt
 
 _, host, input_file, output_file = sys.argv
 
-benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2',
+benchmarks = {
+    'hrtimers': [ 'schbench-6-1', 'schbench-6-2', 'schbench-6-3',
+                  'schbench-6-4', 'schbench-6-5', 'schbench-6-6', 'schbench-6-7'],
+    'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege-2',
                         'apache-siege-3', 'apache-siege-4', 'apache-siege-5',
                         'build-linux-kernel-0', 'build-llvm-0', 'go-benchmark-1',
                         'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
@@ -62,11 +65,14 @@ higher_is_better = [ 'apache-0', 'apache-siege-1', 'apache-siege-2', 'apache-sie
                      'oltp-mysql-320', 'oltp-mysql-80', 'redis-1', 'scimark2-1', 'scimark2-2',
                      'scimark2-3',  'scimark2-4', 'scimark2-5', 'scimark2-6', 'compress-7zip-0', 'openssl-0', 'phpbench-0' ]
 
-base_sched = { 'i80':      { 'sched': 'schedlog', 'gov': 'powersave-y' },
+base_sched = {
+    'hrtimers': { 'sched': 'schedlog', 'gov': 'powersave-y' },
+    'i80':      { 'sched': 'schedlog', 'gov': 'powersave-y' },
                'latitude': { 'sched': 'lp-0',     'gov': 'powersave-y' },
                'redha':    { 'sched': '5.4',      'gov': 'powersave-y' },
 }
 schedulers = {
+    'hrtimers' : [ { 'sched': '5.4-hrtimers', 'gov': 'powersave-y' } ],
     'i80': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
              # { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
              { 'sched': 'dp-50',   'gov': 'powersave-y' },
