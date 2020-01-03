@@ -11,7 +11,7 @@ _, input_file, output_file = sys.argv
 in_data = pd.read_csv(input_file, delimiter=';')
 for column_name in ['usr_bin_time', 'phoronix', 'energy', 'sysbench_trps']:
     in_data[column_name] = in_data[column_name].astype(float)
-out_data = pd.DataFrame(columns=['bench', 'power', 'sched', 'id', 'perf', 'energy'])
+out_data = pd.DataFrame(columns=['bench', 'power', 'sched', 'id', 'perf', 'energy', 'path'])
 tmp_list = []
 
 # For each record in the csv file
@@ -89,7 +89,7 @@ for d in in_data.iterrows():
 
     energy = d[1]['energy']
 
-    tmp_list.append({ 'bench': bench, 'sched': sched, 'power': power, 'id': run_id, 'perf': perf, 'energy': energy })
+    tmp_list.append({ 'bench': bench, 'sched': sched, 'power': power, 'id': run_id, 'perf': perf, 'energy': energy, 'path': d[1]['fname'] })
 
 # Add to dataframe
 out_data = out_data.append(tmp_list, ignore_index = True)
