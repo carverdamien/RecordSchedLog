@@ -136,3 +136,7 @@
 	path = host/redha/kernel/dpi2/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-delayed-placement-idle-2
+[submodule "host/latitude/kernel/dpi/src"]
+	path = host/latitude/kernel/dpi/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-delayed-placement-idle
