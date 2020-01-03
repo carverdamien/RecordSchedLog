@@ -29,7 +29,7 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
                         'rust-prime-0', 'schbench-6-7', 'scimark2-1', 'scimark2-2',
                         'scimark2-3', 'scimark2-4', 'scimark2-5', 'scimark2-6',
                         'c-ray-0', 'compress-7zip-0', 'deepspeech-0', 'git-0', 'openssl-0', 'perl-benchmark-1',
-                        'perl-benchmark-2', 'php-1', 'php-2', 'phpbench-0'
+                        'perl-benchmark-2', 'phpbench-0'
 ],
                'latitude': [ 'aobench-0', 'apache-siege-1', 'apache-siege-2',
                              'apache-siege-3', 'apache-siege-4',
@@ -60,30 +60,32 @@ benchmarks = { 'i80': [ 'aobench-0', 'apache-0', 'apache-siege-1', 'apache-siege
 higher_is_better = [ 'apache-0', 'apache-siege-1', 'apache-siege-2', 'apache-siege-3',
                      'apache-siege-4', 'apache-siege-5', 'node-octane-1', 'oltp-mysql-160',
                      'oltp-mysql-320', 'oltp-mysql-80', 'redis-1', 'scimark2-1', 'scimark2-2',
-                     'scimark2-3',  'scimark2-4', 'scimark2-5', 'scimark2-6', 'compress-7zip-0', 'openssl-0' ]
+                     'scimark2-3',  'scimark2-4', 'scimark2-5', 'scimark2-6', 'compress-7zip-0', 'openssl-0', 'phpbench-0' ]
 
 base_sched = { 'i80':      { 'sched': 'schedlog', 'gov': 'powersave-y' },
                'latitude': { 'sched': 'lp-0',     'gov': 'powersave-y' },
                'redha':    { 'sched': '5.4',      'gov': 'powersave-y' },
 }
-schedulers = { 'i80': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
-                        { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
-                        { 'sched': 'dp-50',   'gov': 'powersave-y' },
-                        { 'sched': 'dp2-50',  'gov': 'powersave-y' },
-                        { 'sched': 'dp3-50',  'gov': 'powersave-y' },
-                        { 'sched': 'schedlog', 'gov': 'schedutil-y' }
-                        # 'lp-2', 'local' 
-],
-               'latitude': [ { 'sched': 'dp-50', 'gov': 'powersave-y' },
-                             { 'sched': 'lp-2',  'gov': 'powersave-y' },
-                             { 'sched': 'local', 'gov': 'powersave-y' } ],
-               'redha': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
-                          { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
-                          { 'sched': 'dp-50',   'gov': 'powersave-y' },
-                          { 'sched': 'dp2-50',  'gov': 'powersave-y' },
-                          { 'sched': 'dp3-50',  'gov': 'powersave-y' }
-                          # , 'lp-2', 'local'
-               ],
+schedulers = {
+    'i80': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
+             # { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
+             { 'sched': 'dp-50',   'gov': 'powersave-y' },
+             # { 'sched': 'dp2-50',  'gov': 'powersave-y' },
+             # { 'sched': 'dp3-50',  'gov': 'powersave-y' },
+             # { 'sched': 'schedlog', 'gov': 'schedutil-y' }
+    ],
+    'latitude': [ { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+                  { 'sched': 'dp-50',  'gov': 'powersave-y' },
+                  # { 'sched': 'lp-2',  'gov': 'powersave-y' },
+                  # { 'sched': 'local', 'gov': 'powersave-y' },
+    ],
+    'redha': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
+               # { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
+               { 'sched': 'dp-50',   'gov': 'powersave-y' },
+               # { 'sched': 'dp2-50',  'gov': 'powersave-y' },
+               # { 'sched': 'dp3-50',  'gov': 'powersave-y' }
+               # , 'lp-2', 'local'
+    ],
 }
 hosts = { 'i80': 'Server',
           'latitude': 'Laptop',
