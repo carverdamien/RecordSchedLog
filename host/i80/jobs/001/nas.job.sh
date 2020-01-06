@@ -19,12 +19,13 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(schedlog delayed-placement dpi)
+KERNEL_LOCALVERSIONS=(schedlog dpi local)
 LP_VALUES=(n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10 )
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}

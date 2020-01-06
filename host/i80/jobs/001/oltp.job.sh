@@ -19,10 +19,10 @@ MONITORING_START_DELAY=60
 MONITORING_STOP_DELAY=10
 KERNEL_LOCALVERSIONS=(schedlog delayed-placement dpi)
 LP_VALUES=(n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10)
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
