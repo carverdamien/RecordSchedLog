@@ -13,12 +13,13 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4 delayed-placement lp local dpi dp2 dp3 dpi2)
-LP_VALUES=(n n 2 n n n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+KERNEL_LOCALVERSIONS=(5.4 local dpi)
+LP_VALUES=(n n n)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10)
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
@@ -38,9 +39,19 @@ do
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
+	SCALING_GOVERNOR=${GOV[$I]}
+	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	case ${SLEEP_STATE} in
 	    y)
-		CMDLINE=intel_sleep_state_enabled
+		case ${SCALING_GOVERNOR} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
 		;;
 	    n)
 		CMDLINE=intel_sleep_state_disabled
@@ -50,9 +61,6 @@ do
 		sleep inf
 		exit 1
 	esac
-	SCALING_GOVERNOR=${GOV[$I]}
-	REPEAT=${RPT[$I]}
-	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    for TASKS in 1000

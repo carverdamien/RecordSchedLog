@@ -17,12 +17,12 @@ PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4 
 PHORONIXES+=(c-ray compress-7zip deepspeech git openssl perl-benchmark perl-benchmark php php phpbench)
 PARGUMENTS+=(    0             0          0   0       0              1              2   1   2        0)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4 delayed-placement dpi)
+KERNEL_LOCALVERSIONS=(5.4 dpi local)
 LP_VALUES=(n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10)
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -43,9 +43,19 @@ do
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
+	SCALING_GOVERNOR=${GOV[$I]}
+	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	case ${SLEEP_STATE} in
 	    y)
-		CMDLINE=intel_sleep_state_enabled
+		case ${SCALING_GOVERNOR} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
 		;;
 	    n)
 		CMDLINE=intel_sleep_state_disabled
@@ -55,9 +65,6 @@ do
 		sleep inf
 		exit 1
 	esac
-	SCALING_GOVERNOR=${GOV[$I]}
-	REPEAT=${RPT[$I]}
-	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    for K in ${!PHORONIXES[@]}

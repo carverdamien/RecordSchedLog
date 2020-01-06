@@ -20,12 +20,13 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu sp ua ) # mg # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  B  B  ) # D  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4 delayed-placement lp local dpi dp2 dp3 dpi2)
-LP_VALUES=(n n 2 n n n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+KERNEL_LOCALVERSIONS=(5.4 local dpi)
+LP_VALUES=(n n n)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10)
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
@@ -44,22 +45,29 @@ do
     esac
     for I in ${!SLP[@]}
     do
-        SLEEP_STATE=${SLP[$I]}
-        case ${SLEEP_STATE} in
-            y)
-                CMDLINE=intel_sleep_state_enabled
-                ;;
-            n)
-                CMDLINE=intel_sleep_state_disabled
-                ;;
-            *)
-                echo '${SLEEP_STATE} must be y|n'
-                sleep inf
-                exit 1
-        esac
-        SCALING_GOVERNOR=${GOV[$I]}
-        REPEAT=${RPT[$I]}
+	SLEEP_STATE=${SLP[$I]}
+	SCALING_GOVERNOR=${GOV[$I]}
+	REPEAT=${RPT[$I]}
 	MONITORING=${MON[$I]}
+	case ${SLEEP_STATE} in
+	    y)
+		case ${SCALING_GOVERNOR} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
+		;;
+	    n)
+		CMDLINE=intel_sleep_state_disabled
+		;;
+	    *)
+		echo '${SLEEP_STATE} must be y|n'
+		sleep inf
+		exit 1
+	esac
         for N in $(seq ${REPEAT})
         do
             for I in ${!BENCH_NAMES[@]}
