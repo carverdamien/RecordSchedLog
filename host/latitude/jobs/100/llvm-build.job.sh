@@ -12,12 +12,12 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/llvmcmake
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(lp delayed-placement delayed-placement-idle)
+KERNEL_LOCALVERSIONS=(lp delayed-placement-idle local)
 LP_VALUES=(0 n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(10 10)
+MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -38,9 +38,19 @@ do
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
+	SCALING_GOVERNOR=${GOV[$I]}
+	REPEAT=${RPT[$I]}
+	MONITORING=${MON[$I]}
 	case ${SLEEP_STATE} in
 	    y)
-		CMDLINE=intel_sleep_state_enabled
+		case ${SCALING_GOVERNOR} in
+		    schedutil)
+			CMDLINE=intel_sleep_state_enabled_pstate_passive
+			;;
+		    *)
+			CMDLINE=intel_sleep_state_enabled
+			;;
+		esac
 		;;
 	    n)
 		CMDLINE=intel_sleep_state_disabled
@@ -50,9 +60,6 @@ do
 		sleep inf
 		exit 1
 	esac
-	SCALING_GOVERNOR=${GOV[$I]}
-	REPEAT=${RPT[$I]}
-	MONITORING=${MON[$I]}
 	for N in $(seq ${REPEAT})
 	do
 	    OUTPUT="output/"
