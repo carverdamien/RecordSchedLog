@@ -13,12 +13,12 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(lp lp lp schedlog local delayed-placement dpi dp2 dp3)
-LP_VALUES=(1 2 0 n n n n n n)
-SLP=(y y)
-GOV=(powersave schedutil)
-RPT=(10 10)
-MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+KERNEL_LOCALVERSIONS=(schedlog delayed-placement dpi)
+LP_VALUES=(n n n)
+SLP=(y)
+GOV=(powersave)
+RPT=(10)
+MON=(monitoring/cpu-energy-meter)
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}

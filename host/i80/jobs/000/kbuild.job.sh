@@ -14,17 +14,17 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(schedlog lp lp lp local delayed-placement dpi dp2 dp3)
-LP_VALUES=(n 1 2 0 n n n n n)
-SLP=(y y)
-GOV=(powersave schedutil)
-RPT=(10 10)
-MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+KERNEL_LOCALVERSIONS=(schedlog delayed-placement dpi)
+LP_VALUES=(n n n)
+SLP=(y)
+GOV=(powersave)
+RPT=(10)
+MON=(monitoring/cpu-energy-meter)
 
-SLP+=(y)
-GOV+=(schedutil)
-RPT+=(1)
-MON+=(monitoring/all)
+# SLP+=(y)
+# GOV+=(schedutil)
+# RPT+=(1)
+# MON+=(monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
