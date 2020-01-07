@@ -3,7 +3,7 @@ f4a82a1e07f096328e79e050ab28001486bc9f63  output/HOST=i80/BENCH=kbuild-all/POWER
 2a5e29785b9f6e1d811461831e67e81d53f94c0e  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=all/LP=n/512-5.4-delayed-placement-onoff/1.tar
 5f5daded174deb444c18b013efb30a3853f792b9  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=all/LP=n/80-5.4-delayed-placement-onoff/1.tar
 a74afd20d145edff29acc206d73d2fc9c44f0448  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=all/LP=n/1024-5.4-delayed-placement-onoff/1.tar
-c2ce623df233e6a5baf1ca738ef987935ae2bb85  output/HOST=i80/BENCH=nas_lu.B/POWER=powersave-y/MONITORING=all/LP=n/160-5.4-delayed-placement-onoff/1.tar
+37c4b667e5dc0118dcd82166befbd8c4579af74a  output/HOST=i80/BENCH=nas_lu.B/POWER=powersave-y/MONITORING=all/LP=n/160-5.4-delayed-placement-onoff/1.tar
 b2d5c689411f39253ef46134ff10933273622f61  output/HOST=i80/BENCH=nas_lu.B/POWER=powersave-y/MONITORING=all/LP=n/80-5.4-delayed-placement-onoff/1.tar
 9c962ed260b6305e1e49899654c3a51f2cf7ead8  output/HOST=i80/BENCH=kbuild-sched/POWER=powersave-y/MONITORING=all/LP=n/320-5.4-delayed-placement-onoff/1.tar
 592d8215b4e4451ba21c501ff81ec08aa87a3ce0  output/HOST=i80/BENCH=kbuild-sched/POWER=powersave-y/MONITORING=all/LP=n/160-5.4-delayed-placement-onoff/1.tar
