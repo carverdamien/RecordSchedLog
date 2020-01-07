@@ -14,12 +14,12 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-delayed-placement-onoff)
-LP_VALUES=(n)
-SLP=(y)
-GOV=(powersave)
-RPT=(1)
-MON=(monitoring/all)
+KERNEL_LOCALVERSIONS=(5.4-delayed-placement-onoff 5.4-fdp)
+LP_VALUES=(n n)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 1)
+MON=(monitoring/all monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
