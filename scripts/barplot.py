@@ -85,7 +85,8 @@ schedulers = {
              { 'sched': 'dp-50',   'gov': 'powersave-y' },
              # { 'sched': 'dp2-50',  'gov': 'powersave-y' },
              # { 'sched': 'dp3-50',  'gov': 'powersave-y' },
-             # { 'sched': 'schedlog', 'gov': 'schedutil-y' }
+             { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+             # { 'sched': 'schedlog', 'gov': 'schedutil-y' },
     ],
     'latitude': [ { 'sched': 'dpi-50', 'gov': 'powersave-y' },
                   { 'sched': 'dp-50',  'gov': 'powersave-y' },
