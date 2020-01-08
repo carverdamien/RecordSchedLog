@@ -26,7 +26,8 @@ benchmarks = {
              'kbuild-sched-80', 'llvmcmake', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
              'nas_bt.B-160', 'nas_bt.B-80', 'nas_cg.C-160', 'nas_cg.C-80',
              'nas_ep.C-160', 'nas_ep.C-80', 'nas_ft.C-160', 'nas_ft.C-80',
-             'nas_lu.B-160', 'nas_lu.B-80', 'nas_mg.D-160', 'nas_mg.D-80',
+             'nas_lu.B-160',
+             'nas_lu.B-80', 'nas_mg.D-160', 'nas_mg.D-80',
              'nas_sp.B-160', 'nas_sp.B-80', 'nas_ua.B-160', 'nas_ua.B-80',
              'node-octane-1', 'oltp-mysql-160', 'oltp-mysql-320',
              'oltp-mysql-80', 'openssl-0', 'perl-benchmark-1',
@@ -36,14 +37,19 @@ benchmarks = {
     ],
     'latitude': [ 'aobench-0', 'apache-siege-1', 'apache-siege-2',
                   'apache-siege-3', 'apache-siege-4',
-                  'build-linux-kernel-0', 'build-llvm-0', 'go-benchmark-1',
-                  'hackbench-1000', 'kbuild-all-16', 'kbuild-all-4', 'kbuild-all-8',
-                  'kbuild-sched-16', 'kbuild-sched-4', 'kbuild-sched-8', 'llvmcmake',
-                  'mkl-dnn-7-1', 'mkl-dnn-7-2', 'nas_bt.B-4', 'nas_bt.B-8',
-                  'nas_cg.C-4', 'nas_cg.C-8', 'nas_ep.C-4', 'nas_ep.C-8',
-                  'nas_ft.C-4', 'nas_ft.C-8', 'nas_lu.B-4', 'nas_lu.B-8',
-                  'nas_sp.B-4', 'nas_sp.B-8', 'nas_ua.B-4', 'nas_ua.B-8',
-                  'node-octane-1', 'redis-1', 'rust-prime-0',
+                  'build-linux-kernel-0', 'build-llvm-0', 'c-ray-0',
+                  'compress-7zip-0', 'deepspeech-0', 'git-0', 'go-benchmark-1',
+                  'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
+                  'hackbench-1000', 'kbuild-all-16', 'kbuild-all-4',
+                  'kbuild-all-8', 'kbuild-sched-16', 'kbuild-sched-4',
+                  'kbuild-sched-8', 'llvmcmake', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
+                  'nas_bt.B-4', 'nas_bt.B-8', 'nas_cg.C-4', 'nas_cg.C-8',
+                  'nas_ep.C-4', 'nas_ep.C-8', 'nas_ft.C-4', 'nas_ft.C-8',
+                  'nas_lu.B-4', 'nas_lu.B-8', 'nas_sp.B-4', 'nas_sp.B-8',
+                  'nas_ua.B-4', 'nas_ua.B-8',
+                  'node-octane-1',
+                  'openssl-0', 'perl-benchmark-1',
+                  'perl-benchmark-2', 'phpbench-0', 'redis-1', 'rust-prime-0',
                   'scimark2-1', 'scimark2-2', 'scimark2-3', 'scimark2-4',
                   'scimark2-5', 'scimark2-6'
     ],
@@ -80,34 +86,33 @@ base_sched = {
 }
 schedulers = {
     'hrtimers' : [ { 'sched': '5.4-hrtimers', 'gov': 'powersave-y' } ],
-    'i80': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
-             # { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
-             { 'sched': 'dp-50',   'gov': 'powersave-y' },
-             # { 'sched': 'dp2-50',  'gov': 'powersave-y' },
-             # { 'sched': 'dp3-50',  'gov': 'powersave-y' },
-             { 'sched': 'fdp-50', 'gov': 'powersave-y' },
-             # { 'sched': 'schedlog', 'gov': 'schedutil-y' },
+    'i80': [
+        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
+        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        { 'sched': 'local',  'gov': 'powersave-y' },
+        { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
-    'latitude': [ { 'sched': 'dpi-50', 'gov': 'powersave-y' },
-                  { 'sched': 'dp-50',  'gov': 'powersave-y' },
-                  { 'sched': 'fdp-50', 'gov': 'powersave-y' },
-                  # { 'sched': 'lp-2',  'gov': 'powersave-y' },
-                  # { 'sched': 'local', 'gov': 'powersave-y' },
+    'latitude': [
+        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
+        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        { 'sched': 'local',  'gov': 'powersave-y' },
+        { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
-    'redha': [ { 'sched': 'dpi-50',  'gov': 'powersave-y' },
-               # { 'sched': 'dpi2-50', 'gov': 'powersave-y' },
-               { 'sched': 'dp-50',   'gov': 'powersave-y' },
-               # { 'sched': 'dp2-50',  'gov': 'powersave-y' },
-               # { 'sched': 'dp3-50',  'gov': 'powersave-y' }
-               # , 'lp-2', 'local'
+    'redha': [
+        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
+        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        { 'sched': 'local',  'gov': 'powersave-y' },
+        { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
 }
 hosts = { 'i80': 'Server',
           'latitude': 'Laptop',
           'redha': 'Desktop',
 }
-sched_renames = { 'lp-2': 'local fork placement' }
-short_gov = { 'powersave-y': 'ps', 'schedutil-y': 'su' }
+sched_renames = { 'lp-2/powersave-y': 'local fork placement' }
 
 df = pd.read_pickle(input_file)
 
@@ -169,11 +174,12 @@ fig, (axP, axE) = plt.subplots(2, 1, figsize=(17,5))
 for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     sb.barplot(ax=ax, data=plot_data, x='bench', y=p_or_e,
                order=sorted_bench_perf,
-               hue='sched', #hue_order=schedulers[host],
+               hue='sched', hue_order = [ s['sched']+'/'+s['gov'] for s in schedulers[host] ],
                estimator=np.mean, ci='sd', errwidth=1,
                palette='hls')
     ax.tick_params(axis='x', labelrotation=90)
     ax.set_xlabel("")
+    ax.tick_params(axis='y', right=True, labelright=True)
     ax.set_ylabel('{} (%)'.format('Performance' if p_or_e=='perf' else 'Energy'))
     ax.grid(b=True, axis='x', which='both')
     ax.get_legend().remove()
