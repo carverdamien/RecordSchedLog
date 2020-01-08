@@ -152,3 +152,7 @@
 	path = host/latitude/kernel/5.4-fdp/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel
 	branch = 5.4-fdp
+[submodule "host/redha/kernel/5.4-fdp/src"]
+	path = host/redha/kernel/5.4-fdp/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel
+	branch = 5.4-fdp
