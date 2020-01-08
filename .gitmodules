@@ -140,3 +140,11 @@
 	path = host/latitude/kernel/delayed-placement-idle/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-delayed-placement-idle
+[submodule "host/i80/kernel/5.4-delayed-placement-onoff/src"]
+	path = host/i80/kernel/5.4-delayed-placement-onoff/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-delayed-placement-onoff
+[submodule "host/i80/kernel/5.4-fdp/src"]
+	path = host/i80/kernel/5.4-fdp/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-fdp

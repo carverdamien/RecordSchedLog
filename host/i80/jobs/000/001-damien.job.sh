@@ -5,24 +5,21 @@ export OUTPUT
 export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
-export MONITORING_START_DELAY
-export MONITORING_STOP_DELAY
 export TASKS
+export TARGET
 export SYSCTL=''
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/oltp-mysql
-MONITORING_SCHEDULED=y
-MONITORING_START_DELAY=60
-MONITORING_STOP_DELAY=10
-KERNEL_LOCALVERSIONS=(schedlog delayed-placement dpi 5.4-fdp)
-LP_VALUES=(n n n n)
+BENCH=bench/kbuild
+MONITORING_SCHEDULED=n
+KERNEL_LOCALVERSIONS=(5.4-delayed-placement-onoff 5.4-fdp)
+LP_VALUES=(n n)
 SLP=(y y)
-GOV=(powersave schedutil)
-RPT=(10 10)
-MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+GOV=(powersave powersave)
+RPT=(1 1)
+MON=(monitoring/all monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -65,19 +62,22 @@ do
 		sleep inf
 		exit 1
 	esac
-        for N in $(seq ${REPEAT})
-        do
-            for TASKS in 80 160 320 512 1024
-            do
-                OUTPUT="output/"
-		OUTPUT+="HOST=${HOSTNAME}/"
-		OUTPUT+="BENCH=$(basename ${BENCH})/"
-		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		OUTPUT+="LP=${LP_VALUE}/"
-		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
-	        run_bench
-            done
-        done
+	for N in $(seq ${REPEAT})
+	do
+	    for TASKS in 80 160 320 512 1024
+	    do
+		for TARGET in all kernel/sched/
+		do
+		    OUTPUT="output/"
+		    OUTPUT+="HOST=${HOSTNAME}/"
+		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
+		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="LP=${LP_VALUE}/"
+		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
+		    run_bench
+		done
+	    done
+	done
     done
 done
