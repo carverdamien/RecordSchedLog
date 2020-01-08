@@ -70,6 +70,8 @@ for d in in_data.iterrows():
         sched = 'dpi-{}'.format(50 if lp == 'n' else lp)
     elif sched in [ 'delayed-placement-idle-2', 'dpi2' ]:
         sched = 'dpi2-{}'.format(50 if lp == 'n' else lp)
+    elif sched in [ 'fdp' ]:
+        sched = 'fdp-{}'.format(50 if lp == 'n' else lp)
     elif sched in [ 'local-placement', 'lp' ]:
         sched = 'lp-{}'.format(lp)
     elif sched == 'local':
