@@ -8,14 +8,16 @@ main() {
     set -e -x -u
     date
     export MONITORING HOST POWER
-    for POWER in powersave-y schedutil-y
+    for HOST in i80 latitude redha
     do
-	for HOST in i80 latitude redha
-	do
-	    ./scripts/tar2raw.sh master /mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST=$HOST $HOST.csv
+	./scripts/tar2raw.sh master /mnt/data/damien/git/carverdamien/SchedDisplay/examples/trace/HOST=$HOST $HOST.csv
+	./scripts/raw2df.py $HOST.csv $HOST.pkl.gz
+	./scripts/barplot.py $HOST $HOST.pkl.gz $HOST.pdf
 	# ./scripts/filter_cpu_energy_meter.py filter_cpu_energy_meter.csv data.csv
 	# sed 's/.mnt.data.damien.git.carverdamien.SchedDisplay.examples.trace/output/' filter_cpu_energy_meter.csv | xargs shasum > host/i80/discard
 	# rm -f $(cat filter_cpu_energy_meter.csv)
+	for POWER in powersave-y schedutil-y
+	do
 	    for MONITORING in all cpu-energy-meter
 	    do
 		for value in perf energy
