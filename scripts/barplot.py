@@ -90,6 +90,7 @@ schedulers = {
     ],
     'latitude': [ { 'sched': 'dpi-50', 'gov': 'powersave-y' },
                   { 'sched': 'dp-50',  'gov': 'powersave-y' },
+                  { 'sched': 'fdp-50', 'gov': 'powersave-y' },
                   # { 'sched': 'lp-2',  'gov': 'powersave-y' },
                   # { 'sched': 'local', 'gov': 'powersave-y' },
     ],
