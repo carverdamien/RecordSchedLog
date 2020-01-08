@@ -16,10 +16,10 @@ BENCH=bench/frequency_logger
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(lp)
 LP_VALUES=(0)
-SLP=(y n)
-GOV=(powersave performance)
-RPT=(1 1)
-MON=(monitoring/nop monitoring/nop monitoring/nop)
+SLP=(y y n)
+GOV=(powersave powersave performance)
+RPT=(1 1 1)
+MON=(monitoring/all monitoring/nop monitoring/nop monitoring/nop)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
