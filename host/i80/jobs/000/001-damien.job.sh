@@ -14,12 +14,12 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/kbuild
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp 5.4-delayed-placement-onoff)
-LP_VALUES=(n n)
+KERNEL_LOCALVERSIONS=(5.4-fdp2)
+LP_VALUES=(n)
 SLP=(y y)
 GOV=(powersave powersave)
-RPT=(1 1)
-MON=(monitoring/all monitoring/all)
+RPT=(1 5)
+MON=(monitoring/all monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -37,6 +37,11 @@ do
 	    fi
 	    ;;
     esac
+    
+    if [ $J == "5.4-fdp2" ] ; then
+	SYSCTL+=" kernel.sched_lowfreq=$(cat /sys/devices/system/cpu/cpufreq/policy0/base_frequency)"
+    fi
+    
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
