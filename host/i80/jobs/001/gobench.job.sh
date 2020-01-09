@@ -17,10 +17,10 @@ PARGUMENTS=(1 2 3 4)
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(5.4-fdp 5.4-fdp-nom schedlog)
 LP_VALUES=(n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(1)
-MON=(monitoring/all)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(1 10)
+MON=(monitoring/all monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
