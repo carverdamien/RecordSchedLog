@@ -1,0 +1,5 @@
+#!/bin/bash
+
+[ -d /tmp/schbench ] ||
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/mason/schbench.git /tmp/schbench
+make -C /tmp/schbench
