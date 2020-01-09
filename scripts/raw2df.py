@@ -72,6 +72,8 @@ for d in in_data.iterrows():
         sched = 'dpi2-{}'.format(50 if lp == 'n' else lp)
     elif sched in [ '5.4-fdp' ]:
         sched = 'fdp-{}'.format(50 if lp == 'n' else lp)
+    elif sched in [ '5.4-fdp-nom' ]:
+        sched = 'fdp-nom-{}'.format(50 if lp == 'n' else lp)
     elif sched in [ 'local-placement', 'lp' ]:
         sched = 'lp-{}'.format(lp)
     elif sched == 'local':
