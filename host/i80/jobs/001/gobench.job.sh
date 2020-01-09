@@ -19,7 +19,7 @@ KERNEL_LOCALVERSIONS=(5.4-fdp schedlog)
 LP_VALUES=(n n)
 SLP=(y)
 GOV=(powersave)
-RPT=(10)
+RPT=(1)
 MON=(monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
