@@ -15,8 +15,8 @@ BENCH=bench/phoronix
 PHORONIXES=(go-benchmark go-benchmark go-benchmark go-benchmark)
 PARGUMENTS=(1 2 3 4)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp schedlog)
-LP_VALUES=(n n)
+KERNEL_LOCALVERSIONS=(5.4-fdp 5.4-fdp-nom schedlog)
+LP_VALUES=(n n n)
 SLP=(y)
 GOV=(powersave)
 RPT=(1)
@@ -38,6 +38,13 @@ do
 	    fi
 	    ;;
     esac
+    
+    if [ ${KERNEL_LOCALVERSION} == "5.4-fdp2" ] ; then
+	base_khz=$(echo "$(sed -nE '/model name/s/(.+) ([0-9.]+)GHz/\2/p' /proc/cpuinfo | head -n1) * 1000000" | bc)
+	base_khz=${base_khz%.*}
+	SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
+    fi
+    
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
