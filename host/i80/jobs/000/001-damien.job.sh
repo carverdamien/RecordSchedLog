@@ -38,8 +38,10 @@ do
 	    ;;
     esac
     
-    if [ $J == "5.4-fdp2" ] ; then
-	SYSCTL+=" kernel.sched_lowfreq=$(cat /sys/devices/system/cpu/cpufreq/policy0/base_frequency)"
+    if [ ${KERNEL_LOCALVERSION} == "5.4-fdp2" ] ; then
+	base_khz=$(echo "$(sed -nE '/model name/s/(.+) ([0-9.]+)GHz/\2/p' /proc/cpuinfo | head -n1) * 1000000" | bc)
+	base_khz=${base_khz%.*}
+	SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
     fi
     
     for I in ${!SLP[@]}
