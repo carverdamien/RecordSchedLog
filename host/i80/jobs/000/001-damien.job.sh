@@ -38,7 +38,7 @@ do
 	    ;;
     esac
     
-    if [ $J == "5.4-fdp2" ] ; then
+    if [ ${KERNEL_LOCALVERSION} == "5.4-fdp2" ] ; then
 	SYSCTL+=" kernel.sched_lowfreq=$(cat /sys/devices/system/cpu/cpufreq/policy0/base_frequency)"
     fi
     
