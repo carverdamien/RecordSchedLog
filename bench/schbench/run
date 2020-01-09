@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e -u -x
+exec 1> ${OUTPUT}/run.out
+exec 2> ${OUTPUT}/run.err
+exec /tmp/schbench/schbench -m ${MESSAGE_THREADS} -t ${WORKERS_PER_MESSAGE_THREAD}
