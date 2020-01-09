@@ -20,7 +20,7 @@ BENCH=bench/nas
 BENCH_NAMES=(   bt cg ep ft    lu sp ua ) # mg # ua sp dc # is
 BENCH_CLASSES=( B  C  C  C     B  B  B  ) # D  # C  A  A  # D
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp 5.4 local dpi)
+KERNEL_LOCALVERSIONS=(5.4-fdp-nom 5.4 local dpi)
 LP_VALUES=(n n n n)
 SLP=(y y)
 GOV=(powersave schedutil)
@@ -43,6 +43,13 @@ do
 	    fi
 	    ;;
     esac
+
+    if [ ${KERNEL_LOCALVERSION} == "5.4-fdp-nom" ] ; then
+	base_khz=$(echo "$(sed -nE '/model name/s/(.+) ([0-9.]+)GHz/\2/p' /proc/cpuinfo | head -n1) * 1000000" | bc)
+	base_khz=${base_khz%.*}
+	SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
+    fi
+
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}

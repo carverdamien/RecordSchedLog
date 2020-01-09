@@ -17,7 +17,7 @@ PARGUMENTS=(    1   '7-1'   '7-2'    '6-7'            5          0            4 
 PHORONIXES+=(c-ray compress-7zip deepspeech git openssl perl-benchmark perl-benchmark php php phpbench)
 PARGUMENTS+=(    0             0          0   0       0              1              2   1   2        0)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp 5.4 dpi local)
+KERNEL_LOCALVERSIONS=(5.4-fdp-nom 5.4 dpi local)
 LP_VALUES=(n n n n)
 SLP=(y y)
 GOV=(powersave schedutil)
@@ -40,6 +40,13 @@ do
 	    fi
 	    ;;
     esac
+
+    if [ ${KERNEL_LOCALVERSION} == "5.4-fdp-nom" ] ; then
+	base_khz=$(echo "$(sed -nE '/model name/s/(.+) ([0-9.]+)GHz/\2/p' /proc/cpuinfo | head -n1) * 1000000" | bc)
+	base_khz=${base_khz%.*}
+	SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
+    fi
+
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
