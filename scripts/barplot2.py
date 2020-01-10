@@ -140,12 +140,13 @@ for b in benchmarks[host]:
     # perf_a  = base['perf'].std()
     # perf_b = df['perf'][sel_b].mean()
     # perf_a  = df['perf'][sel_b].std()
+    perf_a = perf_b / 100.
     if b in higher_is_better:
-        perf_a  = base['perf'].max() / 100.
+        # perf_a  = base['perf'].max() / 100.
         # perf_a  = df['perf'][sel_b].max() / 100.
         df.loc[sel_b,['perf']] = (df['perf'][sel_b].values - perf_b) / perf_a
     else:
-        perf_a  = base['perf'].min() / 100.
+        # perf_a  = base['perf'].min() / 100.
         # perf_a  = df['perf'][sel_b].min() / 100.
         df.loc[sel_b,['perf']] = (perf_b - df['perf'][sel_b].values) / perf_a
     # Normalize energy
@@ -154,7 +155,8 @@ for b in benchmarks[host]:
     # energy_b = df['energy'][sel_b].mean()
     # energy_a  = df['energy'][sel_b].std()
     # energy_a  = df['energy'][sel_b].min() / 100.
-    energy_a  = base['energy'].min() / 100.
+    # energy_a  = base['energy'].min() / 100.
+    energy_a  = energy_b / 100.
     df.loc[sel_b, ['energy']] = (energy_b - df['energy'][sel_b].values) / energy_a
     
     first_sched = df[sel_b & (df['sched'] == (schedulers[host][0]['sched'] + '/' + schedulers[host][0]['gov']))]
