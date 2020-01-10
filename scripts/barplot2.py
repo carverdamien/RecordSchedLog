@@ -13,6 +13,73 @@ import matplotlib.pyplot as plt
 
 _, host, input_file, output_file = sys.argv
 
+def unit(b,p_or_e):
+    if p_or_e == 'energy':
+        return 'joule'
+    # print(b)
+    return {
+        #'aobench-0':,
+        #'apache-0':,
+        'apache-siege-1':'tr/s',
+        'apache-siege-2':'tr/s',
+        'apache-siege-3':'tr/s',
+        'apache-siege-4':'tr/s',
+        'apache-siege-5':'tr/s',
+        'build-linux-kernel-0':'s',
+        'build-llvm-0':'s',
+        'c-ray-0':'s',
+        #'compress-7zip-0':,
+        #'deepspeech-0':,
+        #'git-0':,
+        'go-benchmark-1':'ns/op',
+        'go-benchmark-2':'ns/op',
+        'go-benchmark-3':'ns/op',
+        'go-benchmark-4':'ns/op',
+        #'hackbench-10000':,
+        'kbuild-all-160':'s',
+        'kbuild-all-320':'s',
+        'kbuild-all-80':'s',
+        'kbuild-sched-160':'s',
+        'kbuild-sched-320':'s',
+        'kbuild-sched-80':'s',
+        'llvmcmake':'s',
+        #'mkl-dnn-7-1':,
+        #'mkl-dnn-7-2':,
+        'nas_bt.B-160':'s',
+        'nas_bt.B-80':'s',
+        'nas_cg.C-160':'s',
+        'nas_cg.C-80':'s',
+        'nas_ep.C-160':'s',
+        'nas_ep.C-80':'s',
+        'nas_ft.C-160':'s',
+        'nas_ft.C-80':'s',
+        'nas_lu.B-160':'s',
+        'nas_lu.B-80':'s',
+        'nas_mg.D-160':'s',
+        'nas_mg.D-80':'s',
+        'nas_sp.B-160':'s',
+        'nas_sp.B-80':'s',
+        'nas_ua.B-160':'s',
+        'nas_ua.B-80':'s',
+        #'node-octane-1':,
+        #'oltp-mysql-160':,
+        #'oltp-mysql-320':,
+        #'oltp-mysql-80':,
+        #'openssl-0':,
+        #'perl-benchmark-1':,
+        #'perl-benchmark-2':,
+        #'phpbench-0':,
+        #'redis-1':,
+        #'rust-prime-0':,
+        #'schbench-6-7':,
+        #'scimark2-1':,
+        #'scimark2-2':,
+        #'scimark2-3':,
+        #'scimark2-4':,
+        #'scimark2-5':,
+        #'scimark2-6':,
+    }.get(b, 'TODO')
+
 benchmarks = {
     'hrtimers': [ 'schbench-6-1', 'schbench-6-2', 'schbench-6-3',
                   'schbench-6-4', 'schbench-6-5', 'schbench-6-6', 'schbench-6-7'],
@@ -128,6 +195,8 @@ df = df[keep]
 sel_baseline = (df['sched'] == base_sched[host]['sched']) & (df['power'] == base_sched[host]['gov'])
 df['sched'] = df['sched'] + '/' + df['power']
 
+base_perf = {}
+base_energy = {}
 perf_means = {}
 energy_means = {}
 for b in benchmarks[host]:
@@ -137,6 +206,7 @@ for b in benchmarks[host]:
         continue
     # Normalize perf
     perf_b = base['perf'].mean()
+    base_perf[b] = perf_b
     # perf_a  = base['perf'].std()
     # perf_b = df['perf'][sel_b].mean()
     # perf_a  = df['perf'][sel_b].std()
@@ -151,6 +221,7 @@ for b in benchmarks[host]:
         df.loc[sel_b,['perf']] = (perf_b - df['perf'][sel_b].values) / perf_a
     # Normalize energy
     energy_b = base['energy'].mean()
+    base_energy[b] = energy_b
     # energy_a  = base['energy'].std()
     # energy_b = df['energy'][sel_b].mean()
     # energy_a  = df['energy'][sel_b].std()
@@ -170,7 +241,7 @@ sorted_bench_energy = [k for k, v in sorted(energy_means.items(), key=lambda ite
 # print(df)
 
 # Plot perf figures
-fig, (axP, axE) = plt.subplots(2, 1, figsize=(17,5))
+fig, (axP, axE) = plt.subplots(2, 1, figsize=(17,5), gridspec_kw={'hspace':.5})
 for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     sb.barplot(ax=ax, data=df, x='bench', y=p_or_e,
                order=sorted_bench_perf,
@@ -184,11 +255,16 @@ for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     ax.set_ylabel('{} (%)'.format('Performance' if p_or_e=='perf' else 'Energy'))
     ax.grid(b=True, axis='x', which='both')
     ax.get_legend().remove()
+    twin = ax.twiny()
+    twin.set_xlim(ax.get_xlim())
+    twin.set_xticks(ax.get_xticks())
+    twin.set_xticklabels([np.format_float_scientific((base_perf if p_or_e=='perf' else base_energy)[sorted_bench_perf[x]], exp_digits=1, precision=2) + ' ' + unit(sorted_bench_perf[x],p_or_e) for x in ax.get_xticks()], fontdict={'fontsize':5})
+    twin.tick_params(axis='x', labelrotation=90)
     
 axP.tick_params(axis='x', which='both', labelbottom=False)
 handles, labels = axP.get_legend_handles_labels()
 # axE.set_ylim(-70, 70)
 #fig.suptitle('{}'.format(hosts[host]), fontsize=14, fontweight='bold')
 new_labels = map(lambda x: sched_renames.get(x, x), labels)
-fig.legend(handles=handles, labels=new_labels, ncol=4, loc='upper center')
+fig.legend(handles=handles, labels=new_labels, ncol=4) #, loc='center')#, loc='upper center')
 fig.savefig(output_file, bbox_inches='tight')
