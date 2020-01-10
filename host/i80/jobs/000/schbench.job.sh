@@ -17,10 +17,10 @@ BENCH=bench/schbench
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(schedlog 5.4-hrtimers)
 LP_VALUES=(n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+SLP=(y y)
+GOV=(powersave powersave)
+RPT=(10 1)
+MON=(monitoring/cpu-energy-meter monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -69,7 +69,7 @@ do
 	    # do
 		# export MESSAGE_THREADS=${PARAMETER_MESSAGE_THREADS[$K]}
 		# export WORKERS_PER_MESSAGE_THREAD=${PARAMETER_WORKERS_PER_MESSAGE_THREAD[$K]}
-	    for MESSAGE_THREADS in  2 4 6 8 16 24 32
+	    for MESSAGE_THREADS in 32 # 2 4 6 8 16 24
 	    do
 		for WORKERS_PER_MESSAGE_THREAD in 2 4 6 8 16 24 32
 		do
