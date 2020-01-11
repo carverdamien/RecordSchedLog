@@ -19,11 +19,11 @@ PARGUMENTS=(           5     1   '7-1'   '7-2'    '6-7'          0            4 
 PHORONIXES+=(c-ray compress-7zip deepspeech git openssl perl-benchmark perl-benchmark phpbench)
 PARGUMENTS+=(    0             0          0   0       0              1              2        0)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp-percpu schedlog local)
+KERNEL_LOCALVERSIONS=(5.4-fdp schedlog local)
 LP_VALUES=(n n n)
 SLP=(y y)
 GOV=(powersave schedutil)
-RPT=(5 5)
+RPT=(10 10)
 MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
