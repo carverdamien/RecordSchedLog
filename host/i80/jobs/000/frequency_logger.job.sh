@@ -14,12 +14,12 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/frequency_logger
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(local-cpuofwaker) # local-light-cpuofwaker lp lp lp schedlog local local-light ipanema delayed-placement)
+KERNEL_LOCALVERSIONS=(schedlog) # local-light-cpuofwaker lp lp lp schedlog local local-light ipanema delayed-placement)
 LP_VALUES=(n) # n 1 2 0 n n n n n)
-SLP=(y n)
-GOV=(powersave performance)
-RPT=(3 3)
-MON=(monitoring/nop monitoring/nop monitoring/nop)
+SLP=(y)
+GOV=(powersave)
+RPT=(1)
+MON=(monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
