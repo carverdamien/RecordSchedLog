@@ -58,7 +58,8 @@ benchmarks = {
                'build-linux-kernel-0', 'build-llvm-0', 'c-ray-0',
                'compress-7zip-0', 'deepspeech-0', 'git-0', 'go-benchmark-1',
                'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
-               'hackbench-1000', 'kbuild-all-12', 'kbuild-all-24',
+               # 'hackbench-1000',
+               'kbuild-all-12', 'kbuild-all-24',
                'kbuild-all-6', 'kbuild-sched-12', 'kbuild-sched-24',
                'kbuild-sched-6', 'llvmcmake', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
                'nas_bt.B-12', 'nas_bt.B-6', 'nas_cg.C-12', 'nas_cg.C-6',
@@ -87,25 +88,24 @@ base_sched = {
 schedulers = {
     'hrtimers' : [ { 'sched': '5.4-hrtimers', 'gov': 'powersave-y' } ],
     'i80': [
-        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
-        { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
         { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        { 'sched': 'fdp-50', 'gov': 'schedutil-y' },
         { 'sched': 'local',  'gov': 'powersave-y' },
         { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
     'latitude': [
-        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
-        { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
+        # { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        # { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
         { 'sched': 'fdp-50', 'gov': 'powersave-y' },
         { 'sched': 'local',  'gov': 'powersave-y' },
-        { 'sched': 'local',  'gov': 'schedutil-y' },
+        # { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
     'redha': [
-        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
-        { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
+        # { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        # { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
         { 'sched': 'fdp-50', 'gov': 'powersave-y' },
         { 'sched': 'local',  'gov': 'powersave-y' },
-        { 'sched': 'local',  'gov': 'schedutil-y' },
+        # { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
 }
 hosts = { 'i80': 'Server',
@@ -186,7 +186,7 @@ for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     
 axP.tick_params(axis='x', which='both', labelbottom=False)
 handles, labels = axP.get_legend_handles_labels()
-# axE.set_ylim(-70, 70)
+axP.set_ylim(-30, 60)
 #fig.suptitle('{}'.format(hosts[host]), fontsize=14, fontweight='bold')
 new_labels = map(lambda x: sched_renames.get(x, x), labels)
 fig.legend(handles=handles, labels=new_labels, ncol=4, loc='upper center')
