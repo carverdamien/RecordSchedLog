@@ -213,7 +213,7 @@ def load_tracer_raw(path):
     df = pd.DataFrame(df)
     df.sort_values(by='timestamp', inplace=True)
     df.index = np.arange(len(df))
-    if socket.gethostname() in ["redha", "latitude"]:
+    if socket.gethostname() in ["latitude"]:
         comm = {}
     else:
         comm = compute_dfcomm(df)
