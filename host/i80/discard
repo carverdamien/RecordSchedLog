@@ -60,3 +60,12 @@ ba40129e162d8d097ac099038e153f29bc8b65ae  output/HOST=i80/BENCH=phoronix/POWER=s
 dd5e11c3b04a1e28ab280000502d9d91c18e53a9  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-4/5.4-fdp/1.tar
 5e83f7c66888380cdf6ca95d6789b264d7272766  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-5/local/1.tar
 73160b6e592860cc0db20e39dacaea22c1b89a12  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-6/schedlog/9.tar
+517abf40ccf86156b0ff3eeb0fdd28b14cac0afa  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-0/5.4-fdp/3.tar
+6508817ab566324a3ad474f8a184245cab027f92  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-0/local/10.tar
+3b9054e8fbcd32f133aa1b43616a02200c1e60db  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-siege-3/5.4-fdp/4.tar
+72fec67196e55bc8104e5e8a651495cacef98a84  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-siege-4/schedlog/10.tar
+7df2186fbd8b34f950c1c451574649bbe65851a8  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=compress-7zip-0/schedlog/1.tar
+13d4954e0426bf3ac8b5c549bffa0801e85b9c22  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=deepspeech-0/5.4-fdp/8.tar
+43c729e7406bf4cee4915078a2e60dbc17439094  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=deepspeech-0/5.4-fdp/5.tar
+3984de5c520f9eceaa18602a231cb6503cc8f759  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=perl-benchmark-1/5.4-fdp/5.tar
+792544df4b6cbf93f4492edb92d99da22d71538a  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-4/5.4-fdp/7.tar
