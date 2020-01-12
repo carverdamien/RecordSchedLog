@@ -15,10 +15,10 @@ BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(5.4-fdp schedlog local)
 LP_VALUES=(n n n)
-SLP=(y y)
-GOV=(powersave schedutil)
-RPT=(1 1)
-MON=(monitoring/all monitoring/all)
+SLP=(y)
+GOV=(powersave)
+RPT=(1)
+MON=(monitoring/all)
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
