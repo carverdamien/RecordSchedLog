@@ -58,7 +58,7 @@ benchmarks = {
                'build-linux-kernel-0', 'build-llvm-0', 'c-ray-0',
                'compress-7zip-0', 'deepspeech-0', 'git-0', 'go-benchmark-1',
                'go-benchmark-2', 'go-benchmark-3', 'go-benchmark-4',
-               # 'hackbench-1000',
+               'hackbench-1000',
                'kbuild-all-12', 'kbuild-all-24',
                'kbuild-all-6', 'kbuild-sched-12', 'kbuild-sched-24',
                'kbuild-sched-6', 'llvmcmake', 'mkl-dnn-7-1', 'mkl-dnn-7-2',
@@ -88,22 +88,22 @@ base_sched = {
 schedulers = {
     'hrtimers' : [ { 'sched': '5.4-hrtimers', 'gov': 'powersave-y' } ],
     'i80': [
-        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
-        { 'sched': 'fdp-50', 'gov': 'schedutil-y' },
         { 'sched': 'local',  'gov': 'powersave-y' },
         { 'sched': 'local',  'gov': 'schedutil-y' },
+        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        { 'sched': 'fdp-50', 'gov': 'schedutil-y' },
     ],
     'latitude': [
-        # { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
         # { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
-        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        # { 'sched': 'fdp-50', 'gov': 'powersave-y' },
         { 'sched': 'local',  'gov': 'powersave-y' },
         # { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
     'redha': [
-        # { 'sched': 'dpi-50', 'gov': 'powersave-y' },
+        { 'sched': 'dpi-50', 'gov': 'powersave-y' },
         # { 'sched': 'dpi-50', 'gov': 'schedutil-y' },
-        { 'sched': 'fdp-50', 'gov': 'powersave-y' },
+        # { 'sched': 'fdp-50', 'gov': 'powersave-y' },
         { 'sched': 'local',  'gov': 'powersave-y' },
         # { 'sched': 'local',  'gov': 'schedutil-y' },
     ],
@@ -160,7 +160,7 @@ for bench in benchmarks[host]:
 
     plot_data = plot_data.append(b_data, ignore_index=True, sort=False)
 
-    first_sched = b_data[b_data['sched'] == (schedulers[host][0]['sched'] + '/' + schedulers[host][0]['gov'])]
+    first_sched = b_data[b_data['sched'] == (schedulers[host][2]['sched'] + '/' + schedulers[host][2]['gov'])]
     perf_means[bench] = np.mean(first_sched['perf'].values)
     energy_means[bench] = np.mean(first_sched['energy'].values)
 
@@ -186,7 +186,7 @@ for ax, p_or_e in [ (axP, 'perf'), (axE, 'energy') ]:
     
 axP.tick_params(axis='x', which='both', labelbottom=False)
 handles, labels = axP.get_legend_handles_labels()
-axP.set_ylim(-30, 60)
+axP.set_ylim(-40, 60)
 #fig.suptitle('{}'.format(hosts[host]), fontsize=14, fontweight='bold')
 new_labels = map(lambda x: sched_renames.get(x, x), labels)
 fig.legend(handles=handles, labels=new_labels, ncol=4, loc='upper center')
