@@ -5,15 +5,13 @@ export OUTPUT
 export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
+export TASKS
 export SYSCTL=''
-export PHORONIX PHORONIX_TEST_ARGUMENTS
 
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/phoronix
-PHORONIXES=(go-benchmark go-benchmark go-benchmark go-benchmark apache-siege scimark2 mkl-dnn rust-prime)
-PARGUMENTS=(           1            2            3            4            1        5   '7-1'          0)
+BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(5.4-fdp schedlog local)
 LP_VALUES=(n n n)
@@ -21,7 +19,6 @@ SLP=(y y)
 GOV=(powersave schedutil)
 RPT=(1 1)
 MON=(monitoring/all monitoring/all)
-
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
@@ -38,13 +35,6 @@ do
 	    fi
 	    ;;
     esac
-    
-    if [ ${KERNEL_LOCALVERSION} == "5.4-fdp-nom" ] ; then
-	base_khz=$(echo "$(sed -nE '/model name/s/(.+) ([0-9.]+)GHz/\2/p' /proc/cpuinfo | head -n1) * 1000000" | bc)
-	base_khz=${base_khz%.*}
-	SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
-    fi
-    
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
@@ -72,18 +62,15 @@ do
 	esac
 	for N in $(seq ${REPEAT})
 	do
-	    for K in ${!PHORONIXES[@]}
+	    for TASKS in 10000 # 8000 6000 4000 2000 1000 40
 	    do
-		PHORONIX=${PHORONIXES[$K]}
-		PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$K]}
 		OUTPUT="output/"
 		OUTPUT+="HOST=${HOSTNAME}/"
 		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 		OUTPUT+="LP=${LP_VALUE}/"
-		OUTPUT+="PHORONIX=${PHORONIX}-${PHORONIX_TEST_ARGUMENTS}/"
-		OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
+		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		run_bench
 	    done
 	done
