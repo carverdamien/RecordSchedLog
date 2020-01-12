@@ -12,15 +12,15 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
-PHORONIXES=(go-benchmark go-benchmark go-benchmark go-benchmark)
-PARGUMENTS=(1 2 3 4)
+PHORONIXES=(go-benchmark go-benchmark go-benchmark go-benchmark apache-siege scimark2 mkl-dnn rust-prime)
+PARGUMENTS=(           1            2            3            4            1        5   '7-1'          0)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp-percpu 5.4-fdp-nom schedlog)
+KERNEL_LOCALVERSIONS=(5.4-fdp schedlog local)
 LP_VALUES=(n n n)
 SLP=(y y)
-GOV=(powersave powersave)
-RPT=(1 10)
-MON=(monitoring/all monitoring/cpu-energy-meter)
+GOV=(powersave schedutil)
+RPT=(1 1)
+MON=(monitoring/all monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
