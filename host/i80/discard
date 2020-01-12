@@ -72,3 +72,5 @@ dd5e11c3b04a1e28ab280000502d9d91c18e53a9  output/HOST=i80/BENCH=phoronix/POWER=p
 cb45da2715d477528ec7dbc0c93416df541bbe1c  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/160-5.4-fdp/13.tar
 90d1606fff0863933f4fecac0f898b72b1253363  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/160-local/13.tar
 e2f4228df740b0c3f87e295feb120e0a6c806a10  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=redis-1/schedlog/10.tar
+cb45da2715d477528ec7dbc0c93416df541bbe1c  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/160-5.4-fdp/13.tar
+90d1606fff0863933f4fecac0f898b72b1253363  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/160-local/13.tar
