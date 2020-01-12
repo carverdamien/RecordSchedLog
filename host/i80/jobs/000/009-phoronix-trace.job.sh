@@ -12,15 +12,15 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/phoronix
-PHORONIXES=(apache mkl-dnn rust-prime)
-PARGUMENTS=(     0   '7-1'          0)
+PHORONIXES=(apache mkl-dnn rust-prime perl-benchmark)
+PARGUMENTS=(     0   '7-1'          0              2)
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(5.4-fdp schedlog local)
 LP_VALUES=(n n n)
-SLP=(y)
-GOV=(powersave)
-RPT=(1)
-MON=(monitoring/all)
+SLP=(y y)
+GOV=(powersave schedutil)
+RPT=(1 1)
+MON=(monitoring/all monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do

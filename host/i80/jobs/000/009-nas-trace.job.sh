@@ -16,15 +16,15 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(lu)
-BENCH_CLASSES=(B)
+BENCH_NAMES=(ft)
+BENCH_CLASSES=(C)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp-percpu)
-LP_VALUES=(n)
+KERNEL_LOCALVERSIONS=(schedlog local 5.4-fdp)
+LP_VALUES=(n n n)
 SLP=(y y)
-GOV=(powersave powersave)
-RPT=(1 5)
-MON=(monitoring/all monitoring/cpu-energy-meter)
+GOV=(powersave schedutil)
+RPT=(1 1)
+MON=(monitoring/all monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
