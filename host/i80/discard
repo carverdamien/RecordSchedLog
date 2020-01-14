@@ -1,7 +1,7 @@
-f2ad722f801a51a84255d47f2e84823baf562b5c  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-24/5.4-hrtimers/1.tar
-7fa867f18c5748b7a54326c548310789d52cb174  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-32/5.4-hrtimers/1.tar
-d7c16c313ddd9e3fe43d89495b96a216b295d78f  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-16/5.4-hrtimers/1.tar
-d705ccf6ad38723b0f9d6bbf1c8c00cbb6b9b4c6  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-2/5.4-hrtimers/1.tar
-b58622592d58a2c5aad394b34f05af76e3e4f91c  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-6/5.4-hrtimers/1.tar
-9e252935410420d6a6163332c37aaa013fff3683  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-4/5.4-hrtimers/1.tar
-fcaf8741bad01717a444b29851092ea2dc2ed7f6  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-8/5.4-hrtimers/1.tar
+f7464cd5f022ed5643cf8491d4e2d012a353b1f6  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-llvm-0/local/2.tar
+75effaa8668787e7e5dc930526acd00116a6443b  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-llvm-0/local/1.tar
+6eb3b23feef8c08d128472d9b341b560edb9e07b  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=deepspeech-0/local/2.tar
+8836411aedfd7c9cf693ea51657eb6ab8c0782dd  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=go-benchmark-1/local/2.tar
+0e9b4a1adbff6dee3c6d3c3328e7be499cfd67f0  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/160-schedlog/9.tar
+47b2af8377dd3edb4938b6129aba11b8c4810732  output/HOST=i80/BENCH=nas_mg.D/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/80-schedlog/9.tar
+43c0ebbb33f45d2d9204f9efb3c5451c59b7ffd8  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-6/schedlog/3.tar
