@@ -88,3 +88,9 @@ d80e426a5d45222e0ca37014577c489cf8893ed6  output/HOST=i80/BENCH=nas_mg.D/POWER=p
 3b77d0eaeb1125ed308878514517bcb1f7467d2b  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-5/schedlog/1.tar
 2857736d4d17ebd9c59d7904530f79a31dda2298  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-6/schedlog/3.tar
 d06bece3e06ad9bb25183ee8c66e87adac3d1930  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-0/local/10.tar
+f7464cd5f022ed5643cf8491d4e2d012a353b1f6  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-llvm-0/local/2.tar
+75effaa8668787e7e5dc930526acd00116a6443b  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-llvm-0/local/1.tar
+8836411aedfd7c9cf693ea51657eb6ab8c0782dd  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=go-benchmark-1/local/2.tar
+0e9b4a1adbff6dee3c6d3c3328e7be499cfd67f0  output/HOST=i80/BENCH=kbuild-all/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/160-schedlog/9.tar
+47b2af8377dd3edb4938b6129aba11b8c4810732  output/HOST=i80/BENCH=nas_mg.D/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/80-schedlog/9.tar
+43c0ebbb33f45d2d9204f9efb3c5451c59b7ffd8  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-6/schedlog/3.tar
