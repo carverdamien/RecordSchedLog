@@ -11,12 +11,12 @@ export PHORONIX PHORONIX_TEST_ARGUMENTS
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/phoronix
-PHORONIXES=(schbench schbench schbench schbench schbench schbench schbench)
-PARGUMENTS=(   '6-1'    '6-2'    '6-3'    '6-4'    '6-5'    '6-6'    '6-7')
+BENCH=bench/schbench
+# PARAMETER_MESSAGE_THREADS=(           32 32 32 32 32 32 32)
+# PARAMETER_WORKERS_PER_MESSAGE_THREAD=( 2  4  6  8 16 24 32)
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(5.4-hrtimers)
-LP_VALUES=(n)
+LP_VALUES=(n n)
 SLP=(y)
 GOV=(powersave)
 RPT=(1)
@@ -65,19 +65,26 @@ do
 	esac
 	for N in $(seq ${REPEAT})
 	do
-	    for K in ${!PHORONIXES[@]}
+	    # for K in ${!PARAMETER_MESSAGE_THREADS[@]}
+	    # do
+		# export MESSAGE_THREADS=${PARAMETER_MESSAGE_THREADS[$K]}
+		# export WORKERS_PER_MESSAGE_THREAD=${PARAMETER_WORKERS_PER_MESSAGE_THREAD[$K]}
+	    for MESSAGE_THREADS in 32 # 2 4 6 8 16 24
 	    do
-		PHORONIX=${PHORONIXES[$K]}
-		PHORONIX_TEST_ARGUMENTS=${PARGUMENTS[$K]}
-		OUTPUT="output/"
-		OUTPUT+="HOST=${HOSTNAME}/"
-		OUTPUT+="BENCH=$(basename ${BENCH})/"
-		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
-		OUTPUT+="LP=${LP_VALUE}/"
-		OUTPUT+="PHORONIX=${PHORONIX}-${PHORONIX_TEST_ARGUMENTS}/"
-		OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
-		run_bench
+		for WORKERS_PER_MESSAGE_THREAD in 2 4 6 8 16 24 32
+		do
+		    export MESSAGE_THREADS
+		    export WORKERS_PER_MESSAGE_THREAD
+		    OUTPUT="output/"
+		    OUTPUT+="HOST=${HOSTNAME}/"
+		    OUTPUT+="BENCH=$(basename ${BENCH})/"
+		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="LP=${LP_VALUE}/"
+		    OUTPUT+="${MESSAGE_THREADS}-${WORKERS_PER_MESSAGE_THREAD}/"
+		    OUTPUT+="${KERNEL_LOCALVERSION}/${N}"
+		    run_bench
+		done
 	    done
 	done
     done
