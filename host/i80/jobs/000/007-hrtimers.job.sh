@@ -15,12 +15,12 @@ BENCH=bench/phoronix
 PHORONIXES=(schbench schbench schbench schbench schbench schbench schbench)
 PARGUMENTS=(   '6-1'    '6-2'    '6-3'    '6-4'    '6-5'    '6-6'    '6-7')
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(schedlog 5.4-hrtimers)
-LP_VALUES=(n n)
+KERNEL_LOCALVERSIONS=(5.4-hrtimers)
+LP_VALUES=(n)
 SLP=(y)
 GOV=(powersave)
-RPT=(10)
-MON=(monitoring/cpu-energy-meter)
+RPT=(1)
+MON=(monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
