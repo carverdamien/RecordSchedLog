@@ -15,12 +15,12 @@ BENCH=bench/schbench
 # PARAMETER_MESSAGE_THREADS=(           32 32 32 32 32 32 32)
 # PARAMETER_WORKERS_PER_MESSAGE_THREAD=( 2  4  6  8 16 24 32)
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(schedlog 5.4-hrtimers)
+KERNEL_LOCALVERSIONS=(5.4-hrtimers)
 LP_VALUES=(n n)
-SLP=(y y)
-GOV=(powersave powersave)
-RPT=(10 1)
-MON=(monitoring/cpu-energy-meter monitoring/all)
+SLP=(y)
+GOV=(powersave)
+RPT=(1)
+MON=(monitoring/all)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
