@@ -87,3 +87,4 @@ d80e426a5d45222e0ca37014577c489cf8893ed6  output/HOST=i80/BENCH=nas_mg.D/POWER=p
 2d145092d9bd0ba336c9472dc839ce567c88ef3f  output/HOST=i80/BENCH=nas_mg.D/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/80-5.4-fdp/15.tar
 3b77d0eaeb1125ed308878514517bcb1f7467d2b  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-5/schedlog/1.tar
 2857736d4d17ebd9c59d7904530f79a31dda2298  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=scimark2-6/schedlog/3.tar
+d06bece3e06ad9bb25183ee8c66e87adac3d1930  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-0/local/10.tar
