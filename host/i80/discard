@@ -1,3 +1,10 @@
 1a7f586b5f7b5f686db0e20ebb9ed9a18fa0dcd7  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-0/local/5.tar
 0031b4fb590d4bfaab25b52a3eef62dc7f30c423  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=compress-7zip-0/local/3.tar
 27d338111d75055412ddf144c6a1abcc26c3dffb  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=git-0/local/3.tar
+19b32b07b9d228e14a77b12d97e26fdee41f41bb  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-0/5.4-fdp/15.tar
+0c1b2570ab10132c5d8504a93cc302fd3644011e  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=apache-siege-5/5.4-fdp/12.tar
+7256ad8f9b00239be10de36b0360a9759b69d643  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-linux-kernel-0/5.4-fdp/13.tar
+ac7afef77a1173356665c99bb335e7584b9d19fa  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=compress-7zip-0/5.4-fdp/13.tar
+a45913b6ef9744ebed8ba41b18852af196f0bc5c  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=go-benchmark-3/5.4-fdp/13.tar
+ca37f2221066a5f779c6e27564de26c52076b6e1  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=go-benchmark-3/5.4-fdp/11.tar
+49e866e8db75fb38b6d0bbd59477141ca3a82939  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=mkl-dnn-7-2/5.4-fdp/12.tar
