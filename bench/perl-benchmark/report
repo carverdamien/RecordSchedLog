@@ -1,0 +1,2 @@
+#!/bin/bash
+cat /tmp/perlbench-master/perlbench-results/*/perls/*/tests/* > ${OUTPUT}/report.cat
