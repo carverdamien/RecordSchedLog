@@ -1,7 +1,8 @@
 #!/bin/bash
-echo 'Nothing to bench'
-for i in $(seq $(nproc))
-do
-    (for j in $(seq 1000000); do :; done)&
-done
-wait
+set -e -u -x
+exec 1> ${OUTPUT}/run.out
+exec 2> ${OUTPUT}/run.err
+(
+    cd /tmp/perlbench-master
+    exec perl perlbench-runtests benchmarks/startup/noprog.b
+)

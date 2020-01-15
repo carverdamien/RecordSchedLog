@@ -1,1 +1,12 @@
 #!/bin/bash
+[ -f /tmp/perlbench.zip ] ||
+wget -O /tmp/perlbench.zip http://phoronix-test-suite.com/benchmark-files/perlbench-20160525.zip
+rm -rf /tmp/perlbench-master
+(
+    cd /tmp
+    unzip /tmp/perlbench.zip
+)
+(
+    cd /tmp/perlbench-master
+    rm -rf perlbench-results/*
+)

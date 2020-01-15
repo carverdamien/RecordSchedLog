@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 'Nothing to report'
+cat /tmp/perlbench-master/perlbench-results/*/perls/*/tests/* > ${OUTPUT}/report.cat
