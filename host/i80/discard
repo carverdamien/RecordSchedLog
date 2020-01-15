@@ -1,7 +1,3 @@
-f2ad722f801a51a84255d47f2e84823baf562b5c  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-24/5.4-hrtimers/1.tar
-7fa867f18c5748b7a54326c548310789d52cb174  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-32/5.4-hrtimers/1.tar
-d7c16c313ddd9e3fe43d89495b96a216b295d78f  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-16/5.4-hrtimers/1.tar
-d705ccf6ad38723b0f9d6bbf1c8c00cbb6b9b4c6  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-2/5.4-hrtimers/1.tar
-b58622592d58a2c5aad394b34f05af76e3e4f91c  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-6/5.4-hrtimers/1.tar
-9e252935410420d6a6163332c37aaa013fff3683  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-4/5.4-hrtimers/1.tar
-fcaf8741bad01717a444b29851092ea2dc2ed7f6  output/HOST=i80/BENCH=schbench/POWER=powersave-y/MONITORING=all/LP=n/32-8/5.4-hrtimers/1.tar
+febf57c49affaf273bf4d0fb926c5a12042228ef  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=build-linux-kernel-0/local/6.tar
+127b65c515d3f6fded6d889e2aa3703a2ec2c9a8  output/HOST=i80/BENCH=phoronix/POWER=schedutil-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=perl-benchmark-2/schedlog/1.tar
+0c65e4198b781de20aef8b5c50b5dd1f67dc43ea  output/HOST=i80/BENCH=phoronix/POWER=powersave-y/MONITORING=cpu-energy-meter/LP=n/PHORONIX=phpbench-0/local/6.tar
