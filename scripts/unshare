@@ -17,4 +17,9 @@ fi
 mkdir ./rootproc
 mount --bind /proc ./rootproc
 
-exec unshare -mpf --mount-proc -- "${prog}" "${@}"
+if [ ${DO_NOT_UNSHARE:-y} == y ]
+then
+    exec "${prog}" "${@}"
+else
+    exec unshare -mpf --mount-proc -- "${prog}" "${@}"
+fi
