@@ -1,2 +1,15 @@
 #!/bin/bash
-echo 'No monitoring'
+perf_sched_start() {
+    sysctl -w kernel.sched_schedstats=1
+    perf sched record -o ${OUTPUT}/perf_sched.out -m 1G -a -- sleep inf &
+    echo $! | tee ${OUTPUT}/perf_sched.pid
+}
+perf_sched_stop() {
+    kill $(cat ${OUTPUT}/perf_sched.pid)
+    wait $(cat ${OUTPUT}/perf_sched.pid) || true
+}
+case ${MONITORING_SCHEDULED} in
+        n) perf_sched_start ;;
+        y) (sleep ${MONITORING_START_DELAY}; perf_sched_start; sleep ${MONITORING_STOP_DELAY}; perf_sched_stop) & ;;
+        *) exit 1 ;;
+esac
