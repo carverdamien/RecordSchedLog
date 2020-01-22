@@ -8,6 +8,7 @@ export MONITORING_SCHEDULED
 export TASKS
 export SYSCTL=''
 
+export DO_NOT_UNSHARE=y
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
@@ -51,9 +52,10 @@ do
 		sleep inf
 		exit 1
 	esac
+	BENCH=bench/hackbench
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in  400 # 10000 # 8000 6000 4000 2000 1000 40
+	    for TASKS in  400 10000 # 8000 6000 4000 2000 1000 40
 	    do
 		OUTPUT="output/"
 		OUTPUT+="HOST=${HOSTNAME}/"
@@ -62,6 +64,23 @@ do
 		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		run_bench
+	    done
+	done
+	BENCH=bench/kbuild
+	for N in $(seq ${REPEAT})
+	do
+	    for TARGET in kernel/sched/ # all
+	    do
+		for TASKS in 320
+		do
+		    OUTPUT="output/"
+		    OUTPUT+="HOST=${HOSTNAME}/"
+		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
+		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
+		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
+		    run_bench
+		done
 	    done
 	done
     done
