@@ -179,4 +179,4 @@
 [submodule "host/i80/kernel/schedlog_bigsize/src"]
 	path = host/i80/kernel/schedlog_bigevtsize/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
-	branch = schlog_bigevtsize
+	branch = schedlog_bigevtsize
