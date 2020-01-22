@@ -83,8 +83,11 @@ def main():
     df = df.drop(['HOST', 'BENCH', 'POWER', 'fname'],axis=1)
     print(df)
     order = None
-    x = "Tasks Monitoring"
-    df[x] = df["TASKS"]  + " " + df["MONITORING"]
+    # x = "Tasks Monitoring"
+    # df[x] = df["TASKS"]  + " " + df["MONITORING"]
+    # order = sorted(np.unique(df[x]))
+    x = "Tasks Kernel"
+    df[x] = df["TASKS"]  + " " + df["KERNEL"]
     order = sorted(np.unique(df[x]))
     print(order)
     normalized = False
@@ -98,12 +101,15 @@ def main():
             df.loc[sel,[y]] = (df[sel][y] - m) / m
     else:
         y = "Hackbench Time"
-        df[y] = df["perf"]   
-    hue = "Kernel"
-    df[hue] = df["KERNEL"]
+        df[y] = df["perf"]
+        # y = "usr_bin_time"
+        # df[y] = df["usr_bin_time"]
+    # hue = "Kernel"
+    # df[hue] = df["KERNEL"]
+    hue = "Monitoring"
+    df[hue] = df["MONITORING"]
     figsize = (6.4*2, 4.8)
     plt.figure(figsize=figsize)
-    # sns.swarmplot(data=df, y=y, x=x, hue=hue, order=order)
     sns.barplot(data=df, y=y, x=x, hue=hue, order=order)
     plt.savefig('perf_sched_record.barplot.pdf')
     plt.figure(figsize=figsize)
