@@ -32,13 +32,16 @@ def tar_path_2_data(tar_path):
             if os.path.basename(tarinfo.name) == 'time.err':
                 with tar.extractfile(tarinfo.name) as f:
                     f = f.read().decode()
-                    # print(f'f={f}')
-                    data.update(TIME_ERR.match(f).groupdict())
+                    data.update({'usr_bin_time':float(list(filter(lambda x : len(x)>0, f.split('\n')))[-1])})
+                    # data.update(TIME_ERR.match(f).groupdict())
             if os.path.basename(tarinfo.name) == 'run.out':
                 with tar.extractfile(tarinfo.name) as f:
                     f = f.read().decode()
                     # print(f'f={f}')
-                    data.update(RUN_OUT.match(f).groupdict())
+                    try:
+                        data.update(RUN_OUT.match(f).groupdict())
+                    except Exception as e:
+                        print(e)
 	    # if os.path.basename(tarinfo.name) == 'sched_log_traced_events.start':
 	    #     with tar.extractfile(tarinfo.name) as f:
 	    #         last = f.read().decode().split('\n')[-2]
@@ -58,9 +61,17 @@ def tar_path_2_data(tar_path):
     return data
 
 def main():
+    tar_list = []
     # ./HOST=i80/BENCH=hackbench/POWER=powersave-y/MONITORING={nop,perf_sched_record,SchedLog}/400-{5.4-linux,schedlog}/{1..10}.tar
     walk_path = './output/HOST=i80/BENCH=hackbench/POWER=powersave-y/'
-    tar_list = [
+    tar_list += [
+        os.path.join(dirpath, filename)
+        for dirpath, dirnames, filenames in os.walk(walk_path)
+        for filename in filenames
+        if os.path.splitext(filename)[1] == '.tar'
+    ]
+    walk_path = './output/HOST=i80/BENCH=kbuild-sched/POWER=powersave-y/'
+    tar_list += [
         os.path.join(dirpath, filename)
         for dirpath, dirnames, filenames in os.walk(walk_path)
         for filename in filenames
@@ -70,45 +81,53 @@ def main():
     data = [tar_path_2_data(tar_path) for tar_path in tar_list]
     # print(data)
     df = pd.DataFrame(data)
-    for f in ['perf','usr_bin_time']:
+    print(df)
+    for f in filter(lambda x: x in df.columns, ['perf','usr_bin_time']):
         df[f] = df[f].astype(float)
     keep = np.ones(len(df), dtype=bool)
     keep &= df['HOST'] == 'i80'
-    keep &= df['BENCH'] == 'hackbench'
+    keep &= (df['BENCH'] == 'hackbench') | (df['BENCH'] == 'kbuild-sched')
     keep &= df['POWER'] == 'powersave-y'
     keep &= (df['MONITORING'] == 'nop') | (df['MONITORING'] == 'SchedLog') | (df['MONITORING'] == 'perf_sched_record')
     # keep &= df['TASKS'] == '400'
     keep &= (df['KERNEL'] == '5.4-linux') | (df['KERNEL'] == 'schedlog')
     df = df[keep]
-    df = df.drop(['HOST', 'BENCH', 'POWER', 'fname'],axis=1)
+    df = df.drop(['HOST', 'POWER', 'fname'],axis=1)
     print(df)
     order = None
     # x = "Tasks Monitoring"
     # df[x] = df["TASKS"]  + " " + df["MONITORING"]
     # order = sorted(np.unique(df[x]))
-    x = "Tasks Kernel"
-    df[x] = df["TASKS"]  + " " + df["KERNEL"]
+    x = "Tasks Kernel Bench"
+    df[x] = df["BENCH"] + " " + df["TASKS"] + " " + df["KERNEL"]
     order = sorted(np.unique(df[x]))
     print(order)
-    normalized = False
+    # normalized = False
+    normalized = True
     if normalized:
-        y = "Hackbench Time (normalized mean(Tasks))"
-        df[y] = df["perf"]
+        # y = "Hackbench Time (normalized mean(Tasks))"
+        # df[y] = df["perf"]
+        y = "usr_bin_time (%)"
+        df[y] = df["usr_bin_time"]
         # NORMALIZE
-        for t in np.unique(df['TASKS']):
-            sel = df['TASKS'] == t
-            m = np.mean(df[sel][y])
-            df.loc[sel,[y]] = (df[sel][y] - m) / m
+        selm = df['MONITORING'] == 'nop'
+        for b in np.unique(df['BENCH']):
+            selb = df['BENCH'] == b
+            for t in np.unique(df[selb]['TASKS']):
+                sel = selb & (df['TASKS'] == t)
+                # m = np.mean(df[sel][y])
+                m = np.mean(df[selm & sel][y])
+                df.loc[sel,[y]] = (m - df[sel][y]) / m
     else:
-        y = "Hackbench Time"
-        df[y] = df["perf"]
-        # y = "usr_bin_time"
-        # df[y] = df["usr_bin_time"]
+        # y = "Hackbench Time"
+        # df[y] = df["perf"]
+        y = "usr_bin_time"
+        df[y] = df["usr_bin_time"]
     # hue = "Kernel"
     # df[hue] = df["KERNEL"]
     hue = "Monitoring"
     df[hue] = df["MONITORING"]
-    figsize = (6.4*2, 4.8)
+    figsize = (6.4*3, 4.8)
     plt.figure(figsize=figsize)
     sns.barplot(data=df, y=y, x=x, hue=hue, order=order)
     plt.savefig('perf_sched_record.barplot.pdf')
