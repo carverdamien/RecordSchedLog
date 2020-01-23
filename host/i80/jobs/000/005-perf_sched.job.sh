@@ -28,6 +28,9 @@ MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
 KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
 MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
 
+KERNEL_LOCALVERSIONS+=(5.4-linux-eventsize-trimmed 5.4-linux-eventsize-trimmed)
+MON+=(monitoring/nop monitoring/perf_sched_record)
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
