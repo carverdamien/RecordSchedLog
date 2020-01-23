@@ -180,3 +180,7 @@
 	path = host/i80/kernel/schedlog_bigevtsize/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = schedlog_bigevtsize
+[submodule "host/i80/kernel/5.4-linux-eventsize-trimmed/src"]
+	path = host/i80/kernel/5.4-linux-eventsize-trimmed/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-linux-eventsize-trimmed
