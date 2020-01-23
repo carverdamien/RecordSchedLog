@@ -8,8 +8,8 @@ export MONITORING_SCHEDULED
 export TASKS
 export SYSCTL=''
 
-export PERF_RECORD_OPT='-m 1G -a'
 export DO_NOT_UNSHARE=y
+export PERF_RECORD_OPT=''
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
@@ -19,17 +19,16 @@ SLP=(y)
 GOV=(powersave)
 RPT=(10)
 
-KERNEL_LOCALVERSIONS=(5.4-linux 5.4-linux)
-MON=(monitoring/nop monitoring/perf_sched_record)
+# KERNEL_LOCALVERSIONS=(5.4-linux 5.4-linux)
+# MON=(monitoring/nop monitoring/perf_sched_record)
 
-KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog)
+# KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog)
+KERNEL_LOCALVERSIONS+=(lp lp lp)
+SYSCTL="kernel.sched_local_placement=0"
 MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
 
-KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
-MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
-
-KERNEL_LOCALVERSIONS+=(5.4-linux-eventsize-trimmed 5.4-linux-eventsize-trimmed)
-MON+=(monitoring/nop monitoring/perf_sched_record)
+# KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
+# MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -62,7 +61,7 @@ do
 	BENCH=bench/hackbench
 	for N in $(seq ${REPEAT})
 	do
-	    for TASKS in  10000 # 8000 6000 4000 2000 1000 40
+	    for TASKS in 1000
 	    do
 		OUTPUT="output/"
 		OUTPUT+="HOST=${HOSTNAME}/"
@@ -78,7 +77,7 @@ do
 	do
 	    for TARGET in kernel/sched/ # all
 	    do
-		for TASKS in 320
+		for TASKS in 16
 		do
 		    OUTPUT="output/"
 		    OUTPUT+="HOST=${HOSTNAME}/"
