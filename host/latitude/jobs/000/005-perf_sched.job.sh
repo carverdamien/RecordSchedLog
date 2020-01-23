@@ -24,7 +24,7 @@ RPT=(10)
 
 # KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog)
 KERNEL_LOCALVERSIONS+=(lp lp lp)
-SYSCTL="kernel.sched_delayed_placement=0"
+SYSCTL="kernel.sched_local_placement=0"
 MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
 
 # KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
