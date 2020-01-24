@@ -19,17 +19,20 @@ SLP=(y)
 GOV=(powersave)
 RPT=(10)
 
-KERNEL_LOCALVERSIONS=(5.4-linux 5.4-linux)
-MON=(monitoring/nop monitoring/perf_sched_record)
+KERNEL_LOCALVERSIONS=(5.4-linux 5.4-linux 5.4-linux)
+MON=(monitoring/nop monitoring/perf_sched_record monitoring/trace_sched)
 
-KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog)
-MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
+KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog schedlog)
+MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog monitoring/trace_sched)
 
-KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
-MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
+KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
+MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog monitoring/trace_sched)
 
-KERNEL_LOCALVERSIONS+=(5.4-linux-eventsize-trimmed 5.4-linux-eventsize-trimmed)
-MON+=(monitoring/nop monitoring/perf_sched_record)
+KERNEL_LOCALVERSIONS+=(5.4-linux-eventsize-trimmed 5.4-linux-eventsize-trimmed 5.4-linux-eventsize-trimmed)
+MON+=(monitoring/nop monitoring/perf_sched_record monitoring/trace_sched)
+
+KERNEL_LOCALVERSIONS+=(5.4-linux-eventallocfails 5.4-linux-eventallocfails 5.4-linux-eventallocfails)
+MON+=(monitoring/perf_sched_record monitoring/nop monitoring/trace_sched)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
