@@ -4,10 +4,10 @@ rm -rf "${OUTPUT}"
 source ${BENCH}/cleanup
 source scripts/prepare
 source ${BENCH}/prepare
-source ${MONITORING}/start
+source ${MONITORING}/start > >(tee ${OUTPUT}/monitoring.start.out) 2> >(tee ${OUTPUT}/monitoring.start.err)
 (source scripts/time ${BENCH}/run > ${OUTPUT}/time.out 2> ${OUTPUT}/time.err) &
 wait $!
-source ${MONITORING}/stop
+source ${MONITORING}/stop > >(tee ${OUTPUT}/monitoring.stop.out) 2> >(tee ${OUTPUT}/monitoring.stop.err)
 source ${BENCH}/report
 source ${MONITORING}/report
 source scripts/report
