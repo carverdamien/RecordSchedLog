@@ -4,6 +4,7 @@ trace_sched_start() {
     echo 0 > /sys/kernel/debug/tracing/tracing_on
     echo nop > /sys/kernel/debug/tracing/current_tracer
     echo 0 > /sys/kernel/debug/tracing/events/enable
+    echo 1 > /sys/kernel/debug/tracing/free_buffer || true
     echo $((2**20)) > /sys/kernel/debug/tracing/buffer_size_kb
     echo 1 > /sys/kernel/debug/tracing/events/sched/enable
     cat /sys/kernel/debug/tracing/set_event
@@ -21,6 +22,7 @@ trace_sched_stop() {
     done
     tar -C ${OUTPUT} -czf trace.tgz trace
     rm -rf ${OUTPUT}/trace
+    echo 1 > /sys/kernel/debug/tracing/free_buffer || true
 }
 case ${MONITORING_SCHEDULED} in
         n) trace_sched_start ;;
