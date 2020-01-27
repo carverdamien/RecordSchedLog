@@ -20,7 +20,7 @@ trace_sched_stop() {
 	touch "${OUTPUT}/trace/${cpuname}"
 	dd iflag=nonblock if="${cf}/trace_pipe_raw" of="${OUTPUT}/trace/${cpuname}" || true
     done
-    tar -C ${OUTPUT} -czf trace.tgz trace
+    tar -C ${OUTPUT} -czf "${OUTPUT}/trace.tgz" trace
     rm -rf ${OUTPUT}/trace
     echo 1 > /sys/kernel/debug/tracing/free_buffer || true
 }
