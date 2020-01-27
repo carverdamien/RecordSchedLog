@@ -20,8 +20,14 @@ SLP=(y)
 GOV=(powersave)
 RPT=(10)
 
-KERNEL_LOCALVERSIONS=(5.4-linux 5.4-linux 5.4-linux)
-MON=(monitoring/nop monitoring/perf_sched_record monitoring/trace_sched)
+KERNEL_LOCALVERSIONS+=()
+MON+=()
+
+KERNEL_LOCALVERSIONS+=(5.4-linux-ringbuffersize-512 5.4-linux-ringbuffersize-512 5.4-linux-ringbuffersize-512)
+MON+=(monitoring/trace_sched monitoring/nop monitoring/perf_sched_record)
+
+KERNEL_LOCALVERSIONS+=(5.4-linux 5.4-linux 5.4-linux)
+MON+=(monitoring/nop monitoring/perf_sched_record monitoring/trace_sched)
 
 KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog schedlog)
 MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog monitoring/trace_sched)
@@ -34,9 +40,6 @@ MON+=(monitoring/nop monitoring/perf_sched_record monitoring/trace_sched)
 
 KERNEL_LOCALVERSIONS+=(5.4-linux-eventallocfails 5.4-linux-eventallocfails 5.4-linux-eventallocfails)
 MON+=(monitoring/perf_sched_record monitoring/nop monitoring/trace_sched)
-
-KERNEL_LOCALVERSIONS+=(5.4-linux-ringbuffersize-512 5.4-linux-ringbuffersize-512 5.4-linux-ringbuffersize-512)
-MON+=(monitoring/trace_sched monitoring/nop monitoring/perf_sched_record)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
