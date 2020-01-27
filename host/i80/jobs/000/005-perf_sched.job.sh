@@ -8,7 +8,7 @@ export MONITORING_SCHEDULED
 export TASKS
 export SYSCTL=''
 
-export TRACING_BUFFER_SIZE_KB=4
+export TRACING_BUFFER_SIZE_KB
 export PERF_RECORD_OPT='-m 1G -a'
 export DO_NOT_UNSHARE=y
 NO_TURBO=0
@@ -36,6 +36,8 @@ KERNEL_LOCALVERSIONS+=(5.4-linux-eventallocfails 5.4-linux-eventallocfails 5.4-l
 MON+=(monitoring/perf_sched_record monitoring/nop monitoring/trace_sched)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
+do
+for TRACING_BUFFER_SIZE_KB in 4 512
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
     MONITORING=${MON[$J]}
@@ -110,4 +112,5 @@ do
 	    done
 	done
     done
+done
 done
