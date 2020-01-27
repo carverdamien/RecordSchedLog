@@ -43,7 +43,7 @@ MON+=(monitoring/perf_sched_record monitoring/nop monitoring/trace_sched)
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
-for TRACING_BUFFER_SIZE_KB in 4 512
+for TRACING_BUFFER_SIZE_KB in 512 4
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
     MONITORING=${MON[$J]}
