@@ -103,7 +103,7 @@ do
 		    OUTPUT+="HOST=${HOSTNAME}/"
 		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
 		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="MONITORING=${MONITORING_FNAME}/"
 		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		    run_bench
 		done
