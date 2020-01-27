@@ -49,6 +49,7 @@ do
 		    MONITORING_FNAME="$(basename ${MONITORING})-${TRACING_BUFFER_SIZE_KB}"
 		    ;;
 	    esac
+	    ;;
 	*)
 	    MONITORING_FNAME="$(basename ${MONITORING})"
 	    ;;
