@@ -61,16 +61,6 @@ def tar_path_2_data(tar_path):
     return data
 
 def main():
-    tar_list = []
-    # ./HOST=i80/BENCH=hackbench/POWER=powersave-y/MONITORING={nop,perf_sched_record,SchedLog}/400-{5.4-linux,schedlog}/{1..10}.tar
-    walk_path = './output/HOST=i80/BENCH=hackbench/POWER=powersave-y/'
-    tar_list += [
-        os.path.join(dirpath, filename)
-        for dirpath, dirnames, filenames in os.walk(walk_path)
-        for filename in filenames
-        if os.path.splitext(filename)[1] == '.tar'
-    ]
-    walk_path = './output/HOST=i80/BENCH=kbuild-sched/POWER=powersave-y/'
     tar_list = [
         os.path.join(dirpath, filename)
         for walk_path in [
@@ -94,7 +84,7 @@ def main():
     # keep &= df['HOST'] == 'i80'
     keep &= (df['BENCH'] == 'hackbench') | (df['BENCH'] == 'kbuild-sched')
     keep &= df['POWER'] == 'powersave-y'
-    keep &= (df['MONITORING'] == 'nop') | (df['MONITORING'] == 'SchedLog') | (df['MONITORING'] == 'perf_sched_record') | (df['MONITORING'] == 'trace_sched')
+    keep &= (df['MONITORING'] == 'nop') | (df['MONITORING'] == 'SchedLog') | (df['MONITORING'] == 'perf_sched_record') | (df['MONITORING'] == 'trace_sched') | (df['MONITORING'] == 'trace_sched-4')
     keep &= df['TASKS'] != '400'
     keep &= (df['KERNEL'] == '5.4-linux') | (df['KERNEL'] == '5.4-linux-eventsize-trimmed') | (df['KERNEL'] == '5.4-linux-eventallocfails') | (df['KERNEL'] == 'schedlog') | (df['KERNEL'] == 'schedlog_bigevtsize') | ((df['HOST'] == 'latitude') & (df['KERNEL'] == 'lp'))
     df = df[keep]
@@ -102,44 +92,35 @@ def main():
     selkb = df['BENCH'] == 'kbuild-sched'
     df.loc[selkb,['perf']] = df[selkb]['usr_bin_time']
     print(df)
-    order = None
-    # x = "Tasks Monitoring"
-    # df[x] = df["TASKS"]  + " " + df["MONITORING"]
-    # order = sorted(np.unique(df[x]))
     x = "Bench Tasks Kernel Host"
     df[x] = df["BENCH"] + " " + df["TASKS"] + " " + df["KERNEL"] + " " + df["HOST"]
-    order = sorted(np.unique(df[x]))
-    print(order)
-    # normalized = False
-    normalized = True
-    if normalized:
-        # y = "perf (%)"
-        # df[y] = df["perf"]
-        y = "usr_bin_time (%)"
+    for normalize in ['usr_bin_time', 'perf']:
+        y = f"{normalize} (%)"
         df[y] = df["usr_bin_time"]
-        # NORMALIZE
+        # NORMALIZE with nop
         selm = df['MONITORING'] == 'nop'
-        for b in np.unique(df['BENCH']):
-            selb = df['BENCH'] == b
-            for t in np.unique(df[selb]['TASKS']):
-                sel = selb & (df['TASKS'] == t)
-                # m = np.mean(df[sel][y])
-                m = np.mean(df[selm & sel][y])
-                df.loc[sel,[y]] = (m - df[sel][y]) / m
-    else:
-        # y = "perf"
-        y = "usr_bin_time"
-        df[y] = df["usr_bin_time"]
-    # hue = "Kernel"
-    # df[hue] = df["KERNEL"]
+        for _x_ in np.unique(df[x]):
+            sel = df[x] == _x_
+            # Mean of Monitoring == nop
+            m = np.mean(df[selm & sel][y])
+            df.loc[sel,[y]] = (m - df[sel][y]) / m
+    y = ['usr_bin_time', 'usr_bin_time (%)', 'perf', 'perf (%)'][1]
     hue = "Monitoring"
     df[hue] = df["MONITORING"]
-    figsize = (6.4*(len(order)), 4.8)
-    plt.figure(figsize=figsize)
-    sns.barplot(data=df, y=y, x=x, hue=hue, order=order)
-    plt.savefig('perf_sched_record.barplot.pdf')
-    plt.figure(figsize=figsize)
-    sns.swarmplot(data=df, y=y, x=x, hue=hue, order=order)
-    plt.savefig('perf_sched_record.swarmplot.pdf')
+    hue_order = sorted(np.unique(df[hue]))
+    hue_order = ['nop'] + list(filter(lambda x : x not in ['nop','SchedLog'], hue_order)) + ['SchedLog']
+    #
+    for b in np.unique(df['BENCH']):
+        sel = df['BENCH'] == b
+        data = df[sel]
+        order = sorted(np.unique(data[x]))
+        for y in ['usr_bin_time', 'usr_bin_time (%)']:
+            figsize = (6.4*(len(order)), 4.8)
+            plt.figure(figsize=figsize)
+            sns.barplot(data=data, y=y, x=x, hue=hue, order=order, hue_order=hue_order)
+            plt.savefig(f'plot/monitoring/{b}.{y}.barplot.pdf')
+            plt.figure(figsize=figsize)
+            sns.swarmplot(data=data, y=y, x=x, hue=hue, order=order, hue_order=hue_order)
+            plt.savefig(f'plot/monitoring/{b}.{y}.swamplot.pdf')
 if __name__ == '__main__':
 	main()
