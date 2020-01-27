@@ -8,6 +8,7 @@ export MONITORING_SCHEDULED
 export TASKS
 export SYSCTL=''
 
+export TRACING_BUFFER_SIZE_KB=4
 export DO_NOT_UNSHARE=y
 export PERF_RECORD_OPT=''
 NO_TURBO=0
@@ -23,9 +24,9 @@ RPT=(10)
 # MON=(monitoring/nop monitoring/perf_sched_record)
 
 # KERNEL_LOCALVERSIONS+=(schedlog schedlog schedlog)
-KERNEL_LOCALVERSIONS+=(lp lp lp)
+KERNEL_LOCALVERSIONS+=(lp lp lp lp)
 SYSCTL="kernel.sched_local_placement=0"
-MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
+MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog monitoring/trace_sched)
 
 # KERNEL_LOCALVERSIONS+=(schedlog_bigevtsize schedlog_bigevtsize schedlog_bigevtsize)
 # MON+=(monitoring/nop monitoring/perf_sched_record monitoring/SchedLog)
@@ -34,6 +35,21 @@ for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
     MONITORING=${MON[$J]}
+    case ${MONITORING} in
+	monitoring/trace_sched)
+	    case ${TRACING_BUFFER_SIZE_KB} in
+		1048576)
+		    MONITORING_FNAME="$(basename ${MONITORING})"
+		    ;;
+		*)
+		    MONITORING_FNAME="$(basename ${MONITORING})-${TRACING_BUFFER_SIZE_KB}"
+		    ;;
+	    esac
+	    ;;
+	*)
+	    MONITORING_FNAME="$(basename ${MONITORING})"
+	    ;;
+    esac
     for I in ${!SLP[@]}
     do
 	SLEEP_STATE=${SLP[$I]}
@@ -67,7 +83,7 @@ do
 		OUTPUT+="HOST=${HOSTNAME}/"
 		OUTPUT+="BENCH=$(basename ${BENCH})/"
 		OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		OUTPUT+="MONITORING=${MONITORING_FNAME}/"
 		OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		run_bench
 	    done
@@ -83,7 +99,7 @@ do
 		    OUTPUT+="HOST=${HOSTNAME}/"
 		    OUTPUT+="BENCH=$(basename ${BENCH})-$(basename ${TARGET})/"
 		    OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
-		    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
+		    OUTPUT+="MONITORING=${MONITORING_FNAME}/"
 		    OUTPUT+="${TASKS}-${KERNEL_LOCALVERSION}/${N}"
 		    run_bench
 		done
