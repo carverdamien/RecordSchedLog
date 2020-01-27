@@ -94,9 +94,9 @@ def main():
     # keep &= df['HOST'] == 'i80'
     keep &= (df['BENCH'] == 'hackbench') | (df['BENCH'] == 'kbuild-sched')
     keep &= df['POWER'] == 'powersave-y'
-    keep &= (df['MONITORING'] == 'nop') | (df['MONITORING'] == 'SchedLog') | (df['MONITORING'] == 'perf_sched_record')
+    keep &= (df['MONITORING'] == 'nop') | (df['MONITORING'] == 'SchedLog') | (df['MONITORING'] == 'perf_sched_record') | (df['MONITORING'] == 'trace_sched')
     keep &= df['TASKS'] != '400'
-    keep &= (df['KERNEL'] == '5.4-linux') | (df['KERNEL'] == '5.4-linux-eventsize-trimmed') | (df['KERNEL'] == 'schedlog') | (df['KERNEL'] == 'schedlog_bigevtsize') | ((df['HOST'] == 'latitude') & (df['KERNEL'] == 'lp'))
+    keep &= (df['KERNEL'] == '5.4-linux') | (df['KERNEL'] == '5.4-linux-eventsize-trimmed') | (df['KERNEL'] == '5.4-linux-eventallocfails') | (df['KERNEL'] == 'schedlog') | (df['KERNEL'] == 'schedlog_bigevtsize') | ((df['HOST'] == 'latitude') & (df['KERNEL'] == 'lp'))
     df = df[keep]
     df = df.drop(['POWER', 'fname'],axis=1)
     selkb = df['BENCH'] == 'kbuild-sched'
@@ -127,8 +127,7 @@ def main():
                 m = np.mean(df[selm & sel][y])
                 df.loc[sel,[y]] = (m - df[sel][y]) / m
     else:
-        # y = "Hackbench Time"
-        # df[y] = df["perf"]
+        # y = "perf"
         y = "usr_bin_time"
         df[y] = df["usr_bin_time"]
     # hue = "Kernel"
