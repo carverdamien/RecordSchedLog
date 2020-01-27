@@ -5,7 +5,7 @@ trace_sched_start() {
     echo nop > /sys/kernel/debug/tracing/current_tracer
     echo 0 > /sys/kernel/debug/tracing/events/enable
     echo 1 > /sys/kernel/debug/tracing/free_buffer || true
-    echo $((2**20)) > /sys/kernel/debug/tracing/buffer_size_kb
+    echo ${TRACING_BUFFER_SIZE_KB:=$((2**20))} > /sys/kernel/debug/tracing/buffer_size_kb
     echo 1 > /sys/kernel/debug/tracing/events/sched/enable
     cat /sys/kernel/debug/tracing/set_event
     echo 1 > /sys/kernel/debug/tracing/tracing_on
