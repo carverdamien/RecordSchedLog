@@ -20,8 +20,11 @@ SLP=(y)
 GOV=(powersave)
 RPT=(10)
 
-KERNEL_LOCALVERSIONS+=()
-MON+=()
+KERNEL_LOCALVERSIONS=()
+MON=()
+
+KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced 5.4-schedlog-ftraced)
+MON+=(monitoring/trace_sched monitoring/nop monitoring/perf_sched_record)
 
 KERNEL_LOCALVERSIONS+=(5.4-linux-ringbuffersize-512 5.4-linux-ringbuffersize-512 5.4-linux-ringbuffersize-512)
 MON+=(monitoring/trace_sched monitoring/nop monitoring/perf_sched_record)
