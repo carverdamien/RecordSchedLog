@@ -20,6 +20,12 @@ trace_sched_stop() {
 	touch "${OUTPUT}/trace/${cpuname}"
 	dd iflag=nonblock if="${cf}/trace_pipe_raw" of="${OUTPUT}/trace/${cpuname}" || true
     done
+    for format in $(cd /sys/kernel/debug/tracing/; find events/sched -name format)
+    do
+	mkdir -p $(dirname ${OUTPUT}/trace/$format)
+	cat /sys/kernel/debug/tracing/$format > ${OUTPUT}/trace/$format
+    done
+    cat "/sys/kernel/debug/tracing/events/header_page" > "${OUTPUT}/trace/events/header_page"
     tar -C ${OUTPUT} -czf "${OUTPUT}/trace.tgz" trace
     rm -rf ${OUTPUT}/trace
     echo 1 > /sys/kernel/debug/tracing/free_buffer || true
