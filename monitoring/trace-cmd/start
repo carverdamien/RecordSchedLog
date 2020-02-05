@@ -13,7 +13,7 @@ trace_cmd_stop() {
     # do not kill trace-cmd.pid
     kill $(cat ${OUTPUT}/trace-cmd.sleep.pid)
     wait $(cat ${OUTPUT}/trace-cmd.pid) || true
-    tar czf "${OUTPUT}/trace.dat.tgz" trace.dat
+    tar czf "${OUTPUT}/trace.dat.tgz" ${OUTPUT}/trace.dat
     rm -f ${OUTPUT}/trace.dat
 }
 case ${MONITORING_SCHEDULED} in
