@@ -18,7 +18,7 @@ BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
 SLP=(y)
 GOV=(powersave)
-RPT=(10)
+RPT=(1)
 
 KERNEL_LOCALVERSIONS=()
 MON=()
