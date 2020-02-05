@@ -1,34 +1,20 @@
 #!/bin/bash
 
 trace_cmd_start() {
-    echo 0 > /sys/kernel/debug/tracing/tracing_on
-    echo nop > /sys/kernel/debug/tracing/current_tracer
-    echo 0 > /sys/kernel/debug/tracing/events/enable
-    echo 1 > /sys/kernel/debug/tracing/free_buffer || true
-    echo ${TRACING_BUFFER_SIZE_KB:=$((2**20))} > /sys/kernel/debug/tracing/buffer_size_kb
-    echo 1 > /sys/kernel/debug/tracing/events/sched/enable
-    cat /sys/kernel/debug/tracing/set_event
-    echo 1 > /sys/kernel/debug/tracing/tracing_on
+    trace-cmd record -o ${OUTPUT}/trace.dat -e sched -b $((2**20)) -- bash -c "echo \$\$ | tee ${OUTPUT}/trace-cmd.sleep.pid; exec sleep inf" &
+    echo $! | tee ${OUTPUT}/trace-cmd.pid
+    until [ -f ${OUTPUT}/trace-cmd.sleep.pid ]
+    do
+	echo 'Waiting for trace-cmd'
+	sleep 1
+    done
 }
 trace_cmd_stop() {
-    echo 0 > /sys/kernel/debug/tracing/tracing_on
-    echo 0 > /sys/kernel/debug/tracing/events/enable
-    mkdir ${OUTPUT}/trace
-    for cf in /sys/kernel/debug/tracing/per_cpu/cpu*
-    do
-	cpuname="${cf##*/}"
-	touch "${OUTPUT}/trace/${cpuname}"
-	dd iflag=nonblock if="${cf}/trace_pipe_raw" of="${OUTPUT}/trace/${cpuname}" || true
-    done
-    for format in $(cd /sys/kernel/debug/tracing/; find events/sched -name format)
-    do
-	mkdir -p $(dirname ${OUTPUT}/trace/$format)
-	cat /sys/kernel/debug/tracing/$format > ${OUTPUT}/trace/$format
-    done
-    cat "/sys/kernel/debug/tracing/events/header_page" > "${OUTPUT}/trace/events/header_page"
-    tar -C ${OUTPUT} -czf "${OUTPUT}/trace.tgz" trace
-    rm -rf ${OUTPUT}/trace
-    echo 1 > /sys/kernel/debug/tracing/free_buffer || true
+    # do not kill trace-cmd.pid
+    kill $(cat ${OUTPUT}/trace-cmd.sleep.pid)
+    wait $(cat ${OUTPUT}/trace-cmd.pid) || true
+    tar czf "${OUTPUT}/trace.dat.tgz" trace.dat
+    rm -f ${OUTPUT}/trace.dat
 }
 case ${MONITORING_SCHEDULED} in
         n) trace_cmd_start ;;
