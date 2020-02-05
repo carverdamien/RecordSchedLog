@@ -1,6 +1,6 @@
 #!/bin/bash
 case ${MONITORING_SCHEDULED} in
-        n) trace_sched_stop ;;
+        n) trace_cmd_stop ;;
         y) ;;
         *) exit 1 ;;
 esac

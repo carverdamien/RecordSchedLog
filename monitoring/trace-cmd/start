@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trace_sched_start() {
+trace_cmd_start() {
     echo 0 > /sys/kernel/debug/tracing/tracing_on
     echo nop > /sys/kernel/debug/tracing/current_tracer
     echo 0 > /sys/kernel/debug/tracing/events/enable
@@ -10,7 +10,7 @@ trace_sched_start() {
     cat /sys/kernel/debug/tracing/set_event
     echo 1 > /sys/kernel/debug/tracing/tracing_on
 }
-trace_sched_stop() {
+trace_cmd_stop() {
     echo 0 > /sys/kernel/debug/tracing/tracing_on
     echo 0 > /sys/kernel/debug/tracing/events/enable
     mkdir ${OUTPUT}/trace
@@ -31,7 +31,7 @@ trace_sched_stop() {
     echo 1 > /sys/kernel/debug/tracing/free_buffer || true
 }
 case ${MONITORING_SCHEDULED} in
-        n) trace_sched_start ;;
-        y) (sleep ${MONITORING_START_DELAY}; trace_sched_start; sleep ${MONITORING_STOP_DELAY}; trace_sched_stop) & ;;
+        n) trace_cmd_start ;;
+        y) (sleep ${MONITORING_START_DELAY}; trace_cmd_start; sleep ${MONITORING_STOP_DELAY}; trace_cmd_stop) & ;;
         *) exit 1 ;;
 esac
