@@ -23,6 +23,9 @@ RPT=(10)
 KERNEL_LOCALVERSIONS=()
 MON=()
 
+KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced)
+MON+=(monitoring/trace-cmd monitoring/nop)
+
 KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced 5.4-schedlog-ftraced)
 MON+=(monitoring/trace_sched monitoring/nop monitoring/perf_sched_record)
 
