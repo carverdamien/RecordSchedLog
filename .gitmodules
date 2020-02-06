@@ -200,3 +200,7 @@
 	path = host/ryzen/kernel/5.4-schedlog-ftraced/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-schedlog-ftraced/master
+[submodule "host/ryzen/kernel/5.4-local/src"]
+	path = host/ryzen/kernel/5.4-local/src
+	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
+	branch = 5.4-schedlog-ftraced/patch/local
