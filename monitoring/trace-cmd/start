@@ -1,7 +1,7 @@
 #!/bin/bash
 
 trace_cmd_start() {
-    trace-cmd record -o ${OUTPUT}/trace.dat -e sched -b $((2**20)) -- bash -c "echo \$\$ | tee ${OUTPUT}/trace-cmd.sleep.pid; exec sleep inf" &
+    trace-cmd record -o ${OUTPUT}/trace.dat ${TRACECMD_RECORD_OPT} -- bash -c "echo \$\$ | tee ${OUTPUT}/trace-cmd.sleep.pid; exec sleep inf" &
     echo $! | tee ${OUTPUT}/trace-cmd.pid
     until [ -f ${OUTPUT}/trace-cmd.sleep.pid ]
     do

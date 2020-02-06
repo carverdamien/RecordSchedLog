@@ -10,6 +10,7 @@ export SYSCTL=''
 
 export TRACING_BUFFER_SIZE_KB
 export PERF_RECORD_OPT='-m 1G -a'
+export TRACECMD_RECORD_OPT="-e sched -b $((2**20))"
 export DO_NOT_UNSHARE=y
 NO_TURBO=0
 TIMEOUT=3600
