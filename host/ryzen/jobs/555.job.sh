@@ -26,6 +26,12 @@ MON=()
 KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced)
 MON+=(monitoring/trace-cmd monitoring/nop)
 
+KERNEL_LOCALVERSIONS+=(5.4-local 5.4-local)
+MON+=(monitoring/trace-cmd monitoring/nop)
+
+KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move)
+MON+=(monitoring/trace-cmd monitoring/nop)
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
