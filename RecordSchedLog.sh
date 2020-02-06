@@ -26,7 +26,20 @@ function run_bench {
 	env -i bash -c "source /tmp/RecordSchedLog.env;
 	    ./scripts/kbuild.sh host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION};
 	    host/${HOSTNAME}/ktools/reboot  host/${HOSTNAME}/kernel/${KERNEL_LOCALVERSION} host/${HOSTNAME}/cmdline/${CMDLINE};"
-	echo ${NO_TURBO} | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null
+	case ${NO_TURBO} in
+	    0)
+		TURBO=1
+		;;
+	    1)
+		TURBO=0
+		;;
+	    *)
+		echo 'NO_TURBO must be 0|1'
+		exit 1
+		;;
+	esac
+	echo ${NO_TURBO} | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null ||
+	    echo ${TURBO} | sudo tee /sys/devices/system/cpu/cpufreq/boost
 	echo ${SCALING_GOVERNOR} | sudo tee /sys/devices/system/cpu/cpufreq/policy*/scaling_governor > /dev/null
 	case ${SYSCTL} in
 	    '')
