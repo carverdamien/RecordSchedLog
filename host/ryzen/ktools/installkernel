@@ -1,0 +1,13 @@
+#!/bin/bash
+set -x -e -u
+version=$1
+image=$2
+sysmap=$3
+boot=$4
+
+cp -avn $image $boot/vmlinuz-$version
+cp -avn .config $boot/config-$version
+cp -avn $sysmap $boot/System.map-$version
+
+mkinitcpio -k $version -c /etc/mkinitcpio.conf -g $boot/initrd.img-$version
+grub-mkconfig -o $boot/grub/grub.cfg
