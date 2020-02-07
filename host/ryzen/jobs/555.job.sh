@@ -6,6 +6,7 @@ export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
 export TASKS
+export TARGET
 export SYSCTL=''
 
 export TRACECMD_RECORD_OPT='-b 128 -e sched'
