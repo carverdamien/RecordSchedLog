@@ -33,9 +33,19 @@ MON+=(monitoring/trace-cmd monitoring/nop)
 KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move)
 MON+=(monitoring/trace-cmd monitoring/nop)
 
+base_khz=1400000
+
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
+    SYSCTL=''
+    case ${KERNEL_LOCALVERSION} in
+	5.4-move)
+	    SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
+	    ;;
+	*)
+	    ;;
+    esac
     MONITORING=${MON[$J]}
     MONITORING_FNAME="$(basename ${MONITORING})"
     for I in ${!GOV[@]}
