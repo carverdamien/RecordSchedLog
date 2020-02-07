@@ -33,7 +33,7 @@ MON+=(monitoring/trace-cmd monitoring/nop)
 KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move)
 MON+=(monitoring/trace-cmd monitoring/nop)
 
-base_khz=1400000
+sched_lowfreq=2000000
 
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
@@ -41,7 +41,7 @@ do
     SYSCTL=''
     case ${KERNEL_LOCALVERSION} in
 	5.4-move)
-	    SYSCTL+=" kernel.sched_lowfreq=${base_khz}"
+	    SYSCTL+=" kernel.sched_lowfreq=${sched_lowfreq}"
 	    ;;
 	*)
 	    ;;
