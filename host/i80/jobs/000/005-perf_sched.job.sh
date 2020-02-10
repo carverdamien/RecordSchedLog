@@ -6,6 +6,7 @@ export BENCH
 export MONITORING
 export MONITORING_SCHEDULED
 export TASKS
+export TARGET
 export SYSCTL=''
 
 export TRACING_BUFFER_SIZE_KB
