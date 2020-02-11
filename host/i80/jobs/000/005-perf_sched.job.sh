@@ -25,6 +25,9 @@ RPT=(1)
 KERNEL_LOCALVERSIONS=()
 MON=()
 
+KERNEL_LOCALVERSIONS+=(5.4-linux)
+MON+=(monitoring/schedviz)
+
 KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced)
 MON+=(monitoring/trace-cmd monitoring/nop)
 
