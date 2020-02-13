@@ -208,3 +208,7 @@
 	path = host/ryzen/kernel/5.4-move/src
 	url = git@gitlab.inria.fr:ipanema/frequency-kernel.git
 	branch = 5.4-schedlog-ftraced/patch/move
+[submodule "host/ryzen/kernel/linux-5.4-ipanema/src"]
+	path = host/ryzen/kernel/linux-5.4-ipanema/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = linux-5.4-ipanema
