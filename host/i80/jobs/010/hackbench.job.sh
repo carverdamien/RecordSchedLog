@@ -13,12 +13,12 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/hackbench
 MONITORING_SCHEDULED=n
-KERNEL_LOCALVERSIONS=(5.4-fdp schedlog local)
-LP_VALUES=(n n n)
-SLP=(y y)
-GOV=(powersave schedutil)
-RPT=(10 10)
-MON=(monitoring/cpu-energy-meter monitoring/cpu-energy-meter)
+KERNEL_LOCALVERSIONS=(ipanema)
+LP_VALUES=(n)
+SLP=(y)
+GOV=(performance)
+RPT=(11)
+MON=(monitoring/cpu-energy-meter)
 for J in ${!KERNEL_LOCALVERSIONS[@]}
 do
     KERNEL_LOCALVERSION=${KERNEL_LOCALVERSIONS[$J]}
