@@ -93,6 +93,10 @@ do
 	    OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 	    OUTPUT+="PHORONIX=${PHORONIX}-${PHORONIX_TEST_ARGUMENTS}/"
 	    OUTPUT+="KERNEL=${KERNEL_LOCALVERSION}/"
+	    for sysctl in ${SYSCTL}
+	    do
+		OUTPUT+="${sysctl}/"
+	    done
 	    OUTPUT+="${N}"
 	    run_bench
 	done

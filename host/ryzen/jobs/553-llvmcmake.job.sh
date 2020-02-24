@@ -58,6 +58,10 @@ do
 	OUTPUT+="GOVERNOR=${SCALING_GOVERNOR}/"
 	OUTPUT+="MONITORING=$(basename ${MONITORING})/"
 	OUTPUT+="KERNEL=${KERNEL_LOCALVERSION}/"
+	for sysctl in ${SYSCTL}
+	do
+	    OUTPUT+="${sysctl}/"
+	done
 	OUTPUT+="${N}"
 	run_bench
     done
