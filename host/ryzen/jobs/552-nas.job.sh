@@ -55,7 +55,7 @@ do
     MONITORING=${MON[$I]}
     for N in $(seq ${REPEAT})
     do
-	for J in ${BENCH_NAMES[@]}
+	for J in ${!BENCH_NAMES[@]}
 	do
 	    for TASKS in 4 8 16
 	    do
