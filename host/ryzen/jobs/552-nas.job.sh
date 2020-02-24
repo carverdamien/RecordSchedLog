@@ -8,6 +8,7 @@ export MONITORING_SCHEDULED
 export TASKS
 export TARGET
 export SYSCTL=''
+export BENCH_NAME BENCH_CLASS
 
 export TRACECMD_RECORD_OPT='-b 128 -e sched'
 export DO_NOT_UNSHARE=n
