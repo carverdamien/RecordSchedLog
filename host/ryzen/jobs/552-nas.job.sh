@@ -23,6 +23,7 @@ MONITORING_SCHEDULED=n
 CMDLINE=default
 SCALING_GOVERNOR=schedutil
 
+MAX_RPT=10
 KERNEL_LOCALVERSIONS=()
 EXTRA_SYSCTL=()
 MON=()
@@ -31,12 +32,12 @@ RPT=()
 KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced)
 EXTRA_SYSCTL+=('' '')
 MON+=(monitoring/nop monitoring/trace-cmd)
-RPT+=(10 1)
+RPT+=(${MAX_RPT} 1)
 
 KERNEL_LOCALVERSIONS+=(5.4-local 5.4-local)
 EXTRA_SYSCTL+=('' '')
 MON+=(monitoring/nop monitoring/trace-cmd)
-RPT+=(10 1)
+RPT+=(${MAX_RPT} 1)
 
 KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move)
 EXTRA_SYSCTL+=(
@@ -44,7 +45,7 @@ EXTRA_SYSCTL+=(
 'kernel.sched_lowfreq=2000000'
 )
 MON+=(monitoring/nop monitoring/trace-cmd)
-RPT+=(10 1)
+RPT+=(${MAX_RPT} 1)
 
 for I in ${!KERNEL_LOCALVERSIONS[@]}
 do
