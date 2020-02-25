@@ -16,8 +16,8 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
-BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
+BENCH_NAMES=(   bt cg ep ft    lu sp ua )  # ua sp dc # is # mg
+BENCH_CLASSES=( B  C  C  C     B  B  B  )  # C  A  A  # D  #  D
 MONITORING_SCHEDULED=n
 
 CMDLINE=default
