@@ -50,7 +50,7 @@ PARGUMENTS+=(    0             0          0   0       0              1          
 CMDLINE=default
 SCALING_GOVERNOR=schedutil
 
-MAX_RPT=1
+: ${MAX_RPT:=1}
 KERNEL_LOCALVERSIONS=()
 EXTRA_SYSCTL=()
 MON=()
