@@ -70,9 +70,13 @@ function main {
 		sudo rm -f "$file_path"
 	    fi
 	done < host/${HOSTNAME}/discard
-	find host/${HOSTNAME}/jobs -name '*.job.sh' | sort | while read job
+	export MAX_RPT
+	for MAX_RPT in $(seq 10)
 	do
-	    (source "${job}")
+	    find host/${HOSTNAME}/jobs -name '*.job.sh' | sort | while read job
+	    do
+		(source "${job}")
+	    done
 	done
     ) 9>/tmp/RecordSchedLog.lock
 }
