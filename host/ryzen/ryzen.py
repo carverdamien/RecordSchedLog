@@ -55,6 +55,7 @@ def main():
     pd.options.display.width = 9999
     df = pd.DataFrame(data)
     # print(df)
+    df = df[df['monitoring'] == 'nop']
     # df['path'] = df['path']
     df['energy'] = float('Nan')
     df['power'] = 'schedutil-y'
