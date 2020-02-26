@@ -34,13 +34,51 @@ def main():
             except Exception as e:
                 print(e)
                 pass
+    def handler_turbostat_out(data, fname, fio):
+        if os.path.basename(fname) == 'turbostat.out':
+            HEADER = """^(?P<key>[^:]+): *(?P<value>.*)$"""
+            HEADER = re.compile(HEADER)
+            lines = iter(fio.read().decode().split('\n'))
+            version = next(lines)
+            # print(version)
+            n = next(lines)
+            d = HEADER.match(n)
+            while d:
+                # print(d.groupdict())
+                n = next(lines)
+                d = HEADER.match(n)
+            TIME_IN_SEC = """^(?P<time_in_sec>[^ ]+) sec$"""
+            TIME_IN_SEC = re.compile(TIME_IN_SEC)
+            time_in_sec = float(TIME_IN_SEC.match(n).groupdict()['time_in_sec'])
+            # print(time_in_sec)
+            n = next(lines)
+            # print(n)
+            COLUMNS = """\S+"""
+            COLUMNS = re.compile(COLUMNS)
+            columns = COLUMNS.findall(n)
+            # print(columns)
+            n = next(lines)
+            total = COLUMNS.findall(n)
+            # print(total)
+            row = []
+            n = next(lines)
+            d = COLUMNS.findall(n)
+            while d:
+                # print(d)
+                row.append(d)
+                n = next(lines)
+                d = COLUMNS.findall(n)
+            # print(row)
+            for i in range(len(columns)):
+                col = columns[i]
+                val = total[i]
+                if val == '-':
+                    continue
+                data[col] = float(val)
+            data['energy'] = (data['CorWatt'] + data['PkgWatt']) * time_in_sec
     def handler(data, fname, fio):
-        handler_time_err(data, fname, fio)
-        handler_phoronix_json(data, fname, fio)
-        # kernel: Linux, Smove or Slocal
-        # bench: phoronix, kbuild, llvmcmake, nas
-        # 
-        # perf
+        for handler in [handler_turbostat_out, handler_phoronix_json, handler_time_err]:
+            handler(data, fname, fio)
         pass
     data = [
         tar_extract(tar_path, handler=handler,
@@ -55,9 +93,9 @@ def main():
     pd.options.display.width = 9999
     df = pd.DataFrame(data)
     # print(df)
-    df = df[df['monitoring'] == 'nop']
+    df = df[df['monitoring'] == 'turbostat']
     # df['path'] = df['path']
-    df['energy'] = float('Nan')
+    # df['energy'] = float('Nan')
     df['power'] = 'schedutil-y'
     sel_phoronix = ~df['phoronix'].isnull()
     df['bench'][sel_phoronix] = df['phoronix'][sel_phoronix]
