@@ -31,12 +31,12 @@ RPT=()
 
 KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced)
 EXTRA_SYSCTL+=('' '')
-MON+=(monitoring/nop monitoring/trace-cmd)
+MON+=(monitoring/turbostat monitoring/trace-cmd)
 RPT+=(${MAX_RPT} 1)
 
 KERNEL_LOCALVERSIONS+=(5.4-local 5.4-local)
 EXTRA_SYSCTL+=('' '')
-MON+=(monitoring/nop monitoring/trace-cmd)
+MON+=(monitoring/turbostat monitoring/trace-cmd)
 RPT+=(${MAX_RPT} 1)
 
 KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move)
@@ -44,7 +44,7 @@ EXTRA_SYSCTL+=(
 'kernel.sched_lowfreq=2000000'
 'kernel.sched_lowfreq=2000000'
 )
-MON+=(monitoring/nop monitoring/trace-cmd)
+MON+=(monitoring/turbostat monitoring/trace-cmd)
 RPT+=(${MAX_RPT} 1)
 
 for I in ${!KERNEL_LOCALVERSIONS[@]}
