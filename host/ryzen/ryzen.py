@@ -30,7 +30,7 @@ def main():
     def handler_phoronix_json(data, fname, fio):
         if os.path.basename(fname) == 'phoronix.json':
             try:
-                data['phoronix_value'] = json.loads(fio.read())['results'][0]['results']['schedrecord']['value']
+                data['phoronix_value'] = float(json.loads(fio.read())['results'][0]['results']['schedrecord']['value'])
             except Exception as e:
                 print(e)
                 pass
@@ -60,6 +60,9 @@ def main():
     df['power'] = 'schedutil-y'
     sel_phoronix = ~df['phoronix'].isnull()
     df['bench'][sel_phoronix] = df['phoronix'][sel_phoronix]
+    sel_tasks = ~df['tasks'].isnull()
+    sel = (~sel_phoronix)&sel_tasks
+    df['bench'][sel] = df['bench'][sel] + '-' + df['tasks'][sel]
     df['sched'] = df['kernel']
     df['perf'] = df['usr_bin_time']
     df['perf'][~sel_phoronix] = df['usr_bin_time'][~sel_phoronix]
@@ -70,7 +73,7 @@ def main():
     df.drop(columns=drop_columns, inplace=True)
     df.dropna(subset=mandatory_columns, inplace=True)
     print(df)
-    df.to_pickle('df.pkl.gz')
+    df.to_pickle('ryzen.pkl.gz', protocol=3)
     pass
 
 def find(walk_path, path_match='.*'):
