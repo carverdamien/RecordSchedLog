@@ -5,7 +5,8 @@
 
 if ! [ -f ${tar} ]
 then
-    wget --quiet https://www.nas.nasa.gov/assets/npb/NPB3.4.tar.gz -O ${tar}
+    wget --quiet https://www.nas.nasa.gov/assets/npb/NPB3.4.tar.gz -O ${tar}.tmp
+    mv ${tar}.tmp ${tar}
 fi
 
 if ! [ -d ${bench_dir} ]
