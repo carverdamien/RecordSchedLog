@@ -1,0 +1,95 @@
+#!/usr/bin/env python3.7
+
+def main():
+    walk_path = '/home/damien/git/carverdamien/trace-cmd/TraceDisplay/examples/trace'
+    # walk_path = '/home/damien/git/carverdamien/trace-cmd/TraceDisplay/examples/trace/HOST=ryzen/BENCH=kbuild-all'
+    path_match = '^.*tar$'
+    import os, re, json
+    KBUILD = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>kbuild[^/]+)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/TASKS=(?P<tasks>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
+    KBUILD = re.compile(KBUILD)
+    HACKBENCH = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>hackbench)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/TASKS=(?P<tasks>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
+    HACKBENCH = re.compile(HACKBENCH)
+    PHORONIX = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>phoronix)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/PHORONIX=(?P<phoronix>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
+    PHORONIX = re.compile(PHORONIX)
+    NAS = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>nas[^/]+)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/TASKS=(?P<tasks>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
+    NAS = re.compile(NAS)
+    LLVMCMAKE = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>llvmcmake)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
+    LLVMCMAKE = re.compile(LLVMCMAKE)
+    def data(tar_path):
+        data = {'path':tar_path}
+        for match in [KBUILD, HACKBENCH, PHORONIX, NAS, LLVMCMAKE]:
+            try:
+                data.update(match.match(tar_path).groupdict())
+                return data
+            except AttributeError as e:
+                pass
+        return data
+    def handler_time_err(data, fname, fio):
+        if os.path.basename(fname) == 'time.err':
+            data['usr_bin_time'] = float(fio.read().decode().split('\n')[-2])
+    def handler_phoronix_json(data, fname, fio):
+        if os.path.basename(fname) == 'phoronix.json':
+            try:
+                data['phoronix_value'] = json.loads(fio.read())['results'][0]['results']['schedrecord']['value']
+            except Exception as e:
+                print(e)
+                pass
+    def handler(data, fname, fio):
+        handler_time_err(data, fname, fio)
+        handler_phoronix_json(data, fname, fio)
+        # kernel: Linux, Smove or Slocal
+        # bench: phoronix, kbuild, llvmcmake, nas
+        # 
+        # perf
+        pass
+    data = [
+        tar_extract(tar_path, handler=handler,
+                    data=data(tar_path))
+        for tar_path in find(walk_path, path_match)
+    ]
+    import pandas as pd
+    # import numpy as np
+    pd.options.display.max_rows = 999
+    pd.options.display.max_columns = 999
+    pd.options.display.max_colwidth = 999999
+    pd.options.display.width = 9999
+    df = pd.DataFrame(data)
+    # print(df)
+    # df['path'] = df['path']
+    df['energy'] = float('Nan')
+    df['power'] = 'schedutil-y'
+    sel_phoronix = ~df['phoronix'].isnull()
+    df['bench'][sel_phoronix] = df['phoronix'][sel_phoronix]
+    df['sched'] = df['kernel']
+    df['perf'] = df['usr_bin_time']
+    df['perf'][~sel_phoronix] = df['usr_bin_time'][~sel_phoronix]
+    df['perf'][sel_phoronix] = df['phoronix_value'][sel_phoronix]
+    mandatory_columns = ['bench', 'power', 'sched', 'id', 'perf', 'path']
+    keep_columns = mandatory_columns + ['energy']
+    drop_columns = list(filter(lambda x: x not in keep_columns, df.columns))
+    df.drop(columns=drop_columns, inplace=True)
+    df.dropna(subset=mandatory_columns, inplace=True)
+    print(df)
+    df.to_pickle('df.pkl.gz')
+    pass
+
+def find(walk_path, path_match='.*'):
+    import os, re
+    match = re.compile(path_match)
+    for dirpath, dirnames, filenames in os.walk(walk_path):
+        for filename in filenames:
+            if match.match(filename):
+                yield os.path.join(dirpath, filename)
+
+def tar_extract(tar_path, handler=lambda data,fname,fio:None, data={}):
+    import tarfile
+    with tarfile.open(tar_path) as tar:
+        for tarinfo in tar.getmembers():
+            handler(data,
+                    tarinfo.name,
+                    tar.extractfile(tarinfo),
+            )
+    return data
+
+if __name__ == '__main__':
+    main()
