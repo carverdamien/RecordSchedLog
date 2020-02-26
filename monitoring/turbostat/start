@@ -1,2 +1,21 @@
 #!/bin/bash
-echo 'No monitoring'
+turbostat_start() {
+    turbostat -o ${OUTPUT}/turbostat.out bash -c "echo \$\$ | tee ${OUTPUT}/turbostat.sleep.pid; exec sleep inf" &
+    echo $! | tee ${OUTPUT}/turbostat.pid
+    until [ -f ${OUTPUT}/turbostat.sleep.pid ]
+    do
+	echo 'Waiting for turbostat'
+	sleep 1
+    done
+}
+
+turbostat_stop() {
+    kill $(cat ${OUTPUT}/turbostat.sleep.pid)
+    wait $(cat ${OUTPUT}/turbostat.pid) || true
+}
+
+case ${MONITORING_SCHEDULED} in
+    n) turbostat_start ;;
+    y) (sleep ${MONITORING_START_DELAY}; turbostat_start; sleep ${MONITORING_STOP_DELAY}; turbostat_stop) & ;;
+    *) exit 1 ;;
+esac
