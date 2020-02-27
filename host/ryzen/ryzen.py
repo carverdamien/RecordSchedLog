@@ -32,13 +32,15 @@ def main():
             try:
                 data['phoronix_value'] = float(json.loads(fio.read())['results'][0]['results']['schedrecord']['value'])
             except Exception as e:
-                print(e)
+                print(f'handler_phoronix_json: {e}')
                 pass
     def handler_turbostat_out(data, fname, fio):
         if os.path.basename(fname) == 'turbostat.out':
             HEADER = """^(?P<key>[^:]+): *(?P<value>.*)$"""
             HEADER = re.compile(HEADER)
-            lines = iter(fio.read().decode().split('\n'))
+            decode = fio.read().decode()
+            # print(decode)
+            lines = iter(decode.split('\n'))
             version = next(lines)
             # print(version)
             n = next(lines)
@@ -49,33 +51,33 @@ def main():
                 d = HEADER.match(n)
             TIME_IN_SEC = """^(?P<time_in_sec>[^ ]+) sec$"""
             TIME_IN_SEC = re.compile(TIME_IN_SEC)
-            time_in_sec = float(TIME_IN_SEC.match(n).groupdict()['time_in_sec'])
-            # print(time_in_sec)
-            n = next(lines)
-            # print(n)
+            time_in_sec = TIME_IN_SEC.match(n)
+            if time_in_sec:
+                time_in_sec = float(time_in_sec.groupdict()['time_in_sec'])
+                # print(time_in_sec)
+                n = next(lines)
+                # print(n)
             COLUMNS = """\S+"""
             COLUMNS = re.compile(COLUMNS)
             columns = COLUMNS.findall(n)
             # print(columns)
             n = next(lines)
-            total = COLUMNS.findall(n)
-            # print(total)
-            row = []
-            n = next(lines)
             d = COLUMNS.findall(n)
             while d:
                 # print(d)
-                row.append(d)
+                if len(columns) == len(d):
+                    row = {
+                        columns[i] : d[i]
+                        for i in range(len(columns))
+                    }
+                    if row['CPU'] == '-' and row['Core'] == '-':
+                        for k in filter(lambda k:k in ['Cor_J','Pkg_J','RAM_J'], row):
+                            val = float(row[k])
+                            data[k] = data.get(k, 0) + val
+                            if k in ['Pkg_J', 'RAM_J']:
+                                data['energy'] = data.get('energy', 0) + val
                 n = next(lines)
                 d = COLUMNS.findall(n)
-            # print(row)
-            for i in range(len(columns)):
-                col = columns[i]
-                val = total[i]
-                if val == '-':
-                    continue
-                data[col] = float(val)
-            data['energy'] = (data['CorWatt'] + data['PkgWatt']) * time_in_sec
     def handler(data, fname, fio):
         for handler in [handler_turbostat_out, handler_phoronix_json, handler_time_err]:
             handler(data, fname, fio)
