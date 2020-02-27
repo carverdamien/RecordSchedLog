@@ -1,6 +1,6 @@
 #!/bin/bash
 turbostat_start() {
-    turbostat -o ${OUTPUT}/turbostat.out bash -c "echo \$\$ | tee ${OUTPUT}/turbostat.sleep.pid; exec sleep inf" &
+    turbostat -J -o ${OUTPUT}/turbostat.out bash -c "echo \$\$ | tee ${OUTPUT}/turbostat.sleep.pid; exec sleep inf" &
     echo $! | tee ${OUTPUT}/turbostat.pid
     until [ -f ${OUTPUT}/turbostat.sleep.pid ]
     do
