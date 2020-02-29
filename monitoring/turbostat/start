@@ -2,7 +2,7 @@
 turbostat_start() {
     rm -f /tmp/turbostat.fifo
     mkfifo /tmp/turbostat.fifo
-    turbostat -J -o ${OUTPUT}/turbostat.out < /tmp/turbostat.fifo &
+    turbostat -i ${TURBOSTAT_INTERVAL:-5} -J -o ${OUTPUT}/turbostat.out < /tmp/turbostat.fifo &
     echo $! | tee ${OUTPUT}/turbostat.pid
     # Starts turbostat
     echo > /tmp/turbostat.fifo
