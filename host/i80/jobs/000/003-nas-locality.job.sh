@@ -12,7 +12,7 @@ export MONITORING_STOP_DELAY
 export TASKS
 export SYSCTL=''
 
-PERF_STAT_OPT='-e mem_load_uops_l3_miss_retired.local_dram -e mem_load_uops_l3_miss_retired.remote_dram'
+export PERF_STAT_OPT='-e mem_load_uops_l3_miss_retired.local_dram -e mem_load_uops_l3_miss_retired.remote_dram'
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
