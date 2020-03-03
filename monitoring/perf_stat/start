@@ -1,2 +1,22 @@
 #!/bin/bash
-echo 'No monitoring'
+
+perf_stat_start() {
+    perf stat -o ${OUTPUT}/perf_stat.out ${PERF_STAT_OPT} -a -- bash -c "echo \$\$ | tee ${OUTPUT}/perf_stat.sleep.pid; exec sleep inf" &
+    echo $! | tee ${OUTPUT}/perf_stat.pid
+    until [ -f ${OUTPUT}/perf_stat.sleep.pid ]
+    do
+	echo 'Waiting for perf stat'
+	sleep 1
+    done
+}
+
+perf_stat_stop() {
+    kill $(cat ${OUTPUT}/perf_stat.sleep.pid)
+    wait $(cat ${OUTPUT}/perf_stat.pid)
+}
+
+case ${MONITORING_SCHEDULED} in
+    n) perf_stat_start ;;
+    y) (sleep ${MONITORING_START_DELAY}; perf_stat_start; sleep ${MONITORING_STOP_DELAY}; perf_stat_stop) & ;;
+    *) exit 1 ;;
+esac
