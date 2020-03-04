@@ -3,5 +3,7 @@
 . bench/nas/inc
 
 set -e -u
-OMP_NUM_THREADS=${TASKS} exec ${exe} > ${OUTPUT}/run.out 2> ${OUTPUT}/run.err
-
+exec > ${OUTPUT}/run.out
+exec 2> ${OUTPUT}/run.err
+cd ${bench_dir}
+OMP_NUM_THREADS=${TASKS} exec ${exe}
