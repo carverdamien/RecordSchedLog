@@ -12,13 +12,15 @@ export MONITORING_STOP_DELAY
 export TASKS
 export SYSCTL=''
 
+# TODO: add llc_hit counters
+# 'offcore_response.all_requests.llc_hit.any_response'?
 export PERF_STAT_OPT='-e mem_load_uops_l3_miss_retired.local_dram -e mem_load_uops_l3_miss_retired.remote_dram'
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(   bt cg ep ft    lu mg sp ua ) # ua sp dc # is
-BENCH_CLASSES=( B  C  C  C     B  D  B  B  )  # C  A  A  # D
+BENCH_NAMES=(   bt cg ep ft    lu mg sp ua is dc) # ua sp dc # is
+BENCH_CLASSES=( B  C  C  C     B  D  B  B  A  A)  # C  A  A  # D
 MONITORING_SCHEDULED=n
 KERNEL_LOCALVERSIONS=(ipanema)
 
