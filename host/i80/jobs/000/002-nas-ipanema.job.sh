@@ -26,9 +26,24 @@ KERNEL_LOCALVERSION=ipanema
 SLEEP_STATE=n
 SCALING_GOVERNOR=performance
 
-IPANEMA_MODULES=('' '')
-REPEATS=(1 10)
-MONITORINGS=(monitoring/trace-cmd monitoring/nop)
+IPANEMA_MODULES=()
+REPEATS=()
+MONITORINGS=()
+
+# trace-cmd first
+for ipa in '' cfs_wwc
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=(1)
+    MONITORINGS+=(monitoring/trace-cmd)
+done
+# nop last
+for ipa in '' cfs_wwc
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=(10)
+    MONITORINGS+=(monitoring/nop)
+done
 
 for J in ${!IPANEMA_MODULES[@]}
 do
