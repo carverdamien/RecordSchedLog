@@ -12,6 +12,7 @@ export MONITORING_STOP_DELAY
 export TASKS
 export SYSCTL=''
 
+export PERF_STAT_OPT='-e mem_load_uops_l3_miss_retired.local_dram -e mem_load_uops_l3_miss_retired.remote_dram'
 export TRACECMD_RECORD_OPT="-e sched -b $((2**20))"
 
 NO_TURBO=0
@@ -31,14 +32,21 @@ REPEATS=()
 MONITORINGS=()
 
 # trace-cmd first
-for ipa in '' cfs_wwc
+for ipa in '' cfs_wwc ule_wwc
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(1)
     MONITORINGS+=(monitoring/trace-cmd)
 done
+# perf_stat
+for ipa in '' cfs_wwc ule_wwc
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=(10)
+    MONITORINGS+=(monitoring/perf_stat)
+done
 # nop last
-for ipa in '' cfs_wwc
+for ipa in '' cfs_wwc ule_wwc
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(10)
