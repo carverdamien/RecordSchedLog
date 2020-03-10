@@ -46,14 +46,14 @@ do
     MONITORINGS+=(monitoring/SchedLog)
 done
 # perf_stat
-for ipa in '' cfs_wwc ule_wwc
+for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(10)
     MONITORINGS+=(monitoring/perf_stat)
 done
 # nop last
-for ipa in '' cfs_wwc ule_wwc
+for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(10)
