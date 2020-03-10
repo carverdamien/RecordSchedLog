@@ -39,21 +39,21 @@ do
     MONITORINGS+=(monitoring/trace-cmd)
 done
 # SchedLog first
-for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip
+for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(1)
     MONITORINGS+=(monitoring/SchedLog)
 done
 # perf_stat
-for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip
+for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(10)
     MONITORINGS+=(monitoring/perf_stat)
 done
 # nop last
-for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip
+for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(10)
