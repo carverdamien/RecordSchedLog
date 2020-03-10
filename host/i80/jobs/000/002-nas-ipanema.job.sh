@@ -39,7 +39,7 @@ do
     MONITORINGS+=(monitoring/trace-cmd)
 done
 # SchedLog first
-for ipa in '' cfs_wwc ule_wwc
+for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(1)
