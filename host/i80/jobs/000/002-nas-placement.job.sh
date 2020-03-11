@@ -53,19 +53,19 @@ do
     MONITORINGS+=(monitoring/SchedLog)
 done
 # perf_stat
-# for ipa in ''
-# do
-#     IPANEMA_MODULES+=("$ipa")
-#     REPEATS+=($MAX_RPT)
-#     MONITORINGS+=(monitoring/perf_stat)
-# done
+for ipa in ''
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=($MAX_RPT)
+    MONITORINGS+=(monitoring/perf_stat)
+done
 # nop last
-# for ipa in ''
-# do
-#     IPANEMA_MODULES+=("$ipa")
-#     REPEATS+=($MAX_RPT)
-#     MONITORINGS+=(monitoring/nop)
-# done
+for ipa in ''
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=($MAX_RPT)
+    MONITORINGS+=(monitoring/nop)
+done
 
 for J in ${!IPANEMA_MODULES[@]}
 do
