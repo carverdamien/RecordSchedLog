@@ -26,7 +26,7 @@ BENCH=bench/nas
 BENCH_NAMES=(cg)
 BENCH_CLASSES=(C)
 BENCH_TASKS=(160)
-BENCH_PLACEMENT=(host/${HOSTNAME}/omp_places/160places_on_node1)
+BENCH_PLACEMENT=(host/${HOSTNAME}/omp_places/160sequential)
 
 MONITORING_SCHEDULED=n
 
