@@ -23,10 +23,26 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
 
-BENCH_NAMES=(cg cg)
-BENCH_CLASSES=(C C)
-BENCH_TASKS=(160 160)
-BENCH_PLACEMENT=(host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random)
+BENCH_NAMES=(
+    bt bt
+    ua ua
+    cg cg
+)
+BENCH_CLASSES=(
+    B B
+    B B
+    C C
+)
+BENCH_TASKS=(
+    160 160
+    160 160
+    160 160
+)
+BENCH_PLACEMENT=(
+    host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random
+    host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random
+    host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random
+)
 
 MONITORING_SCHEDULED=n
 
