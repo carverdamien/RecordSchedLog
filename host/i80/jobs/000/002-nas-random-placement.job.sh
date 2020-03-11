@@ -23,26 +23,9 @@ TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
 
-BENCH_NAMES=(
-    bt bt
-    ua ua
-    cg cg
-)
-BENCH_CLASSES=(
-    B B
-    B B
-    C C
-)
-BENCH_TASKS=(
-    160 160
-    160 160
-    160 160
-)
-BENCH_PLACEMENT=(
-    host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random
-    host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random
-    host/${HOSTNAME}/omp_places/160sequential host/${HOSTNAME}/omp_places/160random
-)
+BENCH_NAMES=(bt ua cg)
+BENCH_CLASSES=(B B C)
+BENCH_TASKS=(160 160 160)
 
 MONITORING_SCHEDULED=n
 
@@ -62,27 +45,29 @@ MONITORINGS=()
 #     MONITORINGS+=(monitoring/trace-cmd)
 # done
 # SchedLog first
-for ipa in ''
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(1)
-    MONITORINGS+=(monitoring/SchedLog)
-done
+# for ipa in ''
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=(1)
+#     MONITORINGS+=(monitoring/SchedLog)
+# done
 # perf_stat
-for ipa in ''
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=($MAX_RPT)
-    MONITORINGS+=(monitoring/perf_stat)
-done
+# for ipa in ''
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=($MAX_RPT)
+#     MONITORINGS+=(monitoring/perf_stat)
+# done
 # nop last
 for ipa in ''
 do
     IPANEMA_MODULES+=("$ipa")
-    REPEATS+=($MAX_RPT)
+    REPEATS+=(1)
     MONITORINGS+=(monitoring/nop)
 done
 
+for BENCH_PLACEMENT in host/${HOSTNAME}/omp_places/160random.*
+do
 for J in ${!IPANEMA_MODULES[@]}
 do
     IPANEMA_MODULE=${IPANEMA_MODULES[$J]}
@@ -114,7 +99,7 @@ do
             BENCH_NAME=${BENCH_NAMES[$I]}
             BENCH_CLASS=${BENCH_CLASSES[$I]}
 	    TASKS=${BENCH_TASKS[$I]}
-	    OMP_PLACES=$(cat ${BENCH_PLACEMENT[$I]})
+	    OMP_PLACES=$(cat ${BENCH_PLACEMENT})
             OUTPUT="output/"
             OUTPUT+="HOST=${HOSTNAME}/"
             OUTPUT+="BENCH=$(basename ${BENCH})_${BENCH_NAME}.${BENCH_CLASS}/"
@@ -123,9 +108,10 @@ do
             OUTPUT+="TASKS=${TASKS}/"
 	    OUTPUT+="KERNEL=${KERNEL_LOCALVERSION}/"
 	    OUTPUT+="IPANEMA_MODULE=${IPANEMA_MODULE}/"
-	    OUTPUT+="OMP_PLACES=$(basename ${BENCH_PLACEMENT[$I]})/"
+	    OUTPUT+="OMP_PLACES=$(basename ${BENCH_PLACEMENT})/"
 	    OUTPUT+="${N}"
             run_bench
         done
     done
+done
 done
