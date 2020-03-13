@@ -31,29 +31,29 @@ IPANEMA_MODULES=()
 REPEATS=()
 MONITORINGS=()
 
-# trace-cmd first
-for ipa in '' cfs_wwc ule_wwc
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(1)
-    MONITORINGS+=(monitoring/trace-cmd)
-done
-# SchedLog first
-for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(1)
-    MONITORINGS+=(monitoring/SchedLog)
-done
-# perf_stat
-for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(10)
-    MONITORINGS+=(monitoring/perf_stat)
-done
+# # trace-cmd first
+# for ipa in '' cfs_wwc ule_wwc
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=(1)
+#     MONITORINGS+=(monitoring/trace-cmd)
+# done
+# # SchedLog first
+# for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=(1)
+#     MONITORINGS+=(monitoring/SchedLog)
+# done
+# # perf_stat
+# for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=(10)
+#     MONITORINGS+=(monitoring/perf_stat)
+# done
 # nop last
-for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
+for ipa in '' cfs_wwc ule_wwc ule cfs_wwc_flat # ule_wwc_rip ule_rip
 do
     IPANEMA_MODULES+=("$ipa")
     REPEATS+=(10)
