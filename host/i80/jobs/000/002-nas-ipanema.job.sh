@@ -53,11 +53,11 @@ MONITORINGS=()
 #     MONITORINGS+=(monitoring/perf_stat)
 # done
 # nop last
-for ipa in cfs_wwc #'' # cfs_wwc ule_wwc ule cfs_wwc_flat
+for ipa in ule_wwc_2 #'' # cfs_wwc ule_wwc ule cfs_wwc_flat
 	   # ule_wwc_rip ule_rip
 do
     IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(20)
+    REPEATS+=(10)
     MONITORINGS+=(monitoring/nop)
 done
 
