@@ -19,8 +19,10 @@ NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
 BENCH=bench/nas
-BENCH_NAMES=(   bt cg ep ft    lu mg sp ua is dc) # ua sp dc # is
-BENCH_CLASSES=( B  C  C  C     B  D  B  B  A  A)  # C  A  A  # D
+# BENCH_NAMES=(   bt cg ep ft    lu mg sp ua is dc) # ua sp dc # is
+# BENCH_CLASSES=( B  C  C  C     B  D  B  B  A  A)  # C  A  A  # D
+BENCH_NAMES=( ua)
+BENCH_CLASSES=(B)
 MONITORING_SCHEDULED=n
 
 KERNEL_LOCALVERSION=ipanema
