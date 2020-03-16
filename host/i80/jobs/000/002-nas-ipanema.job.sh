@@ -44,7 +44,7 @@ MONITORINGS=()
 for ipa in '' cfs_wwc cfs_wwc_flat ule_wwc ule
 do
     IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(1)
+    REPEATS+=(3)
     MONITORINGS+=(monitoring/SchedLog)
 done
 # # perf_stat
