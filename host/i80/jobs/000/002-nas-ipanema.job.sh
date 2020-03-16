@@ -38,13 +38,13 @@ MONITORINGS=()
 #     REPEATS+=(1)
 #     MONITORINGS+=(monitoring/trace-cmd)
 # done
-# # SchedLog first
-# for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
-# do
-#     IPANEMA_MODULES+=("$ipa")
-#     REPEATS+=(1)
-#     MONITORINGS+=(monitoring/SchedLog)
-# done
+# SchedLog first
+for ipa in '' cfs_wwc cfs_wwc_flat ule_wwc ule
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=(1)
+    MONITORINGS+=(monitoring/SchedLog)
+done
 # # perf_stat
 # for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
 # do
@@ -53,13 +53,13 @@ MONITORINGS=()
 #     MONITORINGS+=(monitoring/perf_stat)
 # done
 # nop last
-for ipa in ule_wwc_2 #'' # cfs_wwc ule_wwc ule cfs_wwc_flat
-	   # ule_wwc_rip ule_rip
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(10)
-    MONITORINGS+=(monitoring/nop)
-done
+# for ipa in ule_wwc_2 #'' # cfs_wwc ule_wwc ule cfs_wwc_flat
+# 	   # ule_wwc_rip ule_rip
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=(10)
+#     MONITORINGS+=(monitoring/nop)
+# done
 
 for J in ${!IPANEMA_MODULES[@]}
 do
