@@ -41,10 +41,10 @@ MONITORINGS=()
 #     MONITORINGS+=(monitoring/trace-cmd)
 # done
 # SchedLog first
-for ipa in '' cfs_wwc cfs_wwc_flat ule_wwc ule
+for ipa in cfs_wwc # '' cfs_wwc_flat ule_wwc ule
 do
     IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(3)
+    REPEATS+=(6)
     MONITORINGS+=(monitoring/SchedLog)
 done
 # # perf_stat
