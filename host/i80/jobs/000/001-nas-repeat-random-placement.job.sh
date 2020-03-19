@@ -66,7 +66,7 @@ do
     MONITORINGS+=(monitoring/nop)
 done
 
-for BENCH_PLACEMENT in host/${HOSTNAME}/omp_places/160random.1516
+for BENCH_PLACEMENT in host/${HOSTNAME}/omp_places/160random.{1516,2535,4528,6658,3318,5656}
 do
 for J in ${!IPANEMA_MODULES[@]}
 do
