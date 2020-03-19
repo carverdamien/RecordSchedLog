@@ -62,11 +62,11 @@ MONITORINGS=()
 for ipa in ''
 do
     IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(1)
+    REPEATS+=(10)
     MONITORINGS+=(monitoring/nop)
 done
 
-for BENCH_PLACEMENT in host/${HOSTNAME}/omp_places/160random.*
+for BENCH_PLACEMENT in host/${HOSTNAME}/omp_places/160random.1516
 do
 for J in ${!IPANEMA_MODULES[@]}
 do
