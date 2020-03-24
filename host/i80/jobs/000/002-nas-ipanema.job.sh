@@ -59,7 +59,7 @@ MONITORINGS=()
 for ipa in '' cfs_cwc_ipa cfs_cwc_flat_ipa ule_ipa ule_wwc_2 cfs_wwc ule_wwc ule cfs_wwc_flat ule_wwc_rip ule_rip
 do
     IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(10)
+    REPEATS+=($MAX_RPT)
     MONITORINGS+=(monitoring/nop)
 done
 
