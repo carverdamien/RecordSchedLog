@@ -55,7 +55,7 @@ for ipa in '' cfs_cwc_ipa cfs_cwc_flat_ipa ule_ipa # ule_wwc_2 #'' # cfs_wwc ule
 # 	   # ule_wwc_rip ule_rip
 do
      IPANEMA_MODULES+=("$ipa")
-     REPEATS+=(1)
+     REPEATS+=(10)
      MONITORINGS+=(monitoring/nop)
 done
 
@@ -85,7 +85,7 @@ do
     esac
     for N in $(seq ${REPEAT})
     do
-        for TASKS in 40 10000 # 8000 6000 4000 2000 1000
+        for TASKS in 10000 # 40 8000 6000 4000 2000 1000
         do
             OUTPUT="output/"
             OUTPUT+="HOST=${HOSTNAME}/"
