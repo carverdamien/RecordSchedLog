@@ -3,7 +3,7 @@
     rm -rf "${HOST_KERNEL}/compiler"
     git submodule init "${HOST_KERNEL}/compiler"
     git submodule update --recursive --remote "${HOST_KERNEL}/compiler"
-    make -C "${HOST_KERNEL}/compiler" policies
+    make -C "${HOST_KERNEL}/compiler" policies-prod
     export KERNEL=${PWD}/${HOST_KERNEL_SRC}
     export KERNELRELEASE=$(cat "${HOST_KERNEL_SRC}/include/config/kernel.release")
     (
