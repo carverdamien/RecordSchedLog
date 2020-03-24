@@ -212,3 +212,11 @@
 	path = host/ryzen/kernel/linux-5.4-ipanema/src
 	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
 	branch = linux-5.4-ipanema
+[submodule "host/i80/kernel/ipanema-eurosys2020/compiler"]
+	path = host/i80/kernel/ipanema-eurosys2020/compiler
+	url = git@gitlab.inria.fr:ipanema/compiler.git
+	branch = eurosys2020
+[submodule "host/i80/kernel/ipanema-eurosys2020/src"]
+	path = host/i80/kernel/ipanema-eurosys2020/src
+	url = git@gitlab.inria.fr:ipanema/ipanema-kernel.git
+	branch = linux-4.19-ipanema
