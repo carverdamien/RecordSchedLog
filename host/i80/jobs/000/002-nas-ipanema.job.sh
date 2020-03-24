@@ -25,7 +25,8 @@ BENCH_NAMES=( ua)
 BENCH_CLASSES=(B)
 MONITORING_SCHEDULED=n
 
-KERNEL_LOCALVERSION=ipanema
+# KERNEL_LOCALVERSION=ipanema
+KERNEL_LOCALVERSION=ipanema-eurosys2020
 SLEEP_STATE=n
 SCALING_GOVERNOR=performance
 
@@ -41,12 +42,12 @@ MONITORINGS=()
 #     MONITORINGS+=(monitoring/trace-cmd)
 # done
 # SchedLog first
-for ipa in cfs_wwc # '' cfs_wwc_flat ule_wwc ule
-do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=(6)
-    MONITORINGS+=(monitoring/SchedLog)
-done
+# for ipa in cfs_wwc # '' cfs_wwc_flat ule_wwc ule
+# do
+#     IPANEMA_MODULES+=("$ipa")
+#     REPEATS+=(6)
+#     MONITORINGS+=(monitoring/SchedLog)
+# done
 # # perf_stat
 # for ipa in '' cfs_wwc ule_wwc ule_wwc_rip ule_rip ule
 # do
@@ -55,13 +56,13 @@ done
 #     MONITORINGS+=(monitoring/perf_stat)
 # done
 # nop last
-# for ipa in ule_wwc_2 #'' # cfs_wwc ule_wwc ule cfs_wwc_flat
-# 	   # ule_wwc_rip ule_rip
-# do
-#     IPANEMA_MODULES+=("$ipa")
-#     REPEATS+=(10)
-#     MONITORINGS+=(monitoring/nop)
-# done
+for ipa in '' cfs_cwc_ipa cfs_cwc_flat_ipa ule_ipa # ule_wwc_2 #'' # cfs_wwc ule_wwc ule cfs_wwc_flat
+	   # ule_wwc_rip ule_rip
+do
+    IPANEMA_MODULES+=("$ipa")
+    REPEATS+=(10)
+    MONITORINGS+=(monitoring/nop)
+done
 
 for J in ${!IPANEMA_MODULES[@]}
 do
