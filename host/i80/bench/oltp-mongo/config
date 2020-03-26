@@ -2,41 +2,28 @@
 
 # Variables and oneliners ONLY
 
-LUAFILE=/usr/local/share/sysbench/oltp_read_write.lua
+LUAFILE=/mnt/data/mongo/sysbench-mongodb-lua/oltp-mongo.lua
 
 DATABASE_NAME=dbtest
 DATABASE_SIZE=1000000
 BENCHMARK_DURATION=120
 
-ENGINE_VERSION="8.0.15"
-ENGINE_DAEMON_USER=mysql
-ENGINE_DAEMON_GROUP=mysql
-ENGINE_DAEMON_NAME=mysqld
-ENGINE_DAEMON_BIN=/mnt/data/mysqld/mysqld-8.0.15/bin/mysqld
-ENGINE_BASE_DIR=/tmp/mysql/8.0.15
+ENGINE_VERSION="v4.1.8"
+ENGINE_DAEMON_USER=root
+ENGINE_DAEMON_GROUP=root
+ENGINE_DAEMON_NAME=mongod
+ENGINE_DAEMON_BIN=/mnt/data/mongo/r4.1.8/mongod
+ENGINE_BASE_DIR=/tmp/mongo/r4.1.8
 ENGINE_DATA_DIR="${ENGINE_BASE_DIR}/data"
-ENGINE_DAEMON_PID_FILE="${ENGINE_BASE_DIR}/mysql.pid"
-ENGINE_DAEMON_DEFAULT_ARGS="--no-defaults \
---user=mysql \
---basedir=${ENGINE_BASE_DIR} \
---datadir=${ENGINE_DATA_DIR} \
---pid-file=${ENGINE_DAEMON_PID_FILE} \
---log-error=${ENGINE_BASE_DIR}/mysqld.err \
---socket=${ENGINE_BASE_DIR}/mysqld.sock"
+ENGINE_DAEMON_PID_FILE="${ENGINE_BASE_DIR}/mongo.pid"
+ENGINE_DAEMON_DEFAULT_ARGS="--pidfilepath ${ENGINE_DAEMON_PID_FILE} --dbpath ${ENGINE_DATA_DIR} --logpath=${ENGINE_BASE_DIR}/mongo.log"
 
-ENGINE_INIT_BIN="${ENGINE_DAEMON_BIN}"
-ENGINE_INIT_DEFAULT_ARGS="--no-defaults \
---initialize-insecure \
---user=mysql \
---basedir=${ENGINE_BASE_DIR} \
---datadir=${ENGINE_DATA_DIR}"
+ENGINE_INIT_BIN="$(which touch)"
+ENGINE_INIT_DEFAULT_ARGS="${ENGINE_DATA_DIR}/.prepared"
 
-ENGINE_CLIENT_NAME=mysql
-ENGINE_CLIENT_BIN=/mnt/data/mysqld/mysqld-8.0.15/bin/mysql
-ENGINE_CLIENT_DEFAULT_ARGS="--no-defaults \
---socket=${ENGINE_BASE_DIR}/mysqld.sock \
--u root \
---password="
+ENGINE_CLIENT_NAME=mongo
+ENGINE_CLIENT_BIN=/mnt/data/mongo/r4.1.8/mongo
+ENGINE_CLIENT_DEFAULT_ARGS="--quiet ${DATABASE_NAME}"
 
 TEST_IF_FILES_EXIST='ENGINE_CLIENT_BIN ENGINE_DAEMON_BIN ENGINE_INIT_BIN LUAFILE'
 MKDIR_CHOWN_IF_DIRS_DO_NOT_EXIST='ENGINE_BASE_DIR ENGINE_DATA_DIR'
@@ -45,23 +32,16 @@ TOUCH_CHOWN_IF_FILES_DO_NOT_EXIST=''
 CLIENT_NAME=sysbench
 CLIENT_BIN=/usr/local/bin/sysbench
 CLIENT_VERSION=1.1.0
-CLIENT_DEFAULT_ARGS="--db-driver=mysql \
---mysql-db=${DATABASE_NAME} \
---mysql-user=root \
---mysql-password= \
---mysql-socket=${ENGINE_BASE_DIR}/mysqld.sock \
---table-size=${DATABASE_SIZE} \
---time=${BENCHMARK_DURATION} \
-${LUAFILE}"
+CLIENT_DEFAULT_ARGS="--mongodb-db=${DATABASE_NAME} --tables=1 --table-size=${DATABASE_SIZE} --time=${BENCHMARK_DURATION} ${LUAFILE}"
 
-engine_daemon_is_ready() { ${BENCH}/engine.sh client -e status > /dev/null; }
-check_db_exists() { ! ${BENCH}/engine.sh client -e "CREATE DATABASE ${DATABASE_NAME}"; }
-cleanup_db() { ${BENCH}/engine.sh client -e "DROP DATABASE IF EXISTS ${DATABASE_NAME}"; }
-create_db() { ${BENCH}/engine.sh client -e "CREATE DATABASE ${DATABASE_NAME}; SET GLOBAL max_connections = 1024;"; }
-count_elements_in_db() { ${BENCH}/engine.sh client -D "${DATABASE_NAME}" -e 'select count(*) from sbtest1' | tail -n 1; }
+engine_daemon_is_ready() { ./engine.sh client <<< "show dbs" > /dev/null; }
+cleanup_db() { ./engine.sh client <<< "db.dropDatabase()"; }
+create_db() { :; } # Useless for mongo
+count_elements_in_db() { ./engine.sh client <<< "db.sbtest1.count()"; }
+check_db_exists() { :; } # Useless for mongo
+client() { ${CLIENT_BIN} ${CLIENT_DEFAULT_ARGS} --threads=${CLIENTS} $1; }
 check_db_size() { [[ "${DATABASE_SIZE}" -eq "$(count_elements_in_db)" ]]; }
-client() { ${CLIENT_BIN} ${CLIENT_DEFAULT_ARGS} "--threads=${CLIENTS}" $1; }
-get_engine_daemon_config() { ${BENCH}/engine.sh client -e "SHOW VARIABLES;"; }
+get_engine_daemon_config() { ./engine.sh client <<< 'db._adminCommand({getParameter:"*"})'; }
 
 fatal() {
     echo "[FATAL]" "$@" >&2
