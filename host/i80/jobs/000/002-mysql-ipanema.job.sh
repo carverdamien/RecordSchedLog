@@ -3,14 +3,11 @@ export TIMEOUT
 export IPANEMA_MODULE
 export OUTPUT
 export BENCH
-export BENCH_NAME
-export BENCH_CLASS
 export MONITORING
 export MONITORING_SCHEDULED
 export MONITORING_START_DELAY
 export MONITORING_STOP_DELAY
 export TASKS
-export TARGET
 export SYSCTL=''
 
 export PERF_STAT_OPT='-e mem_load_uops_l3_miss_retired.local_dram -e mem_load_uops_l3_miss_retired.remote_dram'
@@ -19,10 +16,10 @@ export TRACECMD_RECORD_OPT="-e sched -b $((2**20))"
 NO_TURBO=0
 TIMEOUT=3600
 IPANEMA_MODULE=
-BENCH=bench/kbuild
-TARGET=all
-MONITORING_SCHEDULED=n
-
+BENCH=bench/oltp-mysql
+MONITORING_SCHEDULED=y
+MONITORING_START_DELAY=60
+MONITORING_STOP_DELAY=10
 KERNEL_LOCALVERSION=ipanema-eurosys2020
 SLEEP_STATE=n
 SCALING_GOVERNOR=performance
@@ -86,11 +83,11 @@ do
     esac
     for N in $(seq ${REPEAT})
     do
-        for TASKS in 32 64 80 128 160 256
+        for TASKS in 32 64 128 256 512
         do
             OUTPUT="output/"
             OUTPUT+="HOST=${HOSTNAME}/"
-            OUTPUT+="BENCH=$(basename ${BENCH})-${TARGET}/"
+            OUTPUT+="BENCH=$(basename ${BENCH})/"
             OUTPUT+="POWER=${SCALING_GOVERNOR}-${SLEEP_STATE}/"
             OUTPUT+="MONITORING=$(basename ${MONITORING})/"
             OUTPUT+="TASKS=${TASKS}/"
