@@ -34,14 +34,14 @@ CLIENT_BIN=/usr/local/bin/sysbench
 CLIENT_VERSION=1.1.0
 CLIENT_DEFAULT_ARGS="--mongodb-db=${DATABASE_NAME} --tables=1 --table-size=${DATABASE_SIZE} --time=${BENCHMARK_DURATION} ${LUAFILE}"
 
-engine_daemon_is_ready() { ./engine.sh client <<< "show dbs" > /dev/null; }
-cleanup_db() { ./engine.sh client <<< "db.dropDatabase()"; }
+engine_daemon_is_ready() { ${BENCH}/engine.sh client <<< "show dbs" > /dev/null; }
+cleanup_db() { ${BENCH}/engine.sh client <<< "db.dropDatabase()"; }
 create_db() { :; } # Useless for mongo
-count_elements_in_db() { ./engine.sh client <<< "db.sbtest1.count()"; }
+count_elements_in_db() { ${BENCH}/engine.sh client <<< "db.sbtest1.count()"; }
 check_db_exists() { :; } # Useless for mongo
 client() { ${CLIENT_BIN} ${CLIENT_DEFAULT_ARGS} --threads=${CLIENTS} $1; }
 check_db_size() { [[ "${DATABASE_SIZE}" -eq "$(count_elements_in_db)" ]]; }
-get_engine_daemon_config() { ./engine.sh client <<< 'db._adminCommand({getParameter:"*"})'; }
+get_engine_daemon_config() { ${BENCH}/engine.sh client <<< 'db._adminCommand({getParameter:"*"})'; }
 
 fatal() {
     echo "[FATAL]" "$@" >&2
