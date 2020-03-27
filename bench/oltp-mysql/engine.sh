@@ -69,8 +69,10 @@ start() {
 	fatal "${ENGINE_DAEMON_NAME} is not prepared"
     is_stopped ||
 	ok "${ENGINE_DAEMON_NAME} already running"
-    (exec "${ENGINE_DAEMON_BIN}" ${ENGINE_DAEMON_DEFAULT_ARGS} "$@") &
-    wait $! &
+    (
+	"${ENGINE_DAEMON_BIN}" ${ENGINE_DAEMON_DEFAULT_ARGS} "$@" &
+	wait $!
+    ) &
 }
 
 pgrep_engine_daemon() {
