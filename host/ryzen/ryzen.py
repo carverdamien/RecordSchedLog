@@ -4,7 +4,8 @@ def main():
     walk_path = '/home/damien/git/carverdamien/trace-cmd/TraceDisplay/examples/trace'
     # walk_path = '/home/damien/git/carverdamien/trace-cmd/TraceDisplay/examples/trace/HOST=ryzen/BENCH=kbuild-all'
     path_match = '^.*tar$'
-    import os, re, json
+    import os, re, json, logging
+    logging.basicConfig(level=logging.DEBUG)
     KBUILD = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>kbuild[^/]+)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/TASKS=(?P<tasks>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
     KBUILD = re.compile(KBUILD)
     HACKBENCH = """.*/HOST=(?P<host>[^/]+)/BENCH=(?P<bench>hackbench)/CMDLINE=(?P<cmdline>[^/]+)/GOVERNOR=(?P<governor>[^/]+)/MONITORING=(?P<monitoring>[^/]+)/TASKS=(?P<tasks>[^/]+)/KERNEL=(?P<kernel>[^/]+)/?(?P<sysctl>[^/]*)/(?P<id>\d+).tar"""
@@ -29,10 +30,13 @@ def main():
             data['usr_bin_time'] = float(fio.read().decode().split('\n')[-2])
     def handler_phoronix_json(data, fname, fio):
         if os.path.basename(fname) == 'phoronix.json':
+            decode = fio.read().decode()
             try:
-                data['phoronix_value'] = float(json.loads(fio.read())['results'][0]['results']['schedrecord']['value'])
+                data['phoronix_value'] = float(json.loads(decode)['results'][0]['results']['schedrecord']['value'])
             except Exception as e:
-                print(f'handler_phoronix_json: {e}')
+                logging.error(fname)
+                logging.debug(f'handler_phoronix_json: {e}')
+                logging.debug(decode)
                 pass
     def handler_turbostat_out(data, fname, fio):
         if os.path.basename(fname) == 'turbostat.out':
@@ -40,7 +44,8 @@ def main():
             HEADER = re.compile(HEADER)
             decode = fio.read().decode()
             if len(decode) == 0:
-                print(fname,decode)
+                logging.error(fname)
+                logging.debug('len(decode) == 0')
                 return
             lines = iter(decode.split('\n'))
             version = next(lines)
