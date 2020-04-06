@@ -122,6 +122,9 @@ def main():
     df.drop(columns=drop_columns, inplace=True)
     df.dropna(subset=mandatory_columns, inplace=True)
     # print(df)
+    # Show entries where energy isnull
+    for i,r in df[(df['monitoring'] == 'turbostat') & (df['energy'].isnull())].iterrows():
+        logging.error(r['path'])
     df_turbostat = df[(df['monitoring'] == 'turbostat') & (~df['energy'].isnull())].drop(columns=['monitoring'])
     df_nop = df[(df['monitoring'] == 'nop')].drop(columns=['monitoring'])
     df_turbostat.to_pickle('ryzen.turbostat.pkl.gz', protocol=3)
