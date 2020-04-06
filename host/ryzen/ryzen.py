@@ -39,7 +39,9 @@ def main():
             HEADER = """^(?P<key>[^:]+): *(?P<value>.*)$"""
             HEADER = re.compile(HEADER)
             decode = fio.read().decode()
-            # print(decode)
+            if len(decode) == 0:
+                print(fname,decode)
+                return
             lines = iter(decode.split('\n'))
             version = next(lines)
             # print(version)
@@ -95,27 +97,30 @@ def main():
     pd.options.display.width = 9999
     df = pd.DataFrame(data)
     # print(df)
-    keep = (df['monitoring'] == 'turbostat') & (~df['energy'].isnull())
-    df = df.loc[keep]
+    # keep = (df['monitoring'] == 'turbostat') & (~df['energy'].isnull())
+    # df = df.loc[keep]
     # df['path'] = df['path']
     # df['energy'] = float('Nan')
     df['power'] = 'schedutil-y'
     sel_phoronix = ~df['phoronix'].isnull()
-    df['bench'][sel_phoronix] = df['phoronix'][sel_phoronix]
+    df['bench'].loc[sel_phoronix] = df['phoronix'][sel_phoronix]
     sel_tasks = ~df['tasks'].isnull()
     sel = (~sel_phoronix)&sel_tasks
-    df['bench'][sel] = df['bench'][sel] + '-' + df['tasks'][sel]
+    df['bench'].loc[sel] = df['bench'][sel] + '-' + df['tasks'][sel]
     df['sched'] = df['kernel']
     df['perf'] = df['usr_bin_time']
-    df['perf'][~sel_phoronix] = df['usr_bin_time'][~sel_phoronix]
-    df['perf'][sel_phoronix] = df['phoronix_value'][sel_phoronix]
-    mandatory_columns = ['bench', 'power', 'sched', 'id', 'perf', 'path']
+    df['perf'].loc[~sel_phoronix] = df['usr_bin_time'][~sel_phoronix]
+    df['perf'].loc[sel_phoronix] = df['phoronix_value'][sel_phoronix]
+    mandatory_columns = ['bench', 'power', 'sched', 'id', 'perf', 'path', 'monitoring']
     keep_columns = mandatory_columns + ['energy']
     drop_columns = list(filter(lambda x: x not in keep_columns, df.columns))
     df.drop(columns=drop_columns, inplace=True)
     df.dropna(subset=mandatory_columns, inplace=True)
-    print(df)
-    df.to_pickle('ryzen.pkl.gz', protocol=3)
+    # print(df)
+    df_turbostat = df[(df['monitoring'] == 'turbostat') & (~df['energy'].isnull())].drop(columns=['monitoring'])
+    df_nop = df[(df['monitoring'] == 'nop')].drop(columns=['monitoring'])
+    df_turbostat.to_pickle('ryzen.turbostat.pkl.gz', protocol=3)
+    df_nop.to_pickle('ryzen.nop.pkl.gz', protocol=3)
     pass
 
 def find(walk_path, path_match='.*'):
