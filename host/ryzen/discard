@@ -1,10 +1,2 @@
-47e30e36242aa5241604119398f7343933fc56ae  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/8.tar
-a9e4a83094be3c0ad035bb4af17db39b93087aa1  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=apache-0/KERNEL=5.4-local/5.tar
-2f9112aa36f7077bd01bf1fc5b6fd396ef029cd5  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-local/3.tar
-762adf3310a1dd0f4b9d89e80c3f814129a07bb5  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/4.tar
-ac666820f03a85fc71049a714c5772c9d1f5999e  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/10.tar
-8800c782995e47b0c9952a58c59a9acc9295de31  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-schedlog-ftraced/5.tar
-91991e99f5fa8e111f8d36988dc4c07ffc9beb49  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-local/4.tar
-655cfe6125ff8478ab989eb47d6281bbc5034e3d  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/8.tar
-797458818ac0357124fc6137653c0f5400fee8e4  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/5.tar
-4a784171e50b3c08fd0f5dda8179d9f6758ffa9b  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/9.tar
+3d20964e704cfb4b7ca9effba373a2d267544d31  output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-local/1.tar
+74451e86a023c860920298c36d90e922f269d961  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-schedlog-ftraced/5.tar
