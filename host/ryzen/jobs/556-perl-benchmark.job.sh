@@ -59,18 +59,19 @@ EXTRA_SYSCTL=()
 MON=()
 RPT=()
 
-KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced 5.4-schedlog-ftraced)
-EXTRA_SYSCTL+=('' '' '')
+KERNEL_LOCALVERSIONS+=(5.4-schedlog-ftraced 5.4-schedlog-ftraced 5.4-schedlog-ftraced 5.4-schedlog-ftraced)
+EXTRA_SYSCTL+=('' '' '' '')
 MON+=(monitoring/turbostat monitoring/trace-cmd monitoring/nop monitoring/trcd-tbst)
 RPT+=(${MAX_RPT} 1 ${MAX_RPT} ${MAX_RPT})
 
-KERNEL_LOCALVERSIONS+=(5.4-local 5.4-local 5.4-local)
-EXTRA_SYSCTL+=('' '' '')
+KERNEL_LOCALVERSIONS+=(5.4-local 5.4-local 5.4-local 5.4-local)
+EXTRA_SYSCTL+=('' '' '' '')
 MON+=(monitoring/turbostat monitoring/trace-cmd monitoring/nop monitoring/trcd-tbst)
 RPT+=(${MAX_RPT} 1 ${MAX_RPT} ${MAX_RPT})
 
-KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move 5.4-move)
+KERNEL_LOCALVERSIONS+=(5.4-move 5.4-move 5.4-move 5.4-move)
 EXTRA_SYSCTL+=(
+'kernel.sched_lowfreq=2000000'
 'kernel.sched_lowfreq=2000000'
 'kernel.sched_lowfreq=2000000'
 'kernel.sched_lowfreq=2000000'
