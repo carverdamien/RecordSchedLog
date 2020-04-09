@@ -1,264 +1,126 @@
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-schedlog-ftraced/1.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=nas_ep.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_cg.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_sp.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_sp.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_sp.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_lu.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_lu.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_lu.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=nas_lu.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_lu.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=nas_lu.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_bt.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=2000/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=2000/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=2000/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=2000/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=2000/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=2000/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=1000/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=1000/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=1000/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=1000/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=1000/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=1000/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=hackbench/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=400/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=nas_ua.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_ua.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_ua.B/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-schedlog-ftraced/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=kbuild-sched/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=schbench-6-7/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=compress-7zip-0/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=compress-7zip-0/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=compress-7zip-0/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=compress-7zip-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=compress-7zip-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=compress-7zip-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=phpbench-0/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=phpbench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=phpbench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=phpbench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=rust-prime-0/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=rust-prime-0/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-3/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-2/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-2/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=redis-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-5/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-2/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-2/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-2/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=node-octane-1/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=node-octane-1/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=node-octane-1/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=node-octane-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=node-octane-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=openssl-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=openssl-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=aobench-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=git-0/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=git-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-2/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-2/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-2/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=deepspeech-0/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=deepspeech-0/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=deepspeech-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=deepspeech-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-4/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-4/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-1/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=mkl-dnn-7-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-6/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-6/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-6/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-6/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-6/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=scimark2-6/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-0/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-local/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=apache-siege-4/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=go-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-schedlog-ftraced/2.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-schedlog-ftraced/1.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-local/2.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
-output/HOST=ryzen/BENCH=llvmcmake/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/3.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/3.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=4/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=16/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-schedlog-ftraced/4.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-local/1.tar
-output/HOST=ryzen/BENCH=nas_ft.C/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/TASKS=8/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
+7e570a42732c8d0ff17c39c68c0e05963eacbe74  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/3.tar
+62510ef9c6b1d5ad5ad608ab287d911006e92b88  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/4.tar
+d19b69da8f710f85450d62dc081e5e6de0ed506b  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/2.tar
+156e9faac64fceb7ef42bea06ad8d17dd457aada  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/1.tar
+cd0803aa5bd9f20cdcf9a9ef33b4f7d4495bb8a6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/7.tar
+a0c7b67f1b553600ae6aa5250d246f23f20c40da  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/8.tar
+cf2d2490a891347b9f4e508d02f56b5009b3fece  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/5.tar
+c83819c6b93d2d8563b8f2a08537016ccf4dfb0c  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/10.tar
+64ad4c9f086bd12bb6e66b278eddcf93d71062f9  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/9.tar
+80a8f7bc4baeb6895b159c6799dedfe5850ca5d9  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/6.tar
+059725a03083eefd909cd8f424482fa15d730efd  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/3.tar
+32986d074db2172293810872c0d6813e42c9ce40  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/4.tar
+db3c501604e5311a0b9ae8231c7caf320b69b773  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/2.tar
+d1a6f3dd22d9b523c9da9da2ff84db587ef6b7db  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/1.tar
+baeb17810155d7c2a18828a1d522c5d0c4e3bd33  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/7.tar
+1e2922528a15afc05a286eae5281b9ff8b97c825  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/8.tar
+ff85befa3b652b5e4c76f9bb66d00f29787e9369  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/5.tar
+18c1617fab2f7cde5b0d80d07efa66f5effbdef3  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/10.tar
+5675fbae422d01e7d4e8ad3c207f903fd2291ed5  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/9.tar
+c858b7626befdc22d906763955339ec7142a0f4d  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/6.tar
+655ec71ef6dc0c6ad45b287003631d659102e1b9  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
+0812b597ec791c3d212400abb7aee0ddbf5e4e0f  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
+ba4ef918eb0ab524634694038d298b6636bbffbd  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
+4db6876c29cd0979adc3cb54c2780b227da6ff6e  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
+11e466d39840a19d7da2bba943b553906fc7409e  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/7.tar
+6c88254fa1ae6d2d46e8dc61e5fe5afb250609b3  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/8.tar
+471bd49f36224a85eddc1bbef25a384f048cdfed  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/5.tar
+658c6453ca607aec33c25c75b50849587d38ad48  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/10.tar
+b41f9ceaea1d1678d2ccc70afe7601f16cf09284  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/9.tar
+bf8d912507bd3dccf44b09dcb2acf5bd68a4acf5  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/6.tar
+26fb4d00c6a8dce0264a86aca6c24c64e1955658  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/3.tar
+62cc5152bcebc55c4eb3c99e146b95f4bf603d3e  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/4.tar
+6b067813db0e8f0c54051bef9adb2f08b3c19db5  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/2.tar
+461b6ecc1e9b4bfcd2bbc0e741d17b1dd7cae814  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/1.tar
+15a9971d8e0480079379067dad70c6f48b1080a6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/7.tar
+bc02b2d3cb0dc42b1d9bff78687a83c219b099c3  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/8.tar
+1b58d5dd5d9da130e740b710e64a3c0c297291df  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/5.tar
+f971d4333037d59cdf29f70515a18b7dd4382971  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/10.tar
+e89749aab6b9d7189bbafa199476543057cbc865  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/9.tar
+53896b97973316623e3c833ed77f2019be8794e2  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/6.tar
+00976b143e57d042732455e37cf44da62f9b3437  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/3.tar
+1903cb85de36a10412a47639d35b3c05fe0df342  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/4.tar
+d9f311dcff0af6c14d7a226e3df95db24f24ab47  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/2.tar
+fcacc4fd529f69ecbbea19e4bad387643db98427  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/1.tar
+8ca6a78e57a60e0fb020e2016ec0ed194c51c454  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/7.tar
+3790e02cb04fc0c2cb7eee9fd4801a0fe501a9a7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/8.tar
+fb1a850cff3c45964e0ae6d0d7c8213c65f56dbe  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/5.tar
+1835c0e1279056da454a8496e76cc6babfc8a57a  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/10.tar
+1acd55acea8b0cf34c3dc5b409d575997f49b9eb  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/9.tar
+1ef34bc8d00469848f4b06ae5afe398780d55cd7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/6.tar
+b52cbd2076b3374b94f12656731485bd04c88efb  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
+cfa5366e0b7cc9154784966a7b743bffc1baf8a6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
+20a74b3688d31439dd546e78f663e5da3d6e3930  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
+0c3bac24a8aeb7f1215795f2e26aec04417215e4  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
+0cf8774929c0bf6232b57e78e5c3fd54745b76bb  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/7.tar
+811720cf2fa7b56c3e1dc7477fa5790a1db917c2  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/8.tar
+fddb7ffa60d5b523c93d60fe5f904fec65afd07f  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/5.tar
+c65224ef56be71cde39457bec756addf7eba98e7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/10.tar
+58dd30b3fa3259e469e53bd17baff658c3324e3d  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/9.tar
+1a3daaaffcf1bbf88806c4beef1ffaa0f9a1a511  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=nop/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/6.tar
+f6bd9e212c45d1151c5fdbe40a0f0faf34cb8e97  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=trace-cmd/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/1.tar
+d36c173416ad2a38b91e912caa96608d18d4f1b0  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=trace-cmd/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/1.tar
+9a94926991b2bfb40ea0b6f091b50b2d9a48b89a  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=trace-cmd/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
+b7982fc61fdce4e1720039e3417f6b7e9d232260  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=trace-cmd/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/1.tar
+794aeef19f1703499e3659bfbdb6aec4848b514a  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=trace-cmd/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/1.tar
+c9419c53fc6c4462a7458fe4c488c7700f64930d  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=trace-cmd/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
+2455d30d4c15eeb5e3cbd1532821bbb29c0919df  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/3.tar
+a2861e2fe45efacb063da8a83a6adefd8bb4cabc  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/4.tar
+411bc01a5bb70398d215756eecd57ab2407569b7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/2.tar
+942b45084eb3c767a6ed7caa72a05d88e828be58  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/1.tar
+fd991fd948491432f59aafade9030261c0f41695  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/7.tar
+baf1328304c083b646336784ac17ea28ced9f72e  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/8.tar
+19dcd70fdabffbe7f8262d8117bfee15ecdfdb57  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/5.tar
+b16ca77e654ad185b4164e32a6cd8a16c6b67a66  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/10.tar
+b21f2f76ba5cf0a79e4fcd9906e5079102874745  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/9.tar
+91da972e43774da141b0e6ce590b26905676b77b  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-schedlog-ftraced/6.tar
+e8e0c11ac03a47f2ec9d040059a33fe278798c46  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/3.tar
+2e927564cef17d5ad9ea2c2230f30dd5bca6e81c  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/4.tar
+314cbb851afd506826852be7ceac2a90481bc184  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/2.tar
+cc026dab9421058dcb75f57749ce99a8603b0ded  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/1.tar
+e3c5f49168c352c24b9cfd75951005347d01e050  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/7.tar
+c19036bc0de45f45bef5a9f520b836e9d8e5fdad  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/8.tar
+1b8b2c5f53a28e8c5fe3a050068456ae6352f076  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/5.tar
+1c6ddf32d5d93068fb3b3813789ce7ef830f73f6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/10.tar
+3f0744fd9345293bd6a243a1abfefa7b955d51a6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/9.tar
+a0d98b050d42faa81aeeae10aaf4b34fc842bffe  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-local/6.tar
+b2be8fe5bed890d009e9c0648999567915a37025  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
+3648a9868158b16b07691e54dc50d8d898eddf53  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
+1fcbab7ac3de5dd924934a904c1364c3a17f1781  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
+0eb0ed547aab86e27f02dac9fc85c7299eb0649c  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
+3d067b59f7f303e467428ac80f79ca7687125609  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/7.tar
+ad0be82a32384a14557a9b654eca6b21aa9bca21  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/8.tar
+d3880d2631279ab4172d44684de8861bb472b4d7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/5.tar
+c59d94c85d1223118339c121e595ad43dbfaa065  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/10.tar
+80159f17d11a6ecfce407b4c0974f738ac150008  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/9.tar
+e3b75dcee66da096ac90a193c8a5258d1d46a5be  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-1/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/6.tar
+5a9f0a407ed250c8aaadffda715d744402f71656  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/3.tar
+ef5c10061b3fa8fd82c83e4ed48584d70ca5a4a7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/4.tar
+368849ce123e8e294b855f187a22892d3d07c530  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/2.tar
+48de600316463a2b52fe9436540ae182b3d4f45c  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/1.tar
+a8f499d600e43135b64d1c314677d23f5ef41b57  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/7.tar
+6756ce042755e4d7f3e16d9766a997acf94e8735  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/8.tar
+1cbf65428c8a7bb0c853017b298b758ec9486192  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/5.tar
+608eb6648c4825a78bd4e277489501543c28498f  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/10.tar
+a068f39758b22d66fc8f5d0a2d4498cb10ac4fc7  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/9.tar
+aa2e5931c67cb3ea80d08be9d49d138457ad8717  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-schedlog-ftraced/6.tar
+e0a82df68f55904e415c703946547383239213d3  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/3.tar
+ef66ce1bd64fca7a8011564451a416c69bef52d4  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/4.tar
+a29853c0aa4fc5e0f07442e0dc56fe655614331e  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/2.tar
+1f72951377cf477fef177cb3340040cf2d7788c6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/1.tar
+452f97951b2d92c54a25a30f1d93a379e6ffe9b9  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/7.tar
+a3d0014261a269d167f1f6423b56c717bc7858d2  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/8.tar
+b15e21350dac63512ad38267d565e1d4dbc55876  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/5.tar
+5f29ffc150c48fe861535dd9994f507dc5571bc9  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/10.tar
+6bdab85b6818a979a87db76066dc11a9d959f701  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/9.tar
+f0004433d09f5bc4c0ccd29aa88bcdd4b7546c9a  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-local/6.tar
+a39e7070a849388d370dcaa757f238ba6c368ba6  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/3.tar
+613f639695bd68f1c834c8f0457ec201cd7ecec0  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/4.tar
+5571e7dc83e62cb54973161f35bf258be5dc4f16  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/2.tar
+4a985c9d0f320b9cf0d5faca32f14c4175300036  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/1.tar
+503382f70db17370044f2b59e7564c68a085b76c  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/7.tar
+8454fdbc19e2aaf6eba7e22c6f56ea4866df7438  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/8.tar
+b1f87a4e01dc1fbf71f6348213f308c869e504cc  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/5.tar
+53c65779025422da47a44ce8cbcca66f6292c62f  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/10.tar
+c055b0f828c79f3349e9e99576b85746144990cc  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/9.tar
+054fc33a5ce5bcc0ef6da0c58cad14e77c86a5af  output/HOST=ryzen/BENCH=phoronix/CMDLINE=default/GOVERNOR=schedutil/MONITORING=turbostat/PHORONIX=perl-benchmark-2/KERNEL=5.4-move/kernel.sched_lowfreq=2000000/6.tar
