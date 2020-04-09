@@ -1,5 +1,5 @@
 #!/bin/bash
-for m in monitoring/cpu-energy-meter monitoring/SchedLog
+for m in monitoring/trace-cmd monitoring/turbostat
 do
 	source ${m}/start
 done
