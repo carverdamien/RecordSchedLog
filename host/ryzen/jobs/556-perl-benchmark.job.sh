@@ -20,23 +20,23 @@ MONITORING_SCHEDULED=n
 PHORONIXES=()
 PARGUMENTS=()
 
-PHORONIXES+=(apache-siege apache-siege apache-siege apache-siege apache-siege)
-PARGUMENTS+=(           5            4            3            2            1)
+# PHORONIXES+=(apache-siege apache-siege apache-siege apache-siege apache-siege)
+# PARGUMENTS+=(           5            4            3            2            1)
 
-PHORONIXES+=(scimark2 scimark2 scimark2 scimark2 scimark2 scimark2)
-PARGUMENTS+=(       1        2        3        4        5        6)
+# PHORONIXES+=(scimark2 scimark2 scimark2 scimark2 scimark2 scimark2)
+# PARGUMENTS+=(       1        2        3        4        5        6)
 
-PHORONIXES+=(go-benchmark go-benchmark go-benchmark go-benchmark)
-PARGUMENTS+=(           1            2            3            4)
+# PHORONIXES+=(go-benchmark go-benchmark go-benchmark go-benchmark)
+# PARGUMENTS+=(           1            2            3            4)
 
-PHORONIXES+=(redis rust-prime aobench apache node-octane)
-PARGUMENTS+=(    1          0       0      0           1)
+# PHORONIXES+=(redis rust-prime aobench apache node-octane)
+# PARGUMENTS+=(    1          0       0      0           1)
 
-PHORONIXES+=(mkl-dnn mkl-dnn)
-PARGUMENTS+=(  '7-1'   '7-2')
+# PHORONIXES+=(mkl-dnn mkl-dnn)
+# PARGUMENTS+=(  '7-1'   '7-2')
 
-PHORONIXES+=(schbench)
-PARGUMENTS+=(   '6-7')
+# PHORONIXES+=(schbench)
+# PARGUMENTS+=(   '6-7')
 
 # PHORONIXES+=(build-linux-kernel build-llvm)
 # PARGUMENTS+=(                 0          0)
@@ -44,8 +44,11 @@ PARGUMENTS+=(   '6-7')
 # PHORONIXES+=(cloudsuite-da cloudsuite-ga cloudsuite-ma cloudsuite-ms cloudsuite-ws)
 # PARGUMENTS+=(            1             1             1             1             1)
 
-PHORONIXES+=(c-ray compress-7zip deepspeech git openssl perl-benchmark perl-benchmark phpbench)
-PARGUMENTS+=(    0             0          0   0       0              1              2        0)
+# PHORONIXES+=(c-ray compress-7zip deepspeech git openssl perl-benchmark perl-benchmark phpbench)
+# PARGUMENTS+=(    0             0          0   0       0              1              2        0)
+
+PHORONIXES+=(perl-benchmark perl-benchmark)
+PARGUMENTS+=(1              2             )
 
 CMDLINE=default
 SCALING_GOVERNOR=schedutil
