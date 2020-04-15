@@ -34,7 +34,7 @@ IPANEMA_MODULES=()
 REPEATS=()
 MONITORINGS=()
 
-echo 1 | sudo tee /sys/kernel/ipanema/ipanema_fsm_check
+echo 1 | sudo tee /sys/kernel/ipanema/ipanema_fsm_check || true
 
 # # trace-cmd first
 # for ipa in '' cfs_wwc ule_wwc
