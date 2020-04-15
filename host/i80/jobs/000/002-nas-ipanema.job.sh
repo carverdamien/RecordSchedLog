@@ -62,7 +62,7 @@ for ipa in '' cfs_cwc_ipa cfs_cwc_flat_ipa ule_ipa ule_wwc_2 cfs_wwc ule_wwc ule
 do
     IPANEMA_MODULES+=("$ipa" "$ipa" "$ipa")
     REPEATS+=(1 1 $MAX_RPT)
-    MONITORINGS+=(monitoring/SchedLog monitoring/trace-cmd monitoring/nop)
+    MONITORINGS+=(monitoring/trace-cmd monitoring/SchedLog monitoring/nop)
 done
 
 for J in ${!IPANEMA_MODULES[@]}
