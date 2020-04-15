@@ -60,9 +60,9 @@ echo 1 | sudo tee /sys/kernel/ipanema/ipanema_fsm_check || true
 # nop last
 for ipa in '' cfs_cwc_ipa cfs_cwc_flat_ipa ule_ipa ule_wwc_2 cfs_wwc ule_wwc ule cfs_wwc_flat ule_wwc_rip ule_rip
 do
-    IPANEMA_MODULES+=("$ipa")
-    REPEATS+=($MAX_RPT)
-    MONITORINGS+=(monitoring/nop)
+    IPANEMA_MODULES+=("$ipa" "$ipa")
+    REPEATS+=(1 $MAX_RPT)
+    MONITORINGS+=(monitoring/trace-cmd monitoring/nop)
 done
 
 for J in ${!IPANEMA_MODULES[@]}
